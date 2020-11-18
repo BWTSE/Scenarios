@@ -1,0 +1,4 @@
+,Stockholm,Gothenburg,Sweden
+Population,2 385 643,1 025 355,10 343 403
+Area (km^2),6 524.12,3 694.45,450 295
+Population density (pop/km^2),366,277.5,23
