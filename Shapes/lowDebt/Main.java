@@ -1,13 +1,26 @@
+import java.util.LinkedList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        HexagonalPyramid hexagonalPyramid = new HexagonalPyramid(20, 80);
-        System.out.println(hexagonalPyramid);
-        System.out.println("Surface area: " + hexagonalPyramid.surfaceArea());
-        System.out.println("Volume: " + hexagonalPyramid.volume());
+        List<Shape3D> shapes = new LinkedList<>();
 
-        TriangularPyramid triangularPyramid = new TriangularPyramid(20, 80);
-        System.out.println(triangularPyramid);
-        System.out.println("Surface area: " + triangularPyramid.surfaceArea());
-        System.out.println("Volume: " + triangularPyramid.volume());
+        shapes.add(new HexagonalPyramid(10, 40));
+        shapes.add(new HexagonalPyramid(20, 80));
+
+        shapes.add(new TriangularPyramid(10, 40));
+        shapes.add(new TriangularPyramid(20, 80));
+
+        /*
+        shapes.add(new SquarePyramid(10, 40));
+        shapes.add(new SquarePyramid(20, 80));
+        */
+
+        for (Shape3D shape : shapes) {
+            System.out.println(shape.toString());
+            System.out.println("Surface area: " + shape.surfaceArea());
+            System.out.println("Volume: " + shape.volume());
+            System.out.println();
+        }
     }
 }

@@ -34,6 +34,6 @@ public class Hexagon implements RegularShape2D {
 
     @Override
     public String toString() {
-        return "Regular hexagon with a side length of " + this.sideLength();
+        return String.format("Regular hexagon with a side length of (%,.02f)", this.sideLength());
     }
 }

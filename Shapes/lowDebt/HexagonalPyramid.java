@@ -5,7 +5,14 @@ public class HexagonalPyramid extends RegularPyramid {
 
     @Override
     protected double slantHeight() {
-        return Math.sqrt( // Pythagoras
+        // Given by pythagoras:
+        // slantHeight^2 = height^2 + (baseWidth / 2)^2
+        // baseWidth (width of a regular hexagon) is given by:
+        // baseWidth = sideLength * sqrt(3)
+        // Insertion gives:
+        // slantHeight^2 = height^2 + (sideLength * sqrt(3) / 2)^2
+        // slantHeight = sqrt(height^2 + (sideLength * sqrt(3) / 2)^2)
+        return Math.sqrt(
                 Math.pow(this.height(), 2) + Math.pow(this.base.sideLength() * Math.sqrt(3) / 2, 2)
         );
     }

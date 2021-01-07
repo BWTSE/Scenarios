@@ -58,6 +58,6 @@ public abstract class RegularPyramid implements Shape3D {
 
     @Override
     public String toString() {
-        return "Regular pyramid with height " + this.height() + " and base: " + this.base();
+        return String.format("Regular pyramid with height (%,.02f) and base (%s)", this.height(), this.base().toString());
     }
 }

@@ -35,4 +35,9 @@ public class Triangle implements Shape2D {
     public int hashCode() {
         return Objects.hash(AB, BC, CA);
     }
+
+    @Override
+    public String toString() {
+        return String.format("Triangle with sides (%,.02f, %,.02f, %,.02f)", this.AB, this.BC, this.CA);
+    }
 }
