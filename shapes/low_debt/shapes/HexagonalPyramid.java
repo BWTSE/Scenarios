@@ -1,3 +1,5 @@
+package shapes;
+
 public class HexagonalPyramid extends RegularPyramid {
     public HexagonalPyramid(double baseSideLength, double height) {
         super(height, new Hexagon(baseSideLength));

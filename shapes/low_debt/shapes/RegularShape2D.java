@@ -1,3 +1,5 @@
+package shapes;
+
 public interface RegularShape2D extends Shape2D {
     int sides ();
     double sideLength();

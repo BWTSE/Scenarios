@@ -1,3 +1,5 @@
+package shapes;
+
 import java.util.Objects;
 
 public abstract class RegularPyramid implements Shape3D {

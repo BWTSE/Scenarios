@@ -1,3 +1,5 @@
+package shapes;
+
 public class TriangularPyramid extends RegularPyramid {
     public TriangularPyramid (double baseSideLength, double height) {
         super(height, new EquilateralTriangle(baseSideLength));

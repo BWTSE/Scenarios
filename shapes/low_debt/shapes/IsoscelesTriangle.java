@@ -1,3 +1,5 @@
+package shapes;
+
 public class IsoscelesTriangle extends Triangle {
     public IsoscelesTriangle(double baseLength, double height) {
         super(baseLength, legLength(baseLength, height), legLength(baseLength, height));

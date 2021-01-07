@@ -1,3 +1,5 @@
+package shapes;
+
 public class EquilateralTriangle extends IsoscelesTriangle implements RegularShape2D {
     public EquilateralTriangle(double sideLength) {
         super(sideLength, EquilateralTriangle.height(sideLength));

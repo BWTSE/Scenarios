@@ -1,3 +1,5 @@
+package shapes;
+
 import java.util.Objects;
 
 public class Hexagon implements RegularShape2D {
