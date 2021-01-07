@@ -11,35 +11,31 @@ public abstract class RegularPyramid implements Shape3D {
         this.base = base;
     }
 
-    protected abstract double slantHeight();
-
-    @Override
-    public double volume() {
-        return this.height() * this.base.area() / 3.0;
-    }
-
-    @Override
-    public double surfaceArea() {
-        return this.base.area() + sideShape().area() * 4.0;
-    }
-
     public double height() {
         return this.height;
-    }
-
-    public Shape2D sideShape() {
-        return new IsoscelesTriangle(
-                this.base.sideLength(),
-                this.slantHeight()
-        );
     }
 
     public RegularShape2D base() {
         return this.base;
     }
 
-    public int sides() {
-        return this.base.sides() + 1;
+    protected abstract double slantHeight();
+
+    @Override
+    public double volume() {
+        return this.height() * this.base().area() / 3.0;
+    }
+
+    @Override
+    public double surfaceArea() {
+        return this.base().area() + this.sideShape().area() * this.base().sides();
+    }
+
+    public Shape2D sideShape() {
+        return new IsoscelesTriangle(
+                this.base().sideLength(),
+                this.slantHeight()
+        );
     }
 
     @Override
@@ -49,13 +45,13 @@ public abstract class RegularPyramid implements Shape3D {
         if (!(o instanceof RegularPyramid))
             return false;
         RegularPyramid that = (RegularPyramid) o;
-        return Double.compare(that.height, height) == 0 &&
-                base.equals(that.base);
+        return Double.compare(that.height(), this.height()) == 0 &&
+                this.base().equals(that.base());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, base);
+        return Objects.hash(this.height(), this.base());
     }
 
     @Override

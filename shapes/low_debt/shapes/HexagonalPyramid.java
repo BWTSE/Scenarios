@@ -15,7 +15,7 @@ public class HexagonalPyramid extends RegularPyramid {
         // slantHeight^2 = height^2 + (sideLength * sqrt(3) / 2)^2
         // slantHeight = sqrt(height^2 + (sideLength * sqrt(3) / 2)^2)
         return Math.sqrt(
-                Math.pow(this.height(), 2) + Math.pow(this.base.sideLength() * Math.sqrt(3) / 2, 2)
+                Math.pow(this.height(), 2) + Math.pow(this.base().sideLength() * Math.sqrt(3) / 2, 2)
         );
     }
 }
