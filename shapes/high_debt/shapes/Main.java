@@ -22,6 +22,7 @@ public class Main {
             System.out.println(shape.toString());
             System.out.println("Surface area: " + shape.surfaceArea());
             System.out.println("Volume: " + shape.volume());
+            // System.out.println("TotalEdgeLength; " + shape.totalEdgeLength());
             System.out.println();
         }
     }
