@@ -11,8 +11,6 @@ For example: The `TriangularPyramid` has 6 edges,
 3 in the base and 3 leading to the top from the base (1 from each corner). 
 The method should return the sum of the lengths of those 6 edges.
 
-Any added classes should also have none default implementations of `hashCode`, `equals` and `toString`.
-
 Feel free to modify the existing codebase in any way you want as long as you maintain existing functionality.
 
 ## Task checklist
