@@ -2,8 +2,8 @@ package salestracker;
 
 public class ItemDatabase {
 	
-	public Item lookup(int barcode) throws Exception {
-		switch (barcode) {
+	public Item lookup(int bc) throws Exception {
+		switch (bc) {
 			case 1001:
 				return new Item(1001, "Milk 1l", 12.95);
 			case 1002:
@@ -23,16 +23,16 @@ public class ItemDatabase {
 	}
 	
 	public Item getDiscount(Item item) throws Exception {
-		switch (item.getBarcode()) {
+		switch (item.getbc()) {
 		case 1001:
-			if (item.getQuantity() >= 3)
-				return new Item(3001, "Milk: Buy 3 pay for for 2 ", ((int)item.getQuantity() / 3) * item.getPrice() * -1);
+			if (item.getq() >= 3)
+				return new Item(3001, "Milk: Buy 3 pay for for 2 ", ((int)item.getq() / 3) * item.getp() * -1);
 			else
 				throw new Exception("No discount applicable");
 		case 1002:
 			throw new Exception("No discount applicable");
 		case 1003:
-			return new Item(3003, "Baguettes: Special offer 5 off", item.getQuantity() * -5 );
+			return new Item(3003, "Baguettes: Special offer 5 off", item.getq() * -5 );
 		case 1004:
 			throw new Exception("No discount applicable");
 		case 1005:

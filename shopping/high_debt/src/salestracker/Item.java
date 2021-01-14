@@ -2,41 +2,41 @@ package salestracker;
 
 public class Item {
 	
-	private int barcode;
-	private String name;
-	private double price;
-	private double quantity;
+	private int bc;
+	private String n;
+	private double p;
+	private double q;
 	
-	public Item(int barcode, String name, double price) {
-		this.barcode = barcode;
-		this.name = name;
-		this.price = price;
-		this.quantity = 1;
+	public Item(int bc, String n, double p) {
+		this.bc = bc;
+		this.n = n;
+		this.p = p;
+		this.q = 1;
 	}
 
 	
-	public int getBarcode() {
-		return barcode;
+	public int getbc() {
+		return bc;
 	}
 	
-	public String getName() {
-		return name;
+	public String getn() {
+		return n;
 	}
 	
-	public double getPrice() {
-		return price;
+	public double getp() {
+		return p;
 	}
 	
-	public double getQuantity() {
-		return quantity;
+	public double getq() {
+		return q;
 	}
 	
-	public void incrementQuantity() {
-		quantity += 1;
+	public void incq() {
+		q += 1;
 	}
 	
-	public void setQuantity(double newquantity) {
-		quantity = newquantity;
+	public void setq(double nq) {
+		q = nq;
 	}
 	
 	
@@ -53,11 +53,11 @@ public class Item {
 
         Item i = (Item) o; 
 
-        return name == i.getName();
+        return n == i.getn();
     }
 	
     @Override
     public int hashCode() {
-        return this.barcode;
+        return this.bc;
     }
 }
