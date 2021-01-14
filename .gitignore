@@ -1,3 +1,5 @@
+.project
+
 # Created by https://www.toptal.com/developers/gitignore/api/java,linux,macos,windows,sonarqube,intellij+all,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,linux,macos,windows,sonarqube,intellij+all,eclipse
 
@@ -61,7 +63,7 @@ local.properties
 
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
+#
 
 ### Eclipse Patch ###
 # Spring Boot Tooling
