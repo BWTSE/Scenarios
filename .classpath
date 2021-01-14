@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="booking/high_debt/booking"/>
+	<classpathentry kind="src" path="booking/low_debt/booking"/>
+	<classpathentry kind="src" path="shapes/high_debt"/>
+	<classpathentry kind="src" path="shapes/low_debt"/>
+	<classpathentry kind="src" path="shopping/high_debt/shopping"/>
+	<classpathentry kind="src" path="shopping/low_debt/shopping"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
