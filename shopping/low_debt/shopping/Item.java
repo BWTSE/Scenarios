@@ -2,16 +2,14 @@ package salestracker;
 
 public class Item {
 
-    private int barcode;
-    private String name;
-    private double price;
-    private double quantity;
+    private final int barcode;
+    private final String name;
+    private final double price;
 
     public Item(int barcode, String name, double price) {
         this.barcode = barcode;
         this.name = name;
         this.price = price;
-        this.quantity = 1;
     }
 
 
@@ -26,21 +24,7 @@ public class Item {
     public double getPrice() {
         return price;
     }
-
-    public double getQuantity() {
-        return quantity;
-    }
-
-    public void incrementQuantity() {
-        quantity += 1;
-    }
-
-    public void setQuantity(double newquantity) {
-        quantity = newquantity;
-    }
-
-
-    @Override
+    
     public boolean equals(Object o) { 
 
         if (o == this) { 
@@ -53,11 +37,16 @@ public class Item {
 
         Item i = (Item) o; 
 
-        return name == i.getName();
+        return barcode == i.getBarcode();
     }
 
     @Override
     public int hashCode() {
         return this.barcode;
+    }
+    
+    @Override
+    public String toString() {
+        return "Item: " + name + ", barcode: " + barcode + ", price: " + price;
     }
 }
