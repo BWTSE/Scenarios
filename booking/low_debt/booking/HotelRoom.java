@@ -1,4 +1,4 @@
-package bookingsystem;
+package booking;
 
 import java.util.Calendar;
 import java.util.Date;

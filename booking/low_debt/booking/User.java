@@ -1,4 +1,4 @@
-package bookingsystem;
+package booking;
 
 public class User {
 
