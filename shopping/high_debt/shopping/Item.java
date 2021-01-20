@@ -1,63 +1,52 @@
-package salestracker;
+package shopping;
 
 public class Item {
-	
-	private int bc;
-	private String n;
-	private double p;
-	private double q;
-	
-	public Item(int bc, String n, double p) {
-		this.bc = bc;
-		this.n = n;
-		this.p = p;
-		this.q = 1;
-	}
 
-	
-	public int getbc() {
-		return bc;
-	}
-	
-	public String getn() {
-		return n;
-	}
-	
-	public double getp() {
-		return p;
-	}
-	
-	public double getq() {
-		return q;
-	}
-	
-	public void incq() {
-		q += 1;
-	}
-	
-	public void setq(double nq) {
-		q = nq;
-	}
-	
-	
-	@Override
+    private final int barcode;
+    private final String name;
+    private final double price;
+
+    public Item(int barcode, String name, double price) {
+        this.barcode = barcode;
+        this.name = name;
+        this.price = price;
+    }
+
+
+    public int getBarcode() {
+        return barcode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+    
     public boolean equals(Object o) { 
-    	  
+
         if (o == this) { 
             return true; 
         } 
-  
+
         if (!(o instanceof Item)) { 
             return false; 
         } 
 
         Item i = (Item) o; 
 
-        return n == i.getn();
+        return barcode == i.getBarcode();
     }
-	
+
     @Override
     public int hashCode() {
-        return this.bc;
+        return this.barcode;
+    }
+    
+    @Override
+    public String toString() {
+        return "Item: " + name + ", barcode: " + barcode + ", price: " + price;
     }
 }
