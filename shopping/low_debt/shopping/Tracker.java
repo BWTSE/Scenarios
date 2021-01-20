@@ -1,31 +1,12 @@
-package salestracker;
+package shopping;
 
 import java.util.ArrayList;
 
 public class Tracker {
 
-    private final ArrayList<ItemQuantity> itemList;
-    private ArrayList<ItemQuantity> discountList;
-    private final ItemDatabase itemdb;
-
-    public Tracker() {
-        itemList = new ArrayList<ItemQuantity>();
-        discountList = new ArrayList<ItemQuantity>();
-        itemdb = new ItemDatabase();
-    }
-
-    public void addItem(int barcode) {
-        try {
-            ItemQuantity itemQuantity = new ItemQuantity(itemdb.lookup(barcode));
-            if (itemList.contains(itemQuantity))    
-                itemList.get(itemList.indexOf(itemQuantity)).incrementQuantity();
-            else
-                itemList.add(itemQuantity);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    private final ArrayList<ItemQuantity> itemList = new ArrayList<>();
+    private final ArrayList<DiscountQuantity> discountList = new ArrayList<>();
+    private final ItemDatabase itemdb = new ItemDatabase();
 
     public void addItem(int barcode, double quantity) {
         try {
@@ -35,54 +16,52 @@ public class Tracker {
             else
                 itemList.add(itemQuantity);
         }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
+        catch (NoSuchEntryException e) {
+            System.out.println(e);
         }
     }
 
-    public void removeItem(int barcode) {
-        try {
-            Item item = itemdb.lookup(barcode);
-            if (itemList.contains(item))    
-                itemList.remove(item);
-        }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+    public void addItem(int barcode) {
+        addItem(barcode, 1);
     }
 
     public void removeItem(int barcode, double quantity) {
         try {
-            Item item = itemdb.lookup(barcode);
-            if (itemList.contains(item))    
-                itemList.get(itemList.indexOf(item)).setQuantity(quantity);
-            if (itemList.get(itemList.indexOf(item)).getQuantity() <= 0)
-                itemList.remove(item);
+            ItemQuantity itemQuantity = new ItemQuantity(itemdb.lookup(barcode));
+            if (itemList.contains(itemQuantity)) {
+                itemList.get(itemList.indexOf(itemQuantity)).setQuantity(itemQuantity.getQuantity() - quantity);
+            }
+            if (itemList.get(itemList.indexOf(itemQuantity)).getQuantity() <= 0) {
+                itemList.remove(itemQuantity);
+            }
         }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
+        catch (NoSuchEntryException e) {
+            System.out.println(e);
         }
     }
 
+    public void removeItem(int barcode) {
+        removeItem(barcode, 1);
+    }
 
     public void applyDiscounts() {
-
-        ArrayList<ItemQuantity> discountList = new ArrayList<ItemQuantity>();
+        ArrayList<DiscountQuantity> discounts = new ArrayList<>();
         for (ItemQuantity itemQuantity : itemList) {
             try {
-                ItemQuantity discount = new ItemQuantity(itemdb.getDiscount(itemQuantity.getItem(), itemQuantity.getQuantity()));
-                discountList.add(discount);
+                Discount discount = itemdb.getDiscount(itemQuantity.getItem());
+                discounts.add(new DiscountQuantity(discount, discount.getFormula().apply(itemQuantity.getQuantity())));
             }
             catch (Exception e) {
             }
         }
-        this.discountList = discountList;
+        discountList.clear();
+        this.discountList.addAll(discounts);
     }
 
 
     // Testing method
     public void printReceipt () {
-
+        System.out.println(discountList);
         double total = 0;
         System.out.println("RECEIPT");
         System.out.println("Items:");
@@ -90,10 +69,13 @@ public class Tracker {
             System.out.println(itemQuantity.getName() + "     " + itemQuantity.getQuantity() + "     " + itemQuantity.getQuantity() * itemQuantity.getPrice());
             total += itemQuantity.getQuantity() * itemQuantity.getPrice();
         }
-        for (ItemQuantity itemQuantity : discountList) {
-            System.out.println(itemQuantity.getName() + "     " + itemQuantity.getQuantity() + "     " + itemQuantity.getQuantity() * itemQuantity.getPrice());
-            total += itemQuantity.getQuantity() * itemQuantity.getPrice();
+        
+
+        for (DiscountQuantity discountQuantity : discountList) {
+            System.out.println(discountQuantity.getName() + "     " + discountQuantity.getQuantity() + "     " + discountQuantity.getTotalValue());
+            total += discountQuantity.getValue();
         }
+        
         System.out.println("Total: " + total + ":-");
         System.out.println("Thank you for shopping at Robotresearcher");
 
@@ -158,6 +140,57 @@ public class Tracker {
             ItemQuantity i = (ItemQuantity) o; 
 
             return item.getBarcode() == i.getBarcode();
+        }
+
+        @Override
+        public int hashCode() {
+            return getBarcode();
+        }
+    }
+
+    private class DiscountQuantity{
+        private Discount discount;
+        private double quantity;
+        
+        public DiscountQuantity(Discount discount, double quantity) {
+            this.discount = discount;
+            this.quantity = quantity;
+        }
+
+        public double getValue() {
+            return discount.getValue();
+        }
+
+        public double getQuantity() {
+            return quantity;
+        }
+        
+        public double getTotalValue() {
+            return quantity * getValue();
+        }
+
+        public String getName() {
+            return discount.getName();
+        }
+
+        public int getBarcode() {
+            return discount.getBarcode();
+        } 
+        
+        @Override
+        public boolean equals(Object o) { 
+
+            if (o == this) { 
+                return true; 
+            } 
+
+            if (!(o instanceof DiscountQuantity)) { 
+                return false; 
+            } 
+
+            DiscountQuantity d = (DiscountQuantity) o; 
+
+            return discount.getBarcode() == d.getBarcode();
         }
 
         @Override

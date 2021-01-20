@@ -1,4 +1,4 @@
-package salestracker;
+package shopping;
 
 public class Item {
 
