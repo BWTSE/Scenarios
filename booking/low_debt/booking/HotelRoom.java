@@ -1,26 +1,33 @@
 package booking;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoField;
 
 public class HotelRoom extends Resource {
 
-        public HotelRoom(int id, String name, String description, User owner) {
-            super(id, name, description, owner);
+        public HotelRoom(String name, String description) {
+            super(name, description);
         }
-        
-        public void book (Date start, Date end, User customer) throws Exception {
-            
-            // Conforms the booking to check-in at 15, check-out at 11.
-            GregorianCalendar cal = new GregorianCalendar();
-            cal.setTime(start);
-            cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 15, 0, 0);
-            start = cal.getTime();
-            cal.setTime(end);
-            cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 11, 0, 0);
-            
-            super.book(start, end, customer);
+
+        /*
+        Makes sure booking has check-in at 15 and check-out at 11.
+         */
+        @Override
+        public Booking book (LocalDateTime start, LocalDateTime end, User customer) {
+
+            LocalDateTime checkIn = start
+                     .with(ChronoField.HOUR_OF_DAY, 15)
+                     .with(ChronoField.MINUTE_OF_HOUR, 0)
+                     .with(ChronoField.SECOND_OF_MINUTE, 0)
+                     .with(ChronoField.MICRO_OF_SECOND, 0);
+
+            LocalDateTime checkOut = end
+                    .with(ChronoField.HOUR_OF_DAY, 11)
+                    .with(ChronoField.MINUTE_OF_HOUR, 0)
+                    .with(ChronoField.SECOND_OF_MINUTE, 0)
+                    .with(ChronoField.MICRO_OF_SECOND, 0);
+
+            return super.book(checkIn, checkOut, customer);
         }
         
 }

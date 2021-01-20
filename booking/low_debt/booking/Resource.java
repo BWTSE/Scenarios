@@ -1,77 +1,80 @@
 package booking;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 
 public abstract class Resource {
+	private final String name;
+	private final String description;
 	
-	int id;
-	String name;
-	String description;
-	User owner;
-	int bookingCounter;
+	private final List<Booking> bookings = new LinkedList<>();
 	
-	protected ArrayList<Booking> bookings = new ArrayList<Booking>();
-	
-	public Resource(int id, String name, String description, User owner) {
-	    this.id = id;
+	public Resource(String name, String description) {
 	    this.name = name;
 	    this.description = description;
-	    this.owner = owner;
-	    bookingCounter = 0;
 	}
-	
-	
-	public void book (Date start, Date end, User customer) throws Exception {
-		
-        if (bookings.size() == 0) {
-        	bookings.add(new Booking(start, end, customer, bookingCounter));
-        	bookingCounter ++;
-        }
-        else {
-        	for (Booking booking: bookings) {
-        		if (start.getTime() > booking.getStart().getTime() && start.getTime() < booking.getEnd().getTime() 
-            			|| end.getTime() > booking.getStart().getTime() && end.getTime() < booking.getEnd().getTime()) {
-            		throw new Exception("Booking Unavailable");
-        		}
-        	}
-        	bookings.add(new Booking(start, end, customer, bookingCounter));
-        	bookingCounter ++;
-        }
+
+	public String getName() {
+		return this.name;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public List<Booking> getBookings() {
+		return List.copyOf(this.bookings);
+	}
+
+	public boolean available(LocalDateTime start, LocalDateTime end) {
+		for (Booking booking: this.getBookings()) {
+			if (booking.isDuring(start)
+					|| booking.isDuring(end)
+					|| (booking.getStart().isAfter(start) && booking.getStart().isBefore(end))
+			) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	public Booking book (LocalDateTime start, LocalDateTime end, User customer) {
+        if (this.available(start, end)) {
+			Booking booking = new Booking(start, end, customer, this);
+        	bookings.add(booking);
+        	return booking;
+        } else {
+        	return null;
+		}
     }
-	
-	public void unbook (int bookingId) {
-	    bookings.removeIf(booking -> booking.getId() == bookingId);
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Resource)) {
+			return false;
+		}
+		Resource resource = (Resource) o;
+		return Objects.equals(this.getName(), resource.getName());
 	}
-	
-	public int getId() {
-		return id;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(this.getName());
 	}
-	  
-	  public String getName() {
-	      return name;
-	  }
 
-	  public void setName(String name) {
-	      this.name = name;
-	  }
-
-	  public String getDescription() {
-	      return description;
-	  }
-
-	  public void setDescription(String description) {
-	      this.description = description;
-	  }
-	  
-	  public String toString() {
-		  StringBuilder str = new StringBuilder();
-		  str.append("\nSchedule for: " + name);
-		  for (Booking booking : bookings) {
-			  str.append(booking.toString());
-		  }
-		  return str.toString();
-	  }
-	
+	@Override
+	public String toString() {
+		return String.format(
+				"Resource %s \"%s\" #bookings: %s",
+				this.getName(),
+				this.getDescription(),
+				this.getBookings().size()
+		);
+	}
 }
 
