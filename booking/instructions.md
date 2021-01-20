@@ -3,7 +3,7 @@
 Your task is to extend this booking system with a new class for bookable Cabins (`Cabin`).
 The `Cabin` class should have the constructor `Cabin(String name, String description)` and be a subtype of `Resource`.
 
-Cabins are different from hotel rooms because the minimum duration you cna book them for is three (3) days.
+Cabins are different from hotel rooms because the minimum duration you can book them for is three (3) days.
 Make sure to add this restriction to the `Cabin` class. 
 Hint: You can return null to deny a booking.
 
