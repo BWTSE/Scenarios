@@ -16,5 +16,4 @@ Feel free to modify the existing codebase in any way you want as long as you mai
 ## Task checklist
 * Added a `SquarePyramid` class.
 * Added `double totalEdgeLength()`  to `Shape3D`.
-* All classes have a none default implementations of `hashCode`, `equals` and `toString`.
 * Program compiles.
