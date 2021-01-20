@@ -29,7 +29,7 @@ public abstract class Resource {
     }
 
     public boolean available(LocalDateTime start, LocalDateTime end) {
-        for (Booking booking: this.getBookings()) {
+        for (Booking booking : this.getBookings()) {
             if (booking.isDuring(start)
                     || booking.isDuring(end)
                     || (booking.getStart().isAfter(start) && booking.getStart().isBefore(end))
@@ -40,7 +40,7 @@ public abstract class Resource {
         return true;
     }
 
-    public Booking book (LocalDateTime start, LocalDateTime end, User customer) {
+    public Booking book(LocalDateTime start, LocalDateTime end, User customer) {
         if (this.available(start, end)) {
             Booking booking = new Booking(start, end, customer, this);
             bookings.add(booking);

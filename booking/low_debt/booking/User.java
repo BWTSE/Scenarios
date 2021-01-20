@@ -2,23 +2,23 @@ package booking;
 
 import java.util.Objects;
 
-public class User {
+public final class User {
 
-  private final String  name;
-  private final String  email;
-   
-  public User (String name, String email) {
-	  this.name = name;
-	  this.email = email;
-  }
-  
-  public String getName() {
-      return name;
-  }
+    private final String name;
+    private final String email;
 
-  public String getEmail() {
-      return email;
-  }
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -38,7 +38,7 @@ public class User {
     }
 
     @Override
-  public String toString() {
-      return String.format("User %s (%s)", this.getName(), this.getEmail());
-  }
+    public String toString() {
+        return String.format("User %s (%s)", this.getName(), this.getEmail());
+    }
 }

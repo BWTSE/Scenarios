@@ -14,7 +14,7 @@ public class Car extends Resource {
     @Override
     public Booking book(LocalDateTime start, LocalDateTime end, User customer) {
 
-        for (Booking booking: this.getBookings()) {
+        for (Booking booking : this.getBookings()) {
             if (booking.getEnd().isAfter(LocalDateTime.now())) {
                 if (booking.getCustomer().equals(customer)) {
                     return null;

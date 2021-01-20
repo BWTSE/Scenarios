@@ -73,5 +73,4 @@ public class Booking {
                 this.getCustomer().toString()
         );
     }
-
 }

@@ -19,12 +19,12 @@ public class Main {
             // cabin,
             car
     );
-    
+
     public static void main(String[] args) {
 
         // Tests basic booking functionality
         for (Resource resource : resources) {
-            Booking booking1  = resource.book(now.plusDays(1), now.plusDays(8), alice);
+            Booking booking1 = resource.book(now.plusDays(1), now.plusDays(8), alice);
             if (booking1 == null) {
                 System.out.println("Resources should be bookable: " + resource.toString());
             }
