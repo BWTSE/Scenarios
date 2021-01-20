@@ -9,7 +9,8 @@ public class Car extends Resource {
     }
 
     /*
-    Due to the popularity of some specific cars no user is allowed to have more than one upcoming booking for a car.
+    Due to the popularity of some specific cars,
+     no user is allowed to have more than one upcoming booking for a car.
      */
     @Override
     public Booking book(LocalDateTime start, LocalDateTime end, User customer) {

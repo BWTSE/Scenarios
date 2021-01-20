@@ -10,7 +10,8 @@ public class Main {
     private final static User alice = new User("Alice", "alice@crypto");
     private final static User bob = new User("Bob", "bob@crypto");
 
-    private final static HotelRoom hotelRoom = new HotelRoom("921", "in The Stanley Hotel");
+    private final static HotelRoom hotelRoom =
+            new HotelRoom("921", "in The Stanley Hotel");
     // private final static Cabin cabin = new Cabin("Whoville 26", "Home of the Who-steins");
     private final static Car car = new Car("ABC 123", "Volvo");
 
@@ -36,7 +37,10 @@ public class Main {
 
             Booking booking3 = resource.book(now.plusDays(10), now.plusDays(15), bob);
             if (booking3 == null) {
-                System.out.println("Resources should be bookable after previous booking: " + resource.toString());
+                System.out.println(
+                        "Resources should be bookable after previous booking: "
+                                + resource.toString()
+                );
             }
         }
 
