@@ -28,7 +28,7 @@ public class Resource {
         return List.copyOf(this.bookings);
     }
 
-    public boolean available(Interval interval) {
+    private boolean available(Interval interval) {
         for (Booking booking : this.getBookings()) {
             if ((
                     !interval.getStart().isBefore(booking.getInterval().getStart())
