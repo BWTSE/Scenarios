@@ -21,19 +21,6 @@ public class Interval {
         return end;
     }
 
-    public boolean overlapsWith(Interval other) {
-        return (
-                !other.getStart().isBefore(this.getStart())
-                        && !other.getStart().isAfter(this.getEnd())
-        ) || (
-                !other.getEnd().isBefore(this.getStart())
-                        && !other.getEnd().isAfter(this.getEnd())
-        ) || (
-                !this.getStart().isBefore(other.getStart())
-                        && !this.getStart().isAfter(other.getEnd())
-        );
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {

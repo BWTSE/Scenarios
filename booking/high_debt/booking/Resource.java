@@ -30,7 +30,16 @@ public class Resource {
 
     public boolean available(Interval interval) {
         for (Booking booking : this.getBookings()) {
-            if (booking.getInterval().overlapsWith(interval)) {
+            if ((
+                    !interval.getStart().isBefore(booking.getInterval().getStart())
+                            && !interval.getStart().isAfter(booking.getInterval().getEnd())
+            ) || (
+                    !interval.getEnd().isBefore(booking.getInterval().getStart())
+                            && !interval.getEnd().isAfter(booking.getInterval().getEnd())
+            ) || (
+                    !booking.getInterval().getStart().isBefore(interval.getStart())
+                            && !booking.getInterval().getStart().isAfter(interval.getEnd())
+            )) {
                 return false;
             }
         }
