@@ -1,47 +1,47 @@
 package shopping;
 
 public class ItemQuantity{
-    private Item item;
-    private double quantity;
+    private Item i;
+    private double q;
     
-    public ItemQuantity(Item item, double quantity) {
-        this.item = item;
-        this.quantity = quantity;
+    public ItemQuantity(Item i, double q) {
+        this.i = i;
+        this.q = q;
     }
     
-    public ItemQuantity(Item item) {
-        this.item = item;
-        this.quantity = 1;
+    public ItemQuantity(Item i) {
+        this.i = i;
+        this.q = 1;
     }
     
     public Item getItem() {
-        return item;
+        return i;
     }
     
     public double getQuantity() {
-        return quantity;
+        return q;
     }
 
     public void incrementQuantity() {
-        quantity += 1;
+        q += 1;
     }
 
-    public void setQuantity(double newquantity) {
-        quantity = newquantity;
+    public void setQuantity(double newq) {
+        q = newq;
     }
 
     public String getName() {
-        return item.getName();
+        return i.getName();
     }
 
 
     public int getBarcode() {
-        return item.getBarcode();
+        return i.getBarcode();
     }
 
 
     public double getPrice() {
-        return item.getPrice();
+        return i.getPrice();
     }
 
     @Override
@@ -55,9 +55,9 @@ public class ItemQuantity{
             return false; 
         } 
 
-        ItemQuantity itemQuantity = (ItemQuantity) o; 
+        ItemQuantity iq = (ItemQuantity) o; 
 
-        return item.getBarcode() == itemQuantity.getBarcode();
+        return i.getBarcode() == iq.getBarcode();
     }
 
     @Override

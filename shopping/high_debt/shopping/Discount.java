@@ -4,44 +4,44 @@ import java.util.function.UnaryOperator;
 
 public class Discount {
     
-    private final int barcode;
-    private final String name;
-    private final Item item;
-    private final UnaryOperator<Double> discountFormula;
-    private final double value;
+    private final int bc;
+    private final String n;
+    private final Item i;
+    private final UnaryOperator<Double> df;
+    private final double v;
 
     public Discount (
-            int barcode, 
-            String name, 
-            Item item, 
-            double value, 
-            UnaryOperator<Double> discountFormula) {
+            int bc, 
+            String n, 
+            Item i, 
+            double v, 
+            UnaryOperator<Double> df) {
 
-        this.barcode = barcode;
-        this.name = name;
-        this. item = item;
-        this.value = value;
-        this.discountFormula = discountFormula;
+        this.bc = bc;
+        this.n = n;
+        this. i = i;
+        this.v = v;
+        this.df = df;
     }
 
     public String getName() {
-        return name;
+        return n;
     }
 
     public int getBarcode() {
-        return barcode;
+        return bc;
     }
 
     public double getValue() {
-        return value;
+        return v;
     }
 
     public Item getItem() {
-        return item;
+        return i;
     }
 
     public UnaryOperator<Double> getFormula() {
-        return discountFormula;
+        return df;
     }
 
     public boolean equals(Object o) { 
@@ -54,19 +54,19 @@ public class Discount {
             return false; 
         } 
 
-        Discount discount = (Discount) o; 
+        Discount d = (Discount) o; 
 
-        return barcode == discount.getBarcode();
+        return bc == d.getBarcode();
     }
 
     @Override
     public int hashCode() {
-        return this.barcode;
+        return this.bc;
     }
     
     @Override
     public String toString() {
-        return "Discount: " + name + ", barcode: " + barcode + ", value: " + value;
+        return "Discount: " + n + ", bc: " + bc + ", v: " + v;
     }
 
 }

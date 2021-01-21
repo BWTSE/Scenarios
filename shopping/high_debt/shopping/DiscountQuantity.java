@@ -1,32 +1,32 @@
 package shopping;
 
 public class DiscountQuantity{
-    private Discount discount;
-    private double quantity;
+    private Discount d;
+    private double q;
         
-    public DiscountQuantity(Discount discount, double quantity) {
-        this.discount = discount;
-        this.quantity = quantity;
+    public DiscountQuantity(Discount d, double q) {
+        this.d = d;
+        this.q = q;
     }
 
     public double getValue() {
-        return discount.getValue();
+        return d.getValue();
     }
 
     public double getQuantity() {
-        return quantity;
+        return q;
     }
         
     public double getTotalValue() {
-        return quantity * getValue();
+        return q * getValue();
     }
 
     public String getName() {
-        return discount.getName();
+        return d.getName();
     }
 
     public int getBarcode() {
-        return discount.getBarcode();
+        return d.getBarcode();
     } 
         
     @Override
@@ -39,9 +39,9 @@ public class DiscountQuantity{
             return false; 
         } 
 
-        DiscountQuantity discountQuantity = (DiscountQuantity) o; 
+        DiscountQuantity dq = (DiscountQuantity) o; 
 
-        return discount.getBarcode() == discountQuantity.getBarcode();
+        return d.getBarcode() == dq.getBarcode();
     }
 
     @Override

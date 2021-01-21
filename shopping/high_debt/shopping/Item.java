@@ -2,27 +2,27 @@ package shopping;
 
 public class Item {
 
-    private final int barcode;
-    private final String name;
-    private final double price;
+    private final int bc;
+    private final String n;
+    private final double p;
 
-    public Item(int barcode, String name, double price) {
-        this.barcode = barcode;
-        this.name = name;
-        this.price = price;
+    public Item(int bc, String n, double p) {
+        this.bc = bc;
+        this.n = n;
+        this.p = p;
     }
 
 
     public int getBarcode() {
-        return barcode;
+        return bc;
     }
 
     public String getName() {
-        return name;
+        return n;
     }
 
     public double getPrice() {
-        return price;
+        return p;
     }
     
     public boolean equals(Object o) { 
@@ -37,16 +37,16 @@ public class Item {
 
         Item item = (Item) o; 
 
-        return barcode == item.getBarcode();
+        return bc == item.getBarcode();
     }
 
     @Override
     public int hashCode() {
-        return this.barcode;
+        return this.bc;
     }
     
     @Override
     public String toString() {
-        return "Item: " + name + ", barcode: " + barcode + ", price: " + price;
+        return "Item: " + n + ", bc: " + bc + ", p: " + p;
     }
 }
