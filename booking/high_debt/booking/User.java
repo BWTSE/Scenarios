@@ -4,20 +4,20 @@ import java.util.Objects;
 
 public class User {
 
-    private final String name;
-    private final String email;
+    private final String n;
+    private final String e;
 
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
+    public User(String n, String e) {
+        this.n = n;
+        this.e = e;
     }
 
     public String getName() {
-        return name;
+        return n;
     }
 
     public String getEmail() {
-        return email;
+        return e;
     }
 
     @Override
@@ -28,8 +28,8 @@ public class User {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        User user = (User) o;
-        return Objects.equals(getEmail(), user.getEmail());
+        User u = (User) o;
+        return Objects.equals(getEmail(), u.getEmail());
     }
 
     @Override

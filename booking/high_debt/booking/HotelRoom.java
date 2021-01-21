@@ -9,71 +9,71 @@ import java.util.Optional;
 
 public class HotelRoom implements Resource {
 
-    private static final int CHECK_IN_TIME = 15;
-    private static final int CHECK_OUT_TIME = 11;
+    private static final int I = 15;
+    private static final int O = 11;
 
-    private final String name;
-    private final String description;
+    private final String n;
+    private final String d;
 
-    private final List<Booking> bookings = new LinkedList<>();
+    private final List<Booking> bs = new LinkedList<>();
 
-    protected HotelRoom(String name, String description) {
-        this.name = name;
-        this.description = description;
+    protected HotelRoom(String n, String d) {
+        this.n = n;
+        this.d = d;
     }
 
     public String getName() {
-        return this.name;
+        return this.n;
     }
 
     public String getDescription() {
-        return this.description;
+        return this.d;
     }
 
     public List<Booking> getBookings() {
-        return List.copyOf(this.bookings);
+        return List.copyOf(this.bs);
     }
 
-    private boolean available(Interval interval) {
-        for (Booking booking : this.getBookings()) {
+    private boolean available(Interval i) {
+        for (Booking b : this.getBookings()) {
             if ((
-                    !interval.getStart().isBefore(booking.getInterval().getStart())
-                            && !interval.getStart().isAfter(booking.getInterval().getEnd())
-            ) || (
-                    !interval.getEnd().isBefore(booking.getInterval().getStart())
-                            && !interval.getEnd().isAfter(booking.getInterval().getEnd())
-            ) || (
-                    !booking.getInterval().getStart().isBefore(interval.getStart())
-                            && !booking.getInterval().getStart().isAfter(interval.getEnd())
-            )) {
+                    !i.getStart().isBefore(b.getInterval().getStart())
+                            && !i.getStart().isAfter(b.getInterval().getEnd())
+                ) || (
+                    !i.getEnd().isBefore(b.getInterval().getStart())
+                            && !i.getEnd().isAfter(b.getInterval().getEnd())
+                ) || (
+                    !b.getInterval().getStart().isBefore(i.getStart())
+                            && !b.getInterval().getStart().isAfter(i.getEnd())
+                )
+            ) {
                 return false;
             }
         }
         return true;
     }
 
-
     /*
     Makes sure booking has check-in at 15 and check-out at 11.
      */
-    public Optional<Booking> book(Interval interval, User customer) {
-        LocalDateTime checkIn = interval.getStart()
-                .with(ChronoField.HOUR_OF_DAY, CHECK_IN_TIME)
-                .with(ChronoField.MINUTE_OF_HOUR, 0)
-                .with(ChronoField.SECOND_OF_MINUTE, 0)
-                .with(ChronoField.MICRO_OF_SECOND, 0);
+    public Optional<Booking> book(Interval i, User u) {
+        LocalDateTime f = i.getStart()
+                           .with(ChronoField.HOUR_OF_DAY, I)
+                           .with(ChronoField.MINUTE_OF_HOUR, 0)
+                           .with(ChronoField.SECOND_OF_MINUTE, 0)
+                           .with(ChronoField.MICRO_OF_SECOND, 0);
 
-        LocalDateTime checkOut = interval.getEnd()
-                .with(ChronoField.HOUR_OF_DAY, CHECK_OUT_TIME)
-                .with(ChronoField.MINUTE_OF_HOUR, 0)
-                .with(ChronoField.SECOND_OF_MINUTE, 0)
-                .with(ChronoField.MICRO_OF_SECOND, 0);
+        LocalDateTime t = i.getEnd()
+                           .with(ChronoField.HOUR_OF_DAY, O)
+                           .with(ChronoField.MINUTE_OF_HOUR, 0)
+                           .with(ChronoField.SECOND_OF_MINUTE, 0)
+                           .with(ChronoField.MICRO_OF_SECOND, 0);
 
-        Interval newInterval = new Interval(checkIn, checkOut);
+        Interval i0 = new Interval(f, t);
 
-        if (this.available(newInterval)) {
-            Booking booking = new Booking(newInterval, customer);
-            bookings.add(booking);
+        if (this.available(i0)) {
+            Booking booking = new Booking(i0, u);
+            bs.add(booking);
             return Optional.of(booking);
         } else {
             return Optional.empty();
@@ -88,8 +88,8 @@ public class HotelRoom implements Resource {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        HotelRoom resource = (HotelRoom) o;
-        return Objects.equals(this.getName(), resource.getName());
+        HotelRoom h = (HotelRoom) o;
+        return Objects.equals(this.getName(), h.getName());
     }
 
     @Override

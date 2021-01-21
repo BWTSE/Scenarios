@@ -3,20 +3,20 @@ package booking;
 import java.util.Objects;
 
 public class Booking {
-    private final Interval interval;
-    private final User customer;
+    private final Interval i;
+    private final User c;
 
-    public Booking(Interval interval, User customer) {
-        this.interval = interval;
-        this.customer = customer;
+    public Booking(Interval i, User c) {
+        this.i = i;
+        this.c = c;
     }
 
     public Interval getInterval() {
-        return this.interval;
+        return this.i;
     }
 
     public User getCustomer() {
-        return this.customer;
+        return this.c;
     }
 
     @Override
@@ -27,9 +27,9 @@ public class Booking {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        Booking booking = (Booking) o;
-        return Objects.equals(this.getInterval(), booking.getInterval()) &&
-                Objects.equals(this.getCustomer(), booking.getCustomer());
+        Booking b = (Booking) o;
+        return Objects.equals(this.getInterval(), b.getInterval()) &&
+                Objects.equals(this.getCustomer(), b.getCustomer());
     }
 
     @Override

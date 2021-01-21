@@ -5,20 +5,20 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Interval {
-    private final LocalDateTime start;
-    private final LocalDateTime end;
+    private final LocalDateTime s;
+    private final LocalDateTime e;
 
-    public Interval(LocalDateTime start, LocalDateTime end) {
-        this.start = start;
-        this.end = end;
+    public Interval(LocalDateTime s, LocalDateTime e) {
+        this.s = s;
+        this.e = e;
     }
 
     public LocalDateTime getStart() {
-        return start;
+        return s;
     }
 
     public LocalDateTime getEnd() {
-        return end;
+        return e;
     }
 
     @Override
@@ -29,9 +29,9 @@ public class Interval {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        Interval interval = (Interval) o;
-        return Objects.equals(this.getStart(), interval.getStart()) &&
-                Objects.equals(this.getEnd(), interval.getEnd());
+        Interval i = (Interval) o;
+        return Objects.equals(this.getStart(), i.getStart()) &&
+                Objects.equals(this.getEnd(), i.getEnd());
     }
 
     @Override
@@ -41,11 +41,11 @@ public class Interval {
 
     @Override
     public String toString() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
         return String.format(
                 "%s to %s",
-                dateTimeFormatter.format(this.getStart()),
-                dateTimeFormatter.format(this.getEnd())
+                dtf.format(this.getStart()),
+                dtf.format(this.getEnd())
         );
     }
 }

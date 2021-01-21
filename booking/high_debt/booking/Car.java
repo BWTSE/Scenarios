@@ -8,40 +8,41 @@ import java.util.Optional;
 
 public class Car implements Resource {
 
-    private final String name;
-    private final String description;
+    private final String n;
+    private final String d;
 
-    private final List<Booking> bookings = new LinkedList<>();
+    private final List<Booking> bs = new LinkedList<>();
 
-    protected Car(String name, String description) {
-        this.name = name;
-        this.description = description;
+    protected Car(String n, String d) {
+        this.n = n;
+        this.d = d;
     }
 
     public String getName() {
-        return this.name;
+        return this.n;
     }
 
     public String getDescription() {
-        return this.description;
+        return this.d;
     }
 
     public List<Booking> getBookings() {
-        return List.copyOf(this.bookings);
+        return List.copyOf(this.bs);
     }
 
-    private boolean available(Interval interval) {
-        for (Booking booking : this.getBookings()) {
+    private boolean available(Interval i) {
+        for (Booking b : this.getBookings()) {
             if ((
-                    !interval.getStart().isBefore(booking.getInterval().getStart())
-                            && !interval.getStart().isAfter(booking.getInterval().getEnd())
-            ) || (
-                    !interval.getEnd().isBefore(booking.getInterval().getStart())
-                            && !interval.getEnd().isAfter(booking.getInterval().getEnd())
-            ) || (
-                    !booking.getInterval().getStart().isBefore(interval.getStart())
-                            && !booking.getInterval().getStart().isAfter(interval.getEnd())
-            )) {
+                    !i.getStart().isBefore(b.getInterval().getStart())
+                            && !i.getStart().isAfter(b.getInterval().getEnd())
+                ) || (
+                    !i.getEnd().isBefore(b.getInterval().getStart())
+                            && !i.getEnd().isAfter(b.getInterval().getEnd())
+                ) || (
+                    !b.getInterval().getStart().isBefore(i.getStart())
+                            && !b.getInterval().getStart().isAfter(i.getEnd())
+                )
+            ) {
                 return false;
             }
         }
@@ -52,19 +53,19 @@ public class Car implements Resource {
     Due to the popularity of some specific cars,
      no user is allowed to have more than one upcoming booking for a car.
      */
-    public Optional<Booking> book(Interval interval, User customer) {
-        for (Booking booking : this.getBookings()) {
-            if (booking.getInterval().getEnd().isAfter(LocalDateTime.now())
-                    && booking.getCustomer().equals(customer)
+    public Optional<Booking> book(Interval i, User u) {
+        for (Booking b : this.getBookings()) {
+            if (b.getInterval().getEnd().isAfter(LocalDateTime.now())
+                    && b.getCustomer().equals(u)
             ) {
                 return Optional.empty();
             }
         }
 
-        if (this.available(interval)) {
-            Booking booking = new Booking(interval, customer);
-            bookings.add(booking);
-            return Optional.of(booking);
+        if (this.available(i)) {
+            Booking b = new Booking(i, u);
+            bs.add(b);
+            return Optional.of(b);
         } else {
             return Optional.empty();
         }
@@ -78,8 +79,8 @@ public class Car implements Resource {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        Car resource = (Car) o;
-        return Objects.equals(this.getName(), resource.getName());
+        Car c = (Car) o;
+        return Objects.equals(this.getName(), c.getName());
     }
 
     @Override
