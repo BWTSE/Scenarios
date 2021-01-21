@@ -38,7 +38,7 @@ public class Resource {
 
     public Booking book(Interval interval, User customer) {
         if (this.available(interval)) {
-            Booking booking = new Booking(interval, customer, this);
+            Booking booking = new Booking(interval, customer);
             bookings.add(booking);
             return booking;
         } else {

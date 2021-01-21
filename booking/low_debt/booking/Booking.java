@@ -5,12 +5,10 @@ import java.util.Objects;
 public class Booking {
     private final Interval interval;
     private final User customer;
-    private final Resource resource;
 
-    public Booking(Interval interval, User customer, Resource resource) {
+    public Booking(Interval interval, User customer) {
         this.interval = interval;
         this.customer = customer;
-        this.resource = resource;
     }
 
     public Interval getInterval() {
@@ -19,10 +17,6 @@ public class Booking {
 
     public User getCustomer() {
         return this.customer;
-    }
-
-    public Resource getResource() {
-        return this.resource;
     }
 
     @Override
@@ -35,25 +29,22 @@ public class Booking {
         }
         Booking booking = (Booking) o;
         return Objects.equals(this.getInterval(), booking.getInterval()) &&
-                Objects.equals(this.getCustomer(), booking.getCustomer()) &&
-                Objects.equals(this.getResource(), booking.getResource());
+                Objects.equals(this.getCustomer(), booking.getCustomer());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
                 this.getInterval(),
-                this.getCustomer(),
-                this.getResource()
+                this.getCustomer()
         );
     }
 
     @Override
     public String toString() {
         return String.format(
-                "[%s] (%s) booked by (%s)",
+                "[%s] by (%s)",
                 this.getInterval().toString(),
-                this.getResource().toString(),
                 this.getCustomer().toString()
         );
     }
