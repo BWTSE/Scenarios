@@ -2,11 +2,15 @@ package shopping;
 
 public class NoDiscountApplicableException extends Exception{
 
-    @Override
-    public String toString() {
-        return "No discount applicable.";
+    private final int itemBarcode;
+
+    public NoDiscountApplicableException(int itemBarcode) {
+        this.itemBarcode = itemBarcode;
     }
 
-    private static final long serialVersionUID = 1L;
+    @Override
+    public String toString() {
+        return "No discount applicable for item: " + itemBarcode;
+    }
     
 }

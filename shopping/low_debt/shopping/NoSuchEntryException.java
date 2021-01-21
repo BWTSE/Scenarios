@@ -2,11 +2,14 @@ package shopping;
 
 public class NoSuchEntryException extends Exception{
 
-    @Override
-    public String toString() {
-        return "No such entry";
+    private final int itemBarCode;
+
+    public NoSuchEntryException(int barCode) {
+        this.itemBarCode = barCode;
     }
 
-    private static final long serialVersionUID = 1L;
-    
+    @Override
+    public String toString() {
+        return "No such entry: " + itemBarCode;
+    }
 }
