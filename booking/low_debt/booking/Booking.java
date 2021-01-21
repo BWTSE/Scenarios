@@ -1,28 +1,20 @@
 package booking;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Booking {
-    private final LocalDateTime start;
-    private final LocalDateTime end;
+    private final Interval interval;
     private final User customer;
     private final Resource resource;
 
-    public Booking(LocalDateTime start, LocalDateTime end, User customer, Resource resource) {
-        this.start = start;
-        this.end = end;
+    public Booking(Interval interval, User customer, Resource resource) {
+        this.interval = interval;
         this.customer = customer;
         this.resource = resource;
     }
 
-    public LocalDateTime getStart() {
-        return this.start;
-    }
-
-    public LocalDateTime getEnd() {
-        return this.end;
+    public Interval getInterval() {
+        return this.interval;
     }
 
     public User getCustomer() {
@@ -33,21 +25,16 @@ public class Booking {
         return this.resource;
     }
 
-    public boolean isDuring(LocalDateTime time) {
-        return !time.isBefore(this.getStart()) && !time.isAfter(this.getEnd());
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Booking)) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
         Booking booking = (Booking) o;
-        return Objects.equals(this.getStart(), booking.getStart()) &&
-                Objects.equals(this.getEnd(), booking.getEnd()) &&
+        return Objects.equals(this.getInterval(), booking.getInterval()) &&
                 Objects.equals(this.getCustomer(), booking.getCustomer()) &&
                 Objects.equals(this.getResource(), booking.getResource());
     }
@@ -55,8 +42,7 @@ public class Booking {
     @Override
     public int hashCode() {
         return Objects.hash(
-                this.getStart(),
-                this.getEnd(),
+                this.getInterval(),
                 this.getCustomer(),
                 this.getResource()
         );
@@ -64,11 +50,9 @@ public class Booking {
 
     @Override
     public String toString() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
         return String.format(
-                "[%s to %s] (%s) booked by (%s)",
-                dateTimeFormatter.format(this.getStart()),
-                dateTimeFormatter.format(this.getEnd()),
+                "[%s] (%s) booked by (%s)",
+                this.getInterval().toString(),
                 this.getResource().toString(),
                 this.getCustomer().toString()
         );

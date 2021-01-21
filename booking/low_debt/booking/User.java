@@ -2,7 +2,7 @@ package booking;
 
 import java.util.Objects;
 
-public final class User {
+public class User {
 
     private final String name;
     private final String email;
@@ -25,7 +25,7 @@ public final class User {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof User)) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
         User user = (User) o;

@@ -1,17 +1,16 @@
 package booking;
 
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Resource {
+public class Resource {
     private final String name;
     private final String description;
 
     private final List<Booking> bookings = new LinkedList<>();
 
-    public Resource(String name, String description) {
+    protected Resource(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -28,21 +27,18 @@ public abstract class Resource {
         return List.copyOf(this.bookings);
     }
 
-    public boolean available(LocalDateTime start, LocalDateTime end) {
+    public boolean available(Interval interval) {
         for (Booking booking : this.getBookings()) {
-            if (booking.isDuring(start)
-                    || booking.isDuring(end)
-                    || (booking.getStart().isAfter(start) && booking.getStart().isBefore(end))
-            ) {
+            if (booking.getInterval().overlapsWith(interval)) {
                 return false;
             }
         }
         return true;
     }
 
-    public Booking book(LocalDateTime start, LocalDateTime end, User customer) {
-        if (this.available(start, end)) {
-            Booking booking = new Booking(start, end, customer, this);
+    public Booking book(Interval interval, User customer) {
+        if (this.available(interval)) {
+            Booking booking = new Booking(interval, customer, this);
             bookings.add(booking);
             return booking;
         } else {
@@ -55,7 +51,7 @@ public abstract class Resource {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Resource)) {
+        if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
         Resource resource = (Resource) o;
