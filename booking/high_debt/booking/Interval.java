@@ -21,14 +21,17 @@ public class Interval {
         return end;
     }
 
-    public boolean isDuring(LocalDateTime time) {
-        return !time.isBefore(this.getStart()) && !time.isAfter(this.getEnd());
-    }
-
     public boolean overlapsWith(Interval other) {
-        return this.isDuring(other.getStart())
-                || this.isDuring(other.getEnd())
-                || other.isDuring(this.getStart());
+        return (
+                !other.getStart().isBefore(this.getStart())
+                        && !other.getStart().isAfter(this.getEnd())
+        ) || (
+                !other.getEnd().isBefore(this.getStart())
+                        && !other.getEnd().isAfter(this.getEnd())
+        ) || (
+                !this.getStart().isBefore(other.getStart())
+                        && !this.getStart().isAfter(other.getEnd())
+        );
     }
 
     @Override
