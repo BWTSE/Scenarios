@@ -31,13 +31,13 @@ public class Item {
             return true; 
         } 
 
-        if (!(o instanceof Item)) { 
+        if ( o == null || this.getClass() != o.getClass() ) { 
             return false; 
         } 
 
-        Item i = (Item) o; 
+        Item item = (Item) o; 
 
-        return barcode == i.getBarcode();
+        return barcode == item.getBarcode();
     }
 
     @Override

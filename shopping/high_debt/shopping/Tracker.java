@@ -1,203 +1,78 @@
 package shopping;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Tracker {
 
-    private final ArrayList<ItemQuantity> ilist = new ArrayList<>();
-    private final ArrayList<DiscountQuantity> dlist = new ArrayList<>();
-    private final ItemDatabase idb = new ItemDatabase();
+    private final List<ItemQuantity> itemList = new ArrayList<>();
+    private final List<DiscountQuantity> discountList = new ArrayList<>();
+    private final ItemDatabase itemdb;
 
-    public void addItem(int bc, double q) {
-        try {
-            ItemQuantity iq = new ItemQuantity(idb.lookup(bc), q);
-            if (ilist.contains(iq))    
-                ilist.get(ilist.indexOf(iq)).incrementQuantity();
-            else
-                ilist.add(iq);
-        }
-        catch (NoSuchEntryException e) {
-            System.out.println(e);
-        }
+    public Tracker(ItemDatabase itemdb) {
+        this.itemdb = itemdb;
     }
 
-    public void addItem(int bc) {
-        addItem(bc, 1);
+    public List<ItemQuantity> getItemList() {
+        return List.copyOf(itemList);
     }
 
-    public void removeItem(int bc, double q) {
-        try {
-            ItemQuantity iq = new ItemQuantity(idb.lookup(bc));
-            if (ilist.contains(iq)) {
-                ilist.get(ilist.indexOf(iq)).setQuantity(iq.getQuantity() - q);
+    public List<DiscountQuantity> getDiscountList() {
+        return List.copyOf(discountList);
+    }
+
+    public void addItem(int barcode, double quantity) {
+
+        Optional<Item> item = itemdb.lookup(barcode);
+
+        if (item.isPresent()) {
+            ItemQuantity itemQuantity = new ItemQuantity(item.get(), quantity);
+            if (itemList.contains(itemQuantity)) { 
+                ItemQuantity ogItemQuantity = itemList.get(itemList.indexOf(itemQuantity));
+                double newQuantity = ogItemQuantity.getQuantity() + quantity;
+                ogItemQuantity.setQuantity(newQuantity);
+            } else {
+                itemList.add(itemQuantity);
             }
-            if (ilist.get(ilist.indexOf(iq)).getQuantity() <= 0) {
-                ilist.remove(iq);
-            }
-        }
-        catch (NoSuchEntryException e) {
-            System.out.println(e);
         }
     }
 
-    public void removeItem(int bc) {
-        removeItem(bc, 1);
+    public void addItem(int barcode) {
+        addItem(barcode, 1);
+    }
+
+    public void removeItem(int barcode, double quantity) {
+        Optional<Item> item = itemdb.lookup(barcode);
+        if(item.isPresent()) {
+            ItemQuantity itemQuantity = new ItemQuantity(item.get());
+            if (itemList.contains(itemQuantity)) {
+                ItemQuantity ogItemQuantity = itemList.get(itemList.indexOf(itemQuantity));
+                ogItemQuantity.setQuantity(itemQuantity.getQuantity() - quantity);
+            }
+            if (itemList.get(itemList.indexOf(itemQuantity)).getQuantity() <= 0) {
+                itemList.remove(itemQuantity);
+            }
+        }
+    }
+
+    public void removeItem(int barcode) {
+        removeItem(barcode, 1);
     }
 
     public void applyDiscounts() {
-        ArrayList<DiscountQuantity> ds = new ArrayList<>();
-        for (ItemQuantity iq : ilist) {
-            try {
-                Discount d = idb.getDiscount(iq.getItem());
-                ds.add(new DiscountQuantity(d, d.getFormula().apply(iq.getQuantity())));
+        ArrayList<DiscountQuantity> discounts = new ArrayList<>();
+        for (ItemQuantity itemQuantity : itemList) {
+            Optional<Discount> discount = itemdb.getDiscount(itemQuantity.getItem());
+            if (discount.isPresent()) {
+                discounts.add(
+                    new DiscountQuantity(
+                        discount.get(), 
+                        discount.get().getFormula().apply(itemQuantity.getQuantity())));
             }
-            catch (Exception e) {
-            }
+
         }
-        dlist.clear();
-        this.dlist.addAll(ds);
-    }
-
-
-    // Testing method
-    public void printReceipt () {
-        System.out.println(dlist);
-        double total = 0;
-        System.out.println("RECEIPT");
-        System.out.println("Items:");
-        for (ItemQuantity iq : ilist) {
-            System.out.println(iq.getName() + "     " + iq.getQuantity() + "     " + iq.getQuantity() * iq.getPrice());
-            total += iq.getQuantity() * iq.getPrice();
-        }
-        
-
-        for (DiscountQuantity dQuantity : dlist) {
-            System.out.println(dQuantity.getName() + "     " + dQuantity.getQuantity() + "     " + dQuantity.getTotalValue());
-            total += dQuantity.getValue();
-        }
-        
-        System.out.println("Total: " + total + ":-");
-        System.out.println("Thank you for shopping at Robotresearcher");
-
-
-    }
-    
-    private class ItemQuantity{
-        private Item item;
-        private double q;
-        
-        public ItemQuantity(Item item, double q) {
-            this.item = item;
-            this.q = q;
-        }
-        
-        public ItemQuantity(Item item) {
-            this.item = item;
-            this.q = 1;
-        }
-        
-        public Item getItem() {
-            return item;
-        }
-        
-        public double getQuantity() {
-            return q;
-        }
-
-        public void incrementQuantity() {
-            q += 1;
-        }
-
-        public void setQuantity(double newq) {
-            q = newq;
-        }
-        
-        public String getName() {
-            return item.getName();
-        }
-        
-
-        public int getBarcode() {
-            return item.getBarcode();
-        }
-        
-        
-        public double getPrice() {
-            return item.getPrice();
-        }
-        
-        @Override
-        public boolean equals(Object o) { 
-
-            if (o == this) { 
-                return true; 
-            } 
-
-            if (!(o instanceof ItemQuantity)) { 
-                return false; 
-            } 
-
-            ItemQuantity i = (ItemQuantity) o; 
-
-            return item.getBarcode() == i.getBarcode();
-        }
-
-        @Override
-        public int hashCode() {
-            return getBarcode();
-        }
-    }
-
-    private class DiscountQuantity{
-        private Discount d;
-        private double q;
-        
-        public DiscountQuantity(Discount d, double q) {
-            this.d = d;
-            this.q = q;
-        }
-
-        public double getValue() {
-            return d.getValue();
-        }
-
-        public double getQuantity() {
-            return q;
-        }
-        
-        public double getTotalValue() {
-            return q * getValue();
-        }
-
-        public String getName() {
-            return d.getName();
-        }
-
-        public int getBarcode() {
-            return d.getBarcode();
-        } 
-        
-        @Override
-        public boolean equals(Object o) { 
-
-            if (o == this) { 
-                return true; 
-            } 
-
-            if (!(o instanceof DiscountQuantity)) { 
-                return false; 
-            } 
-
-            DiscountQuantity d = (DiscountQuantity) o; 
-
-            return d.getBarcode() == d.getBarcode();
-        }
-
-        @Override
-        public int hashCode() {
-            return getBarcode();
-        }
-    }
-    
-
+        discountList.clear();
+        this.discountList.addAll(discounts);
+    }  
 }
