@@ -1,6 +1,7 @@
 package booking;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class Car extends Resource {
 
@@ -13,13 +14,13 @@ public class Car extends Resource {
      no user is allowed to have more than one upcoming booking for a car.
      */
     @Override
-    public Booking book(Interval interval, User customer) {
+    public Optional<Booking> book(Interval interval, User customer) {
 
         for (Booking booking : this.getBookings()) {
             if (booking.getInterval().getEnd().isAfter(LocalDateTime.now())
                     && booking.getCustomer().equals(customer)
             ) {
-                return null;
+                return Optional.empty();
             }
         }
 

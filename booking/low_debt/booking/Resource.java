@@ -3,6 +3,7 @@ package booking;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class Resource {
     private final String name;
@@ -36,13 +37,13 @@ public class Resource {
         return true;
     }
 
-    public Booking book(Interval interval, User customer) {
+    public Optional<Booking> book(Interval interval, User customer) {
         if (this.available(interval)) {
             Booking booking = new Booking(interval, customer);
             bookings.add(booking);
-            return booking;
+            return Optional.of(booking);
         } else {
-            return null;
+            return Optional.empty();
         }
     }
 

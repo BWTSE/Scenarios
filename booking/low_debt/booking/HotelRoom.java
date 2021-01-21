@@ -2,6 +2,7 @@ package booking;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
+import java.util.Optional;
 
 public class HotelRoom extends Resource {
 
@@ -16,7 +17,7 @@ public class HotelRoom extends Resource {
     Makes sure booking has check-in at 15 and check-out at 11.
      */
     @Override
-    public Booking book(Interval interval, User customer) {
+    public Optional<Booking> book(Interval interval, User customer) {
 
         LocalDateTime checkIn = interval.getStart()
                 .with(ChronoField.HOUR_OF_DAY, CHECK_IN_TIME)
