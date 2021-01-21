@@ -1,20 +1,33 @@
 package shopping;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Tracker {
 
-    private final ArrayList<ItemQuantity> itemList = new ArrayList<>();
-    private final ArrayList<DiscountQuantity> discountList = new ArrayList<>();
+    private final List<ItemQuantity> itemList = new ArrayList<>();
+    private final List<DiscountQuantity> discountList = new ArrayList<>();
     private final ItemDatabase itemdb;
 
     public Tracker(ItemDatabase itemdb) {
         this.itemdb = itemdb;
     }
 
+    public List<ItemQuantity> getItemList() {
+        return List.copyOf(itemList);
+    }
+
+    public List<DiscountQuantity> getDiscountList() {
+        return List.copyOf(discountList);
+    }
+
     public void addItem(int barcode, double quantity) {
-        try {
-            ItemQuantity itemQuantity = new ItemQuantity(itemdb.lookup(barcode), quantity);
+
+        Optional<Item> item = itemdb.lookup(barcode);
+
+        if (item.isPresent()) {
+            ItemQuantity itemQuantity = new ItemQuantity(item.get(), quantity);
             if (itemList.contains(itemQuantity)) { 
                 ItemQuantity ogItemQuantity = itemList.get(itemList.indexOf(itemQuantity));
                 double newQuantity = ogItemQuantity.getQuantity() + quantity;
@@ -22,7 +35,6 @@ public class Tracker {
             } else {
                 itemList.add(itemQuantity);
             }
-        } catch (NoSuchEntryException e) {
         }
     }
 
@@ -31,8 +43,9 @@ public class Tracker {
     }
 
     public void removeItem(int barcode, double quantity) {
-        try {
-            ItemQuantity itemQuantity = new ItemQuantity(itemdb.lookup(barcode));
+        Optional<Item> item = itemdb.lookup(barcode);
+        if(item.isPresent()) {
+            ItemQuantity itemQuantity = new ItemQuantity(item.get());
             if (itemList.contains(itemQuantity)) {
                 ItemQuantity ogItemQuantity = itemList.get(itemList.indexOf(itemQuantity));
                 ogItemQuantity.setQuantity(itemQuantity.getQuantity() - quantity);
@@ -40,7 +53,6 @@ public class Tracker {
             if (itemList.get(itemList.indexOf(itemQuantity)).getQuantity() <= 0) {
                 itemList.remove(itemQuantity);
             }
-        } catch (NoSuchEntryException e) {
         }
     }
 
@@ -51,38 +63,16 @@ public class Tracker {
     public void applyDiscounts() {
         ArrayList<DiscountQuantity> discounts = new ArrayList<>();
         for (ItemQuantity itemQuantity : itemList) {
-            try {
-                Discount discount = itemdb.getDiscount(itemQuantity.getItem());
+            Optional<Discount> discount = itemdb.getDiscount(itemQuantity.getItem());
+            if (discount.isPresent()) {
                 discounts.add(
                     new DiscountQuantity(
-                        discount, discount.getFormula().apply(itemQuantity.getQuantity())));
-            } catch (NoSuchEntryException e) {
+                        discount.get(), 
+                        discount.get().getFormula().apply(itemQuantity.getQuantity())));
             }
+
         }
         discountList.clear();
         this.discountList.addAll(discounts);
-    }
-
-    
-    // Testing method
-    public void printReceipt () {
-        System.out.println(discountList);
-        double total = 0;
-        System.out.println("RECEIPT");
-        System.out.println("Items:");
-        for (ItemQuantity itemQuantity : itemList) {
-            System.out.println(itemQuantity.getName() + "     " + itemQuantity.getQuantity() + "     " + itemQuantity.getQuantity() * itemQuantity.getPrice());
-            total += itemQuantity.getQuantity() * itemQuantity.getPrice();
-        }
-        
-
-        for (DiscountQuantity discountQuantity : discountList) {
-            System.out.println(discountQuantity.getName() + "     " + discountQuantity.getQuantity() + "     " + discountQuantity.getTotalValue());
-            total += discountQuantity.getValue();
-        }
-        
-        System.out.println("Total: " + total + ":-");
-        System.out.println("Thank you for shopping at Robotresearcher");
-    }
-    
+    }  
 }

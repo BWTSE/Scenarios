@@ -1,6 +1,7 @@
 package shopping;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.function.UnaryOperator;
 
 public class ItemDatabase {
@@ -17,39 +18,45 @@ public class ItemDatabase {
         items.add(new Item(1006, "Apples /kg", 24.95));
         items.add(new Item(1007, "Potatoes /kg", 9.99));
 
-        try {
+
+        Optional<Item> item = lookup(1001);
+        
+        if (item.isPresent()) {
             discountList.add(
                 new Discount(
                     3001, 
                     "Milk: Buy 3 pay for for 2 ", 
-                    lookup(1001), 
+                    item.get(), 
                     12.95,
                     (Double quantity) -> (double) quantity.intValue() / 3));
+        }
+        
+        item = lookup(1003);
+        if (item.isPresent()) {
             discountList.add(
                 new Discount(3003, 
                     "Baguettes: Special offer 5 off", 
-                    lookup(1003), 
+                    item.get(), 
                     5, 
-                    UnaryOperator.identity()));
-        } catch (NoSuchEntryException e) {
+                    UnaryOperator.identity())); 
         }
     }
 
-    public final Item lookup(int barcode) throws NoSuchEntryException {
+    public final Optional<Item> lookup(int barcode) {
         for (Item item : items) {
             if (item.getBarcode() == barcode) {
-                return item;
-            }
+                return Optional.of(item);
+            } 
         }
-        throw new NoSuchEntryException(barcode);
+        return Optional.empty();
     }
 
-    public Discount getDiscount(Item item) throws NoSuchEntryException {
+    public Optional<Discount> getDiscount(Item item) {
         for (Discount discount : discountList) {
             if (discount.getItem().equals(item)) {
-                return discount;
+                return Optional.of(discount);
             }
         }
-        throw new NoSuchEntryException(item.getBarcode());
+        return Optional.empty();
     }
 }

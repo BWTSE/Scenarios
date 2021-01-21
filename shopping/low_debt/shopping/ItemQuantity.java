@@ -51,13 +51,9 @@ public class ItemQuantity{
             return true; 
         } 
 
-        if (o == null) {
-            return false;
-        }
-
-        if (o.getClass() != this.getClass()) { 
+        if ( o == null || this.getClass() != o.getClass() ) { 
             return false; 
-        }
+        } 
 
         ItemQuantity itemQuantity = (ItemQuantity) o; 
 
