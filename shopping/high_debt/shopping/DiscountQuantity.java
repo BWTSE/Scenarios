@@ -41,7 +41,8 @@ public class DiscountQuantity{
 
         DiscountQuantity dq = (DiscountQuantity) o; 
 
-        return d.getBarcode() == dq.getBarcode();
+        return d.getBarcode() == dq.getBarcode()
+            && Double.compare(q, dq.getQuantity()) == 0;
     }
 
     @Override

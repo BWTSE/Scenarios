@@ -26,19 +26,25 @@ public class ItemQuantity{
         quantity += 1;
     }
 
-    public void setQuantity(double newquantity) {
-        quantity = newquantity;
+    public void setQuantity(double newQuantity) {
+        quantity = newQuantity;
+    }
+
+    public void addQuantity(double additionalQuantity) {
+        quantity += additionalQuantity;
+    }
+
+    public void removeQuantity(double reductionQuantity) {
+        quantity -= reductionQuantity;
     }
 
     public String getName() {
         return item.getName();
     }
 
-
     public int getBarcode() {
         return item.getBarcode();
     }
-
 
     public double getPrice() {
         return item.getPrice();
@@ -57,7 +63,8 @@ public class ItemQuantity{
 
         ItemQuantity itemQuantity = (ItemQuantity) o; 
 
-        return item.getBarcode() == itemQuantity.getBarcode();
+        return item.getBarcode() == itemQuantity.getBarcode() 
+            && Double.compare(quantity, itemQuantity.getQuantity()) == 0;
     }
 
     @Override

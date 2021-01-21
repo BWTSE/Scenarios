@@ -14,6 +14,7 @@ public class Main {
         }
         tracker.addItem(1006, 0.5);
         tracker.addItem(1007, 2.15);
-        tracker.applyDiscounts(); 
+        tracker.applyDiscounts();
+        tracker.printReceipt();
     }
 }
