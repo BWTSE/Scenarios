@@ -81,25 +81,4 @@ public class Tracker {
         discounts.clear();
         this.discounts.addAll(validDiscounts);
     }  
-
-    public void printReceipt () {
-        double total = 0;
-        System.out.println("RECEIPT");
-        System.out.println("Items:");
-        for (Entry<Integer, ItemQuantity> entry: items.entrySet()) {
-            ItemQuantity itemQuantity = entry.getValue();
-            System.out.println(itemQuantity.getName() + "     " + itemQuantity.getQuantity() + "     " + itemQuantity.getQuantity() * itemQuantity.getPrice());
-            total += itemQuantity.getQuantity() * itemQuantity.getPrice();
-        }
-        
-        for (DiscountQuantity discountQuantity : discounts) {
-            System.out.println(discountQuantity.getName() + "     " + discountQuantity.getQuantity() + "     " + discountQuantity.getTotalValue());
-            total += discountQuantity.getValue();
-        }
-
-        System.out.println("Total: " + total + ":-");
-        System.out.println("Thank you for shopping at Robotresearcher");
-
-
-    }
 }

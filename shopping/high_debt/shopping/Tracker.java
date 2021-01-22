@@ -81,25 +81,4 @@ public class Tracker {
         ds.clear();
         this.ds.addAll(vds);
     }  
-
-    public void printReceipt () {
-        double t = 0;
-        System.out.println("RECEIPT");
-        System.out.println("Items:");
-        for (Entry<Integer, ItemQuantity> entry: is.entrySet()) {
-            ItemQuantity iq = entry.getValue();
-            System.out.println(iq.getName() + "     " + iq.getQuantity() + "     " + iq.getQuantity() * iq.getPrice());
-            t += iq.getQuantity() * iq.getPrice();
-        }
-        
-        for (DiscountQuantity dQuantity : ds) {
-            System.out.println(dQuantity.getName() + "     " + dQuantity.getQuantity() + "     " + dQuantity.getTotalValue());
-            t += dQuantity.getValue();
-        }
-
-        System.out.println("Total: " + t + ":-");
-        System.out.println("Thank you for shopping at Robotresearcher");
-
-
-    }
 }
