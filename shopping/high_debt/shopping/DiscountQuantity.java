@@ -14,7 +14,7 @@ public class DiscountQuantity{
     }
 
     public double getValue() {
-        return d.getValue();
+        return getDiscount().getValue();
     }
 
     public double getQuantity() {
@@ -26,11 +26,11 @@ public class DiscountQuantity{
     }
 
     public String getName() {
-        return d.getName();
+        return getDiscount().getName();
     }
 
     public int getBarcode() {
-        return d.getBarcode();
+        return getDiscount().getBarcode();
     } 
         
     @Override
@@ -39,13 +39,13 @@ public class DiscountQuantity{
             return true; 
         } 
 
-        if ( o == null || this.getClass() != o.getClass() ) { 
+        if ( o == null || getClass() != o.getClass() ) { 
             return false; 
         } 
 
         DiscountQuantity dq = (DiscountQuantity) o; 
 
-        return d.getBarcode() == dq.getBarcode()
+        return getDiscount().getBarcode() == dq.getBarcode()
             && Double.compare(q, dq.getQuantity()) == 0;
     }
 

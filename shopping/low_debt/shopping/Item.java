@@ -44,7 +44,7 @@ public class Item {
 
     @Override
     public int hashCode() {
-        return this.barcode;
+        return barcode;
     }
     
     @Override

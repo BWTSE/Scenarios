@@ -51,7 +51,7 @@ public class Discount {
             return true; 
         } 
 
-        if ( o == null || this.getClass() != o.getClass() ) { 
+        if ( o == null || getClass() != o.getClass() ) { 
             return false; 
         } 
 
@@ -62,7 +62,7 @@ public class Discount {
 
     @Override
     public int hashCode() {
-        return this.bc;
+        return bc;
     }
     
     @Override

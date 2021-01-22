@@ -79,6 +79,6 @@ public class Tracker {
 
         }
         discounts.clear();
-        this.discounts.addAll(validDiscounts);
+        discounts.addAll(validDiscounts);
     }  
 }

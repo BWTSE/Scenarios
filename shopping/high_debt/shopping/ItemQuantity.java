@@ -39,15 +39,15 @@ public class ItemQuantity{
     }
 
     public String getName() {
-        return i.getName();
+        return getItem().getName();
     }
 
     public int getBarcode() {
-        return i.getBarcode();
+        return getItem().getBarcode();
     }
 
     public double getPrice() {
-        return i.getPrice();
+        return getItem().getPrice();
     }
 
     @Override
@@ -57,13 +57,13 @@ public class ItemQuantity{
             return true; 
         } 
 
-        if ( o == null || this.getClass() != o.getClass() ) { 
+        if ( o == null || getClass() != o.getClass() ) { 
             return false; 
         } 
 
         ItemQuantity iq = (ItemQuantity) o; 
 
-        return i.getBarcode() == iq.getBarcode() 
+        return getItem().getBarcode() == iq.getBarcode() 
             && Double.compare(q, iq.getQuantity()) == 0;
     }
 

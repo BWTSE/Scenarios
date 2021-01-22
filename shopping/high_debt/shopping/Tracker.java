@@ -79,6 +79,6 @@ public class Tracker {
 
         }
         ds.clear();
-        this.ds.addAll(vds);
+        ds.addAll(vds);
     }  
 }
