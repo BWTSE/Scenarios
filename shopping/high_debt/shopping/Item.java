@@ -1,63 +1,54 @@
-package salestracker;
+package shopping;
+
+import java.util.Locale;
 
 public class Item {
-	
-	private int bc;
-	private String n;
-	private double p;
-	private double q;
-	
-	public Item(int bc, String n, double p) {
-		this.bc = bc;
-		this.n = n;
-		this.p = p;
-		this.q = 1;
-	}
 
-	
-	public int getbc() {
-		return bc;
-	}
-	
-	public String getn() {
-		return n;
-	}
-	
-	public double getp() {
-		return p;
-	}
-	
-	public double getq() {
-		return q;
-	}
-	
-	public void incq() {
-		q += 1;
-	}
-	
-	public void setq(double nq) {
-		q = nq;
-	}
-	
-	
-	@Override
+    private final int bc;
+    private final String n;
+    private final double p;
+
+    public Item(int bc, String n, double p) {
+        this.bc = bc;
+        this.n = n;
+        this.p = p;
+    }
+
+
+    public int getBarcode() {
+        return bc;
+    }
+
+    public String getName() {
+        return n;
+    }
+
+    public double getPrice() {
+        return p;
+    }
+    
     public boolean equals(Object o) { 
-    	  
+
         if (o == this) { 
             return true; 
         } 
-  
-        if (!(o instanceof Item)) { 
+
+        if ( o == null || getClass() != o.getClass() ) { 
             return false; 
         } 
 
-        Item i = (Item) o; 
+        Item item = (Item) o; 
 
-        return n == i.getn();
+        return bc == item.getBarcode();
     }
-	
+
     @Override
     public int hashCode() {
-        return this.bc;
+        return bc;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format(Locale.ENGLISH, "Item: %s barcode: %d price: (%,.02f)", n, bc, p);
     }
 }

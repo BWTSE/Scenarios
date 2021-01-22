@@ -1,4 +1,6 @@
-package salestracker;
+package shopping;
+
+import java.util.Locale;
 
 public class Item {
 
@@ -31,22 +33,22 @@ public class Item {
             return true; 
         } 
 
-        if (!(o instanceof Item)) { 
+        if ( o == null || this.getClass() != o.getClass() ) { 
             return false; 
         } 
 
-        Item i = (Item) o; 
+        Item item = (Item) o; 
 
-        return barcode == i.getBarcode();
+        return barcode == item.getBarcode();
     }
 
     @Override
     public int hashCode() {
-        return this.barcode;
+        return barcode;
     }
     
     @Override
     public String toString() {
-        return "Item: " + name + ", barcode: " + barcode + ", price: " + price;
+        return String.format(Locale.ENGLISH, "Item: %s barcode: %d price: (%,.02f)", name, barcode, price);
     }
 }
