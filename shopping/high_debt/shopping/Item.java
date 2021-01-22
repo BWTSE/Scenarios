@@ -33,7 +33,7 @@ public class Item {
             return true; 
         } 
 
-        if ( o == null || this.getClass() != o.getClass() ) { 
+        if ( o == null || getClass() != o.getClass() ) { 
             return false; 
         } 
 
@@ -44,7 +44,7 @@ public class Item {
 
     @Override
     public int hashCode() {
-        return this.bc;
+        return bc;
     }
     
     @Override
