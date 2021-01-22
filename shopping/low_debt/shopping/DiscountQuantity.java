@@ -2,11 +2,15 @@ package shopping;
 
 public class DiscountQuantity{
     private final Discount discount;
-    private double quantity;
+    private final double quantity;
         
     public DiscountQuantity(Discount discount, double quantity) {
         this.discount = discount;
         this.quantity = quantity;
+    }
+
+    public Discount getDiscount() {
+        return discount;
     }
 
     public double getValue() {
