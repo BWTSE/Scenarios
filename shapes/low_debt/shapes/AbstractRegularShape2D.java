@@ -3,25 +3,21 @@ package shapes;
 import java.util.Locale;
 import java.util.Objects;
 
-public class Hexagon implements Shape2D {
+public abstract class AbstractRegularShape2D implements Shape2D {
 
-    private static final int SIDES = 6;
-
+    private final int sides;
     private final double sideLength;
 
-    public Hexagon(double sideLength) {
+    protected AbstractRegularShape2D(int sides, double sideLength) {
+        this.sides = sides;
         this.sideLength = sideLength;
     }
 
     // The shortest cross section of the shape
-    public double width() {
-        // width (width of a regular hexagon) is given by:
-        // baseWidth = sideLength * sqrt(3)
-        return this.getSideLength() * Math.sqrt(3);
-    }
+    public abstract double width();
 
     public int getSides() {
-        return Hexagon.SIDES;
+        return sides;
     }
 
     public double getSideLength() {
@@ -35,9 +31,12 @@ public class Hexagon implements Shape2D {
 
     @Override
     public double area() {
-        // Area of hexagon
-        // area = sideLength^2 * sqrt(3) * 3 / 2
-        return Math.pow(this.getSideLength(), 2) * Math.sqrt(3) * 3 / 2;
+        // Formula for the area of any regular shape
+        // area = sideLength^2 * #sides / (4 * tan(pi / #sides))
+        // https://www.wikihow.com/Find-the-Area-of-Regular-Polygons
+        return Math.pow(this.getSideLength(), 2)
+                * this.getSides()
+                / (4.0 * Math.tan(Math.PI/this.getSides()));
     }
 
     @Override
@@ -48,9 +47,9 @@ public class Hexagon implements Shape2D {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        Hexagon hexagon = (Hexagon) o;
-        return Double.compare(hexagon.getSideLength(), this.getSideLength()) == 0 &&
-                hexagon.getSides() == this.getSides();
+        AbstractRegularShape2D regularShape2D = (AbstractRegularShape2D) o;
+        return Double.compare(regularShape2D.getSideLength(), this.getSideLength()) == 0 &&
+                regularShape2D.getSides() == this.getSides();
     }
 
     @Override
@@ -61,7 +60,7 @@ public class Hexagon implements Shape2D {
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH,
-                "Hexagon with a side length of (%,.02f) and (%d) sides.",
+                "Regular 2d shape with a side length of (%,.02f) and (%d) sides.",
                 this.getSideLength(),
                 this.getSides()
         );

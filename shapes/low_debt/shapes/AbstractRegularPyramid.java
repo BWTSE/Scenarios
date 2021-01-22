@@ -3,20 +3,20 @@ package shapes;
 import java.util.Locale;
 import java.util.Objects;
 
-public class TriangularPyramid implements Shape3D {
+public abstract class AbstractRegularPyramid implements Shape3D {
     private final double height;
-    private final EquilateralTriangle base;
+    private final AbstractRegularShape2D base;
 
-    public TriangularPyramid(double height, double base) {
+    protected AbstractRegularPyramid(double height, AbstractRegularShape2D base) {
         this.height = height;
-        this.base = new EquilateralTriangle(base);
+        this.base = base;
     }
 
     public double getHeight() {
         return this.height;
     }
 
-    public EquilateralTriangle getBase() {
+    public AbstractRegularShape2D getBase() {
         return this.base;
     }
 
@@ -53,9 +53,9 @@ public class TriangularPyramid implements Shape3D {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        TriangularPyramid triangularPyramid = (TriangularPyramid) o;
-        return Double.compare(triangularPyramid.getHeight(), this.getHeight()) == 0 &&
-                this.getBase().equals(triangularPyramid.getBase());
+        AbstractRegularPyramid regularPyramid = (AbstractRegularPyramid) o;
+        return Double.compare(regularPyramid.getHeight(), this.getHeight()) == 0 &&
+                this.getBase().equals(regularPyramid.getBase());
     }
 
     @Override
@@ -66,7 +66,7 @@ public class TriangularPyramid implements Shape3D {
     @Override
     public String toString() {
         return String.format(Locale.ENGLISH,
-                "Triangular pyramid with height (%,.02f) and base (%s)",
+                "Regular pyramid with height (%,.02f) and base (%s)",
                 this.getHeight(),
                 this.getBase().toString()
         );
