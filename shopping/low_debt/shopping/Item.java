@@ -1,5 +1,7 @@
 package shopping;
 
+import java.util.Locale;
+
 public class Item {
 
     private final int barcode;
@@ -47,6 +49,6 @@ public class Item {
     
     @Override
     public String toString() {
-        return String.format("Item: %s barcode: %d price: %f", name, barcode, price);
+        return String.format(Locale.ENGLISH, "Item: %s barcode: %d price: (%,.02f)", name, barcode, price);
     }
 }

@@ -1,5 +1,6 @@
 package shopping;
 
+import java.util.Locale;
 import java.util.function.UnaryOperator;
 
 public class Discount {
@@ -66,7 +67,7 @@ public class Discount {
     
     @Override
     public String toString() {
-        return String.format("Discount: %s barcode: %d value: %f", n, bc, v);
+        return String.format(Locale.ENGLISH, "Discount: %s barcode: %d value: (%,.02f)", n, bc, v);
     }
 
 }
