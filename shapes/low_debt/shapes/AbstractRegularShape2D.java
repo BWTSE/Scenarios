@@ -19,6 +19,7 @@ public abstract class AbstractRegularShape2D implements Shape2D {
     public int getSides() {
         return sides;
     }
+
     public double getSideLength() {
         return sideLength;
     }

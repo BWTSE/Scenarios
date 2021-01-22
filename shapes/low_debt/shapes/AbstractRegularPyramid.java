@@ -30,7 +30,7 @@ public abstract class AbstractRegularPyramid implements Shape3D {
         return this.getBase().area() + this.sideShape().area() * this.getBase().getSides();
     }
 
-    public Shape2D sideShape() {
+    public IsoscelesTriangle sideShape() {
         return new IsoscelesTriangle(
                 this.getBase().getSideLength(),
                 this.slantHeight()
