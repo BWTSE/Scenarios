@@ -66,7 +66,7 @@ public class Discount {
     
     @Override
     public String toString() {
-        return "Discount: " + n + ", bc: " + bc + ", v: " + v;
+        return String.format("Discount: %s barcode: %d value: %f", n, bc, v);
     }
 
 }

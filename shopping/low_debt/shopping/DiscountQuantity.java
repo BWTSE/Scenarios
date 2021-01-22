@@ -1,7 +1,7 @@
 package shopping;
 
 public class DiscountQuantity{
-    private Discount discount;
+    private final Discount discount;
     private double quantity;
         
     public DiscountQuantity(Discount discount, double quantity) {

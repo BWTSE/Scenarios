@@ -1,7 +1,7 @@
 package shopping;
 
 public class ItemQuantity{
-    private Item item;
+    private final Item item;
     private double quantity;
     
     public ItemQuantity(Item item, double quantity) {

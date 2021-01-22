@@ -47,6 +47,6 @@ public class Item {
     
     @Override
     public String toString() {
-        return "Item: " + name + ", barcode: " + barcode + ", price: " + price;
+        return String.format("Item: %s barcode: %d price: %f", name, barcode, price);
     }
 }

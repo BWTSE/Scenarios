@@ -66,7 +66,7 @@ public class Discount {
     
     @Override
     public String toString() {
-        return "Discount: " + name + ", barcode: " + barcode + ", value: " + value;
+        return String.format("Discount: %s barcode: %d value: %f", name, barcode, value);
     }
 
 }

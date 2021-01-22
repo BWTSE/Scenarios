@@ -1,5 +1,6 @@
 .project
 .classpath
+.properties
 
 # Created by https://www.toptal.com/developers/gitignore/api/java,linux,macos,windows,sonarqube,intellij+all,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,linux,macos,windows,sonarqube,intellij+all,eclipse
