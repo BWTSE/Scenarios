@@ -1,6 +1,8 @@
 # Booking task
 
-Your task is to extend this booking system with a new class for bookable Cabins (`Cabin`).
+This system is a simple booking system, where there are currently two types of resources available: Hotel Rooms and Cars.
+
+Your task is to extend system with a new class for bookable cabins (`Cabin`).
 The `Cabin` class should have the constructor `Cabin(String name, String description)` and be a subtype of `Resource`.
 
 Cabins are different from hotel rooms because the minimum duration you can book them for is three (3) days.
