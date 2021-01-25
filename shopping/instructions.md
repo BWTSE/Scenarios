@@ -2,7 +2,7 @@
 
 This system represents a shopping basket tracker, e.g. at the self scanning stations that are common in grocery stores.
 
-Your task is to add a class that represents a receipt. It make available information that is usually present on a receipt such as: the items purchased, the total cost, the portion that was VAT (assume it is the same, non-zero, rate for all items), the time and date of the purchase.
+Your task is to add a class that represents a receipt. It should make available information that is usually present on a receipt such as: the items purchased, the total cost, the portion that was VAT (assume it is the same, non-zero, rate for all items), the time and date of the purchase.
 
 The class should have a method that returns a string that, when printed, somewhat resembles a physical receipt (it does not have to be particularly pretty). Ending it with a friendly message to the customer may ecourage repeat business.
 
