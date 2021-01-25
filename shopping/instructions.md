@@ -8,7 +8,7 @@ The class should have a method that returns a `String` that, when printed, *some
 
 The `Tracker` class should have a method that generates a receipt object based on what is currently "in the basket".
 
-Finally, call your new receipt-generator method from `Main` and print the `String` returned by the method you constructed. 
+Finally, call your new receipt-generator method from `Main` and print the `String` returned by the method you constructed to `System.out`. 
 
 The `ItemDatabase` class (crudely) mocks database access, pay little attention to it. Otherwise you are free to modify the existing system, if you feel it is appropriate to complete your task.
 
