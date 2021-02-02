@@ -46,15 +46,15 @@ public class TicketFinder {
             "One trip within the CENTRAL and SUBURB regions between 4:00 and 00:00", 
             49, 
             Arrays.asList(Zone.CENTRAL, Zone.SUBURB), 
-            22, 
-            5));
+            4, 
+            0));
 
         ticketList.add(new SingleTicket("Single All Regions Day",
             "One trip within all covered regions between 4:00 and 00:00", 
             69, 
             Arrays.asList(Zone.CENTRAL, Zone.SUBURB, Zone.RURAL), 
-            22, 
-            5));
+            5, 
+            22));
 
         ticketList.add(new PeriodTicket("3-Day Period Central",
             "Unlimited travel for 3 days within the central region", 
@@ -82,7 +82,7 @@ public class TicketFinder {
             true, 
             false));
 
-        ticketList.add(new RestrictedPeriodTicket("7-Old People Ticket",
+        ticketList.add(new RestrictedPeriodTicket("7-Day Old People Ticket",
             "7 day travel whithin CETRAL and SUBURB regions for retirees", 
             199, 
             Arrays.asList(Zone.CENTRAL, Zone.SUBURB), 

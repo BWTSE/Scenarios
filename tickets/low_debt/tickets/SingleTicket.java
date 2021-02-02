@@ -22,8 +22,9 @@ public class SingleTicket extends Ticket {
     public boolean isValidFor(Zone startZone, Zone endZone, User user, int tripStartHour) {
         if (this.getValidZones().contains(startZone) && this.getValidZones().contains(endZone)
                 && (this.startHour < this.endHour 
-                    ? (tripStartHour >= this.startHour && tripStartHour < this.endHour)
-                    : (tripStartHour <= this.startHour || tripStartHour < this.endHour))) {
+                    ? tripStartHour >= this.startHour && tripStartHour < this.endHour
+                    : tripStartHour >= this.startHour || tripStartHour > this.endHour
+                    )) {
             return true;
         }
         return false;
