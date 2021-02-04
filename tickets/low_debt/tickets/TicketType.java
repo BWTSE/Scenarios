@@ -3,13 +3,13 @@ package tickets;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Ticket {
+public abstract class TicketType {
     private final String name;
     private final String description;
     private final double price;
     private final List<Zone> validZones;
 
-    protected Ticket(String name, String description, double price, List<Zone> validZones) {
+    protected TicketType(String name, String description, double price, List<Zone> validZones) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -42,8 +42,8 @@ public abstract class Ticket {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        Ticket ticket = (Ticket) o;
-        return Objects.equals(this.getName(), ticket.getName());
+        TicketType ticketType = (TicketType) o;
+        return Objects.equals(this.getName(), ticketType.getName());
     }
 
     @Override

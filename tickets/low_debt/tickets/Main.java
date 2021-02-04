@@ -10,23 +10,14 @@ public class Main {
     private static TicketFinder ticketFinder = new TicketFinder();
 
 	public static void main(String[] args) {
-        List<Ticket> ticketList = ticketFinder.getTicketList();
-        System.out.println(ticketList.get(3).getValidZones());
-        System.out.println(ticketList.get(3).getValidZones().contains(Zone.SUBURB));
-
-        System.out.print(ticketFinder.find(bob, Zone.CENTRAL, Zone.CENTRAL, 2000, 5));
-
-
-
-        // Test RestrictedPeriodTicket
-        ticketList = ticketFinder.find(carl, Zone.CENTRAL, Zone.CENTRAL, 2000, 5);
-        for (Ticket ticket : ticketList) {
-            assert(ticket.getName() != "7-Day Old People Ticket");
+        List<TicketType> ticketTypeList = ticketFinder.find(carl, Zone.CENTRAL, Zone.CENTRAL, 2000, 5);
+        for (TicketType ticketType : ticketTypeList) {
+            assert(ticketType.getName() != "7-Day Old People Ticket");
         }
 
-        ticketList = ticketFinder.find(bob, Zone.CENTRAL, Zone.CENTRAL, 2000, 5);
-        for (Ticket ticket : ticketList) {
-            assert(ticket.getName() != "7-Day Old People Ticket");
+        ticketTypeList = ticketFinder.find(bob, Zone.CENTRAL, Zone.CENTRAL, 2000, 5);
+        for (TicketType ticketType : ticketTypeList) {
+            assert(ticketType.getName() != "7-Day Old People Ticket");
         }
 	}
 }

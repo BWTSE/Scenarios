@@ -2,12 +2,12 @@ package tickets;
 
 import java.util.List;
 
-public class SingleTicket extends Ticket {
+public class TicketTypeSingle extends TicketType {
 
     private final int startHour;
     private final int endHour;
 
-    public SingleTicket(String name, 
+    public TicketTypeSingle(String name, 
                         String description, 
                         double price, 
                         List<Zone> validZones, 

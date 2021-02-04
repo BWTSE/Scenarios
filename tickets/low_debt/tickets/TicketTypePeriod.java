@@ -2,11 +2,11 @@ package tickets;
 
 import java.util.List;
 
-public class PeriodTicket extends Ticket {
+public class TicketTypePeriod extends TicketType {
 
     private final long duration;
 
-    public PeriodTicket(String name, String description, double price, List<Zone> validZones ,long duration) {
+    public TicketTypePeriod(String name, String description, double price, List<Zone> validZones ,long duration) {
         super(name, description, price, validZones);
         this.duration = duration;
     }

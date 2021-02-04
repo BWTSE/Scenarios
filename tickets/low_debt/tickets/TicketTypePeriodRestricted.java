@@ -2,14 +2,15 @@ package tickets;
 
 import java.util.List;
 
-public class RestrictedPeriodTicket extends PeriodTicket {
+
+public class TicketTypePeriodRestricted extends TicketTypePeriod {
 
     private final boolean allowStudent;
     private final boolean allowRetiree;
 
     // EXAMPLE SOLUTION
 
-    public RestrictedPeriodTicket(String name, 
+    public TicketTypePeriodRestricted(String name, 
                         String description, 
                         double price, 
                         List<Zone> validZones,
