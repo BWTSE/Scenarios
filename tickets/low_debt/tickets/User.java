@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class User {
 
-    public static enum PrimaryOccupation {
+    public enum PrimaryOccupation {
         STUDENT,
         ADULT,
         RETIREE

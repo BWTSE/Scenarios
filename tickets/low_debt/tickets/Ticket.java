@@ -27,7 +27,7 @@ public class Ticket {
         return this.timeOfPurchase;
     }
 
-    public boolean isValidFor(Trip trip, User user, LocalDateTime tripStartHour) {
+    public boolean isValidFor(Trip trip, User user) {
         return ticketType.isValidFor(trip, user);
     }
 
