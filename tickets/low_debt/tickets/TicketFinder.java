@@ -1,6 +1,5 @@
 package tickets;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,15 +16,13 @@ public class TicketFinder {
     public List<AbstractTicketType> find(
         User user, 
         Trip trip,
-        double maxPrice,
-        LocalDateTime tripStartHour
+        double maxPrice
     ) {
         List<AbstractTicketType> results = new LinkedList<>();
         for (AbstractTicketType TicketType : ticketTypeList) {
             if (TicketType.isValidFor(
                     trip, 
-                    user, 
-                    tripStartHour
+                    user
                     ) 
                 && TicketType.getPrice() <= maxPrice) {
                 results.add(TicketType);
@@ -37,14 +34,12 @@ public class TicketFinder {
     public Optional<Ticket> purchaseTicket(
             User user, 
             AbstractTicketType ticketType, 
-            Trip trip,
-            LocalDateTime tripstartHour
+            Trip trip
     ) {
         if(find(
             user, 
             trip,
-            Double.MAX_VALUE, 
-            tripstartHour
+            Double.MAX_VALUE
             ).contains(ticketType)) {
             return Optional.of(new Ticket(ticketType, user));
         } else {

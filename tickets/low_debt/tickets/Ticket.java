@@ -28,7 +28,7 @@ public class Ticket {
     }
 
     public boolean isValidFor(Trip trip, User user, LocalDateTime tripStartHour) {
-        return ticketType.isValidFor(trip, user, tripStartHour);
+        return ticketType.isValidFor(trip, user);
     }
 
     @Override

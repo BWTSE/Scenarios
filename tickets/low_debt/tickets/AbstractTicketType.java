@@ -1,6 +1,5 @@
 package tickets;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -41,10 +40,10 @@ public abstract class AbstractTicketType {
 
     public abstract boolean isValidFor(
         Trip trip, 
-        User user, 
-        LocalDateTime tripStartHour
+        User user
     );
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -58,10 +57,12 @@ public abstract class AbstractTicketType {
             && Objects.equals(this.getValidZones(), ticketType.getValidZones());
     }
 
+    @Override
     public int hashCode() {
         return Objects.hash(this.getName());
     }
 
+    @Override
     public String toString() {
         return String.format(
                 "Ticket %s ",

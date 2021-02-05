@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public class Main {
     
-    private static final User alice = new User("Alice", "alice@crypto", 32, User.primaryOccupation.ADULT);
-    private static final User bob = new User("Bob", "bob@crypto", 75, User.primaryOccupation.RETIREE);
-    private static final User carl = new User("Carl", "carl@crypto", 21, User.primaryOccupation.STUDENT);
+    private static final User alice = new User("Alice", "alice@crypto", 32, User.PrimaryOccupation.ADULT);
+    private static final User bob = new User("Bob", "bob@crypto", 75, User.PrimaryOccupation.RETIREE);
+    private static final User carl = new User("Carl", "carl@crypto", 21, User.PrimaryOccupation.STUDENT);
 
 
 
@@ -22,9 +22,8 @@ public class Main {
 
         List<AbstractTicketType> applicableTickets = ticketFinder.find(
             carl, 
-            new Trip(Zone.CENTRAL, Zone.CENTRAL), 
-            2000, 
-            time);
+            new Trip(Zone.CENTRAL, Zone.CENTRAL, time), 
+            2000);
         Optional<Ticket> ticketOpt;
 
         for (AbstractTicketType ticketType : applicableTickets) {
@@ -32,8 +31,7 @@ public class Main {
                 ticketOpt = ticketFinder.purchaseTicket(
                     carl, 
                     ticketType, 
-                    new Trip(Zone.CENTRAL, Zone.CENTRAL), 
-                    time);
+                    new Trip(Zone.CENTRAL, Zone.CENTRAL, time));
                 if (ticketOpt.isPresent()) {
                     System.out.println(ticketOpt.get().toString());
                 }

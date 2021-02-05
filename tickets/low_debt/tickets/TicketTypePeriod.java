@@ -1,6 +1,5 @@
 package tickets;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +19,7 @@ public class TicketTypePeriod extends AbstractTicketType {
     }
 
     @Override
-    public boolean isValidFor(Trip trip, User user, LocalDateTime tripStartHour) {
+    public boolean isValidFor(Trip trip, User user) {
         return this.getValidZones().contains(trip.getStartZone()) 
             && this.getValidZones().contains(trip.getEndZone());
     }
@@ -41,5 +40,10 @@ public class TicketTypePeriod extends AbstractTicketType {
         return Objects.equals(this.getName(), ticketType.getName())
             && Objects.equals(this.getDuration(), ticketType.getDuration()
         );
-    } 
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.getName(), this.getDuration());
+    }
 }

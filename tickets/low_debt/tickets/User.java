@@ -4,17 +4,19 @@ import java.util.Objects;
 
 public class User {
 
-    private final String name;
-    private final String email;
-    private final int age;
-    public enum primaryOccupation {
+    public static enum PrimaryOccupation {
         STUDENT,
         ADULT,
         RETIREE
     }
-    private primaryOccupation occupation;
 
-    public User(String name, String email, int age, primaryOccupation occupation) {
+    private final String name;
+    private final String email;
+    private final int age;
+    private final PrimaryOccupation occupation;
+
+
+    public User(String name, String email, int age, PrimaryOccupation occupation) {
         this.name = name;
         this.email = email;
         this.age = age;
@@ -33,7 +35,7 @@ public class User {
         return age;
     }
 
-    public primaryOccupation getOccupation() {
+    public PrimaryOccupation getOccupation() {
         return this.occupation;
     }
 

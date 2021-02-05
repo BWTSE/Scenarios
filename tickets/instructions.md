@@ -4,7 +4,7 @@ This is a system that models a public transport ticket system. It finds the tick
 
 Your task is to add a `RestrictedPeriodTicker` class that is only valid for certain groups, i.e. student and/or retirees.
 
-The new class should implement the interface `Ticket` and have the following constructor: `RestrictedPeriodTicket(String name, String description, double price, List<Zone> validZones,long duration, Set<User.primaryOccupaton> allowedOccupations)�.
+The new class should implement the interface `Ticket` and have the following constructor: `RestrictedPeriodTicket(String, String, double, List<Zone>, long, Set<User.primaryOccupaton> allowedOccupations)�.
 
 Feel free to modify the existing codebase in any way you want as long as you maintain existing functionality.
 
