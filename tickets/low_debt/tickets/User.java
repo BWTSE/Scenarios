@@ -7,15 +7,18 @@ public class User {
     private final String name;
     private final String email;
     private final int age;
-    private final boolean student;
-    private final boolean retiree;
+    public enum primaryOccupation {
+        STUDENT,
+        ADULT,
+        RETIREE
+    }
+    private primaryOccupation occupation;
 
-    public User(String name, String email, int age, boolean student, boolean retiree) {
+    public User(String name, String email, int age, primaryOccupation occupation) {
         this.name = name;
         this.email = email;
         this.age = age;
-        this.student = student;
-        this.retiree = retiree;
+        this.occupation = occupation;
     }
 
     public String getName() {
@@ -30,15 +33,11 @@ public class User {
         return age;
     }
 
-    public boolean isStudent() {
-        return student;
+    public primaryOccupation getOccupation() {
+        return this.occupation;
     }
 
-    public boolean isRetiree() {
-        return retiree;
-    }
-
-    @Override
+    @Override 
     public boolean equals(Object o) {
         if (this == o) {
             return true;

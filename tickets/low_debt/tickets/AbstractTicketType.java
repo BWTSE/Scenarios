@@ -1,21 +1,21 @@
 package tickets;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 public abstract class AbstractTicketType {
     private final String name;
     private final String description;
     private final double price;
-    private final List<Zone> validZones;
+    private final Collection<Zone> validZones;
 
     protected AbstractTicketType(
         String name, 
         String description, 
         double price, 
-        List<Zone> validZones
+        Collection<Zone> validZones
     ) {
         this.name = name;
         this.description = description;
@@ -35,18 +35,16 @@ public abstract class AbstractTicketType {
         return this.price;
     }
 
-    public List<Zone> getValidZones() {
+    public Collection<Zone> getValidZones() {
         return new LinkedList<>(this.validZones);
     }
 
     public abstract boolean isValidFor(
-        Zone startZone, 
-        Zone endZone, 
+        Trip trip, 
         User user, 
         LocalDateTime tripStartHour
     );
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -55,15 +53,15 @@ public abstract class AbstractTicketType {
             return false;
         }
         AbstractTicketType ticketType = (AbstractTicketType) o;
-        return Objects.equals(this.getName(), ticketType.getName());
+        return Objects.equals(this.getName(), ticketType.getName())
+            && Objects.equals(this.getDescription(), ticketType.getDescription()) 
+            && Objects.equals(this.getValidZones(), ticketType.getValidZones());
     }
 
-    @Override
     public int hashCode() {
         return Objects.hash(this.getName());
     }
 
-    @Override
     public String toString() {
         return String.format(
                 "Ticket %s ",

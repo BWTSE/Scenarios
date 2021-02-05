@@ -27,14 +27,8 @@ public class Ticket {
         return this.timeOfPurchase;
     }
 
-    public boolean isValidFor(
-        Zone startZone, 
-        Zone endZone, 
-        User user, 
-        LocalDateTime 
-        tripStartHour
-    ) {
-        return ticketType.isValidFor(startZone, endZone, user, tripStartHour);
+    public boolean isValidFor(Trip trip, User user, LocalDateTime tripStartHour) {
+        return ticketType.isValidFor(trip, user, tripStartHour);
     }
 
     @Override
@@ -46,7 +40,9 @@ public class Ticket {
             return false;
         }
         Ticket ticket = (Ticket) o;
-        return Objects.equals(this.getTicketType(), ticket.getTicketType());
+        return Objects.equals(this.getTicketType(), ticket.getTicketType())
+            && Objects.equals(this.getUser(), ticket.getUser())
+            && Objects.equals(this.getTimeOfPurchase(), ticket.getTimeOfPurchase());
     }
 
     @Override

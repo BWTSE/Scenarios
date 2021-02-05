@@ -23,23 +23,18 @@ public class TicketTypeSingle extends AbstractTicketType {
     }
 
     @Override
-    public boolean isValidFor(
-        Zone startZone, 
-        Zone endZone, 
-        User user, 
-        LocalDateTime tripStartHour
-    ) {
+    public boolean isValidFor(Trip trip, User user, LocalDateTime tripStartHour) {
         if (this.startHour < this.endHour) {
             return
                 tripStartHour.getHour() >= this.startHour 
                 && tripStartHour.getHour() < this.endHour
-                && this.getValidZones().contains(startZone) 
-                && this.getValidZones().contains(endZone);
+                && this.getValidZones().contains(trip.getStartZone()) 
+                && this.getValidZones().contains(trip.getEndZone());
         } else {
             return (tripStartHour.getHour() >= this.startHour 
                     || tripStartHour.getHour() > this.endHour) 
-                && this.getValidZones().contains(startZone) 
-                && this.getValidZones().contains(endZone);
+                && this.getValidZones().contains(trip.getStartZone()) 
+                && this.getValidZones().contains(trip.getEndZone());
         }
     }
 
@@ -61,18 +56,5 @@ public class TicketTypeSingle extends AbstractTicketType {
         }
         TicketTypeSingle ticketType = (TicketTypeSingle) o;
         return Objects.equals(this.getName(), ticketType.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.getName());
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Ticket %s ",
-                this.getName()
-        );
     }
 }

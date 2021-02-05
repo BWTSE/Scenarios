@@ -20,13 +20,9 @@ public class TicketTypePeriod extends AbstractTicketType {
     }
 
     @Override
-    public boolean isValidFor(
-        Zone startZone, 
-        Zone endZone, 
-        User user, 
-        LocalDateTime tripStartHour
-    ) {
-        return this.getValidZones().contains(startZone) && this.getValidZones().contains(endZone);
+    public boolean isValidFor(Trip trip, User user, LocalDateTime tripStartHour) {
+        return this.getValidZones().contains(trip.getStartZone()) 
+            && this.getValidZones().contains(trip.getEndZone());
     }
 
     public long getDuration() {
@@ -42,20 +38,8 @@ public class TicketTypePeriod extends AbstractTicketType {
             return false;
         }
         TicketTypePeriod ticketType = (TicketTypePeriod) o;
-        return Objects.equals(this.getName(), ticketType.getName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(this.getName());
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Ticket %s ",
-                this.getName()
+        return Objects.equals(this.getName(), ticketType.getName())
+            && Objects.equals(this.getDuration(), ticketType.getDuration()
         );
-    }
-    
+    } 
 }
