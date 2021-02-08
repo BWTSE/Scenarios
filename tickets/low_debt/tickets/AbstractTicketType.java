@@ -6,28 +6,21 @@ import java.util.Objects;
 
 public abstract class AbstractTicketType {
     private final String name;
-    private final String description;
     private final double price;
     private final Collection<Zone> validZones;
 
     protected AbstractTicketType(
-        String name, 
-        String description, 
+        String name,
         double price, 
         Collection<Zone> validZones
     ) {
         this.name = name;
-        this.description = description;
         this.price = price;
         this.validZones = new LinkedList<>(validZones);
     }
 
     public String getName() {
         return this.name;
-    }
-
-    public String getDescription() {
-        return this.description;
     }
 
     public double getPrice() {
@@ -53,7 +46,6 @@ public abstract class AbstractTicketType {
         }
         AbstractTicketType ticketType = (AbstractTicketType) o;
         return Objects.equals(this.getName(), ticketType.getName())
-            && Objects.equals(this.getDescription(), ticketType.getDescription()) 
             && Objects.equals(this.getValidZones(), ticketType.getValidZones());
     }
 

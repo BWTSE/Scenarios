@@ -5,10 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class TicketTypeSingle implements TicketTypeInterface {
+public class TicketTypeSingle implements TicketType {
 
     private final String n;
-    private final String d;
     private final double p;
     private final Collection<Zone> validz;
     private final int starth;
@@ -16,14 +15,12 @@ public class TicketTypeSingle implements TicketTypeInterface {
 
     public TicketTypeSingle(
         String n, 
-        String d, 
         double p, 
         List<Zone> validz, 
         int starth,
         int endh
     ) {
         this.n = n;
-        this.d = d;
         this.p = p;
         this.validz = new LinkedList<>(validz);
         this.starth = starth;
@@ -48,10 +45,6 @@ public class TicketTypeSingle implements TicketTypeInterface {
 
     public String getName() {
         return this.n;
-    }
-
-    public String getDescription() {
-        return this.d;
     }
 
     public double getPrice() {

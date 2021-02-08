@@ -2,11 +2,9 @@ package tickets;
 
 import java.util.Collection;
 
-public interface TicketTypeInterface {
+public interface TicketType {
 
     public String getName();
-
-    public String getDescription();
 
     public double getPrice();
 

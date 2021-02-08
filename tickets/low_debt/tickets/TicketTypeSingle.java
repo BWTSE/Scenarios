@@ -9,14 +9,13 @@ public class TicketTypeSingle extends AbstractTicketType {
     private final int endHour;
 
     public TicketTypeSingle(
-        String name, 
-        String description, 
+        String name,  
         double price, 
         List<Zone> validZones, 
         int startHour,
         int endHour
     ) {
-        super(name, description, price, validZones);
+        super(name,  price, validZones);
         this.startHour = startHour;
         this.endHour = endHour;
     }

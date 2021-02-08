@@ -5,23 +5,20 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class TicketTypePeriod implements TicketTypeInterface {
+public class TicketTypePeriod implements TicketType {
 
     private final String n;
-    private final String d;
     private final double p;
     private final Collection<Zone> validz;
     private final long dur;
 
     public TicketTypePeriod(
         String n, 
-        String d, 
         double p, 
         List<Zone> validz, 
         long dur
     ) {
         this.n = n;
-        this.d = d;
         this.p = p;
         this.validz = new LinkedList<>(validz);
         this.dur = dur;
@@ -35,10 +32,6 @@ public class TicketTypePeriod implements TicketTypeInterface {
 
     public String getName() {
         return this.n;
-    }
-
-    public String getDescription() {
-        return this.d;
     }
 
     public double getPrice() {

@@ -7,19 +7,19 @@ import java.util.Optional;
 
 public class TicketFinder {
 
-    private final List<TicketTypeInterface> ttlist;
+    private final List<TicketType> ttlist;
 
-    public TicketFinder(Collection<TicketTypeInterface> ttlist) {
+    public TicketFinder(Collection<TicketType> ttlist) {
         this.ttlist = new LinkedList<>(ttlist);
     }
 
-    public List<TicketTypeInterface> find(
+    public List<TicketType> find(
         User u, 
         Trip t,
         double maxp
     ) {
-        List<TicketTypeInterface> r = new LinkedList<>();
-        for (TicketTypeInterface TicketType : ttlist) {
+        List<TicketType> r = new LinkedList<>();
+        for (TicketType TicketType : ttlist) {
             if (TicketType.isValidFor(
                     t, 
                     u
@@ -33,7 +33,7 @@ public class TicketFinder {
 
     public Optional<Ticket> purchaseTicket(
             User u, 
-            TicketTypeInterface tt, 
+            TicketType tt, 
             Trip t
     ) {
         if(find(
@@ -47,7 +47,7 @@ public class TicketFinder {
         }
     }
 
-    public List<TicketTypeInterface> getticketTypeList() {
+    public List<TicketType> getticketTypeList() {
         return new LinkedList<>(this.ttlist);
     }
 }

@@ -9,12 +9,11 @@ public class TicketTypePeriod extends AbstractTicketType {
 
     public TicketTypePeriod(
         String name, 
-        String description, 
         double price, 
         List<Zone> validZones, 
         long duration
     ) {
-        super(name, description, price, validZones);
+        super(name, price, validZones);
         this.duration = duration;
     }
 
