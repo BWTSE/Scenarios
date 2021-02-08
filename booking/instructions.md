@@ -8,8 +8,6 @@ The `Cabin` class should have the constructor `Cabin(String name, String descrip
 Cabins are different from hotel rooms because the minimum duration you can book them for is three (3) days.
 Make sure to add this restriction to the `Cabin` class.
 
-Make sure to uncomment the testcases for Cabins in `Main.java`.
-
 Feel free to modify the existing codebase in any way you want as long as you maintain existing functionality.
 
 ## Task checklist
