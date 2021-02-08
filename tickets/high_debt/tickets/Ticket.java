@@ -7,12 +7,12 @@ import java.util.Objects;
 public class Ticket {
     private final TicketType tt;
     private final User u;
-    private final LocalDateTime buyt;
+    private final LocalDateTime t;
 
     public Ticket(TicketType tt, User u) {
         this.tt = tt;
         this.u = u;
-        this.buyt = LocalDateTime.now();
+        this.t = LocalDateTime.now();
     }
 
     public TicketType getTicketType() {
@@ -24,7 +24,7 @@ public class Ticket {
     }
 
     public LocalDateTime getTimeOfPurchase() {
-        return this.buyt;
+        return this.t;
     }
 
     public boolean isValidFor(Trip t, User u) {
