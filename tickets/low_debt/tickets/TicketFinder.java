@@ -1,53 +1,50 @@
 package tickets;
 
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
+import java.util.Set;
 
 public class TicketFinder {
 
-    private final List<AbstractTicketType> ticketTypeList;
+    private final Set<AbstractTicketType> ticketTypes;
 
     public TicketFinder(Collection<AbstractTicketType> ticketTypeList) {
-        this.ticketTypeList = new LinkedList<>(ticketTypeList);
+        this.ticketTypes = new HashSet<>(ticketTypeList);
     }
 
-    public List<AbstractTicketType> find(
-        User user, 
-        Trip trip,
-        double maxPrice
-    ) {
-        List<AbstractTicketType> results = new LinkedList<>();
-        for (AbstractTicketType TicketType : ticketTypeList) {
-            if (TicketType.isValidFor(
-                    trip, 
-                    user
-                    ) 
-                && TicketType.getPrice() <= maxPrice) {
+    public Set<AbstractTicketType> find(User user, Trip trip, double maxPrice) {
+        Set<AbstractTicketType> results = find(user, trip);
+
+        for (Iterator<AbstractTicketType> it = results.iterator(); it.hasNext();) {
+            AbstractTicketType element = it.next();
+            if (element.getPrice() >= maxPrice) {
+                it.remove();
+            }
+        }
+        return results;
+    }
+
+    public Set<AbstractTicketType> find(User user, Trip trip) {
+        Set<AbstractTicketType> results = new HashSet<>();
+        for (AbstractTicketType TicketType : ticketTypes) {
+            if (TicketType.isValidFor(trip, user)) {
                 results.add(TicketType);
             }
         }
         return results;
     }
 
-    public Optional<Ticket> purchaseTicket(
-            User user, 
-            AbstractTicketType ticketType, 
-            Trip trip
-    ) {
-        if(find(
-            user, 
-            trip,
-            Double.MAX_VALUE
-            ).contains(ticketType)) {
+    public Optional<Ticket> purchaseTicket(User user, AbstractTicketType ticketType, Trip trip) {
+        if(find(user, trip).contains(ticketType)) {
             return Optional.of(new Ticket(ticketType, user));
         } else {
             return Optional.empty();
         }
     }
 
-    public List<AbstractTicketType> getticketTypeList() {
-        return new LinkedList<>(this.ticketTypeList);
+    public Set<AbstractTicketType> getTicketTypes() {
+        return new HashSet<>(this.ticketTypes);
     }
 }

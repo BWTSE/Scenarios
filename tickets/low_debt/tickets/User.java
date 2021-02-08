@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class User {
 
-    public enum PrimaryOccupation {
+    public enum Occupation {
         STUDENT,
         ADULT,
         RETIREE
@@ -13,10 +13,9 @@ public class User {
     private final String name;
     private final String email;
     private final int age;
-    private final PrimaryOccupation occupation;
+    private final Occupation occupation;
 
-
-    public User(String name, String email, int age, PrimaryOccupation occupation) {
+    public User(String name, String email, int age, Occupation occupation) {
         this.name = name;
         this.email = email;
         this.age = age;
@@ -35,7 +34,7 @@ public class User {
         return age;
     }
 
-    public PrimaryOccupation getOccupation() {
+    public Occupation getOccupation() {
         return this.occupation;
     }
 

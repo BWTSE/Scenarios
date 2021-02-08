@@ -1,28 +1,21 @@
 package tickets;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.EnumSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class TicketTypeSingle implements TicketType {
 
     private final String n;
     private final double p;
-    private final Collection<Zone> validz;
+    private final Set<Zone> validz;
     private final int starth;
     private final int endh;
 
-    public TicketTypeSingle(
-        String n, 
-        double p, 
-        List<Zone> validz, 
-        int starth,
-        int endh
-    ) {
+    public TicketTypeSingle(String n, double p, Set<Zone> validz, int starth,int endh) {
         this.n = n;
         this.p = p;
-        this.validz = new LinkedList<>(validz);
+        this.validz = EnumSet.copyOf(validz);
         this.starth = starth;
         this.endh = endh;
     }
@@ -51,8 +44,8 @@ public class TicketTypeSingle implements TicketType {
         return this.p;
     }
 
-    public Collection<Zone> getValidZones() {
-        return new LinkedList<>(this.validz);
+    public Set<Zone> getValidZones() {
+        return EnumSet.copyOf(this.validz);
     }
 
     public int getStartHour() {
@@ -72,11 +65,14 @@ public class TicketTypeSingle implements TicketType {
             return false;
         }
         TicketTypeSingle tt = (TicketTypeSingle) o;
-        return Objects.equals(this.getName(), tt.getName());
+        return Objects.equals(this.getName(), tt.getName())
+            && Objects.equals(this.getStartHour(), tt.getStartHour())
+            && Objects.equals(this.getEndHour(), tt.getEndHour())
+            && Objects.equals(this.getPrice(), tt.getPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName(), this.getStartHour());
+        return Objects.hash(this.getName(), this.getPrice(), this.getStartHour());
     }
 }

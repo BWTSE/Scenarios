@@ -1,26 +1,20 @@
 package tickets;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.EnumSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class TicketTypePeriod implements TicketType {
 
     private final String n;
     private final double p;
-    private final Collection<Zone> validz;
+    private final Set<Zone> validz;
     private final long dur;
 
-    public TicketTypePeriod(
-        String n, 
-        double p, 
-        List<Zone> validz, 
-        long dur
-    ) {
+    public TicketTypePeriod(String n, double p, Set<Zone> validz, long dur) {
         this.n = n;
         this.p = p;
-        this.validz = new LinkedList<>(validz);
+        this.validz = EnumSet.copyOf(validz);
         this.dur = dur;
     }
 
@@ -38,8 +32,8 @@ public class TicketTypePeriod implements TicketType {
         return this.p;
     }
 
-    public Collection<Zone> getValidZones() {
-        return new LinkedList<>(this.validz);
+    public Set<Zone> getValidZones() {
+        return EnumSet.copyOf(this.validz);
     }
 
     public long getDuration() {
@@ -56,12 +50,12 @@ public class TicketTypePeriod implements TicketType {
         }
         TicketTypePeriod tt = (TicketTypePeriod) o;
         return Objects.equals(this.getName(), tt.getName())
-            && Objects.equals(this.getDuration(), tt.getDuration()
-        );
+            && Objects.equals(this.getDuration(), tt.getDuration())
+            && Objects.equals(this.getPrice(), tt.getPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName(), this.getDuration());
+        return Objects.hash(this.getName(), this.getPrice(), this.getDuration());
     }
 }

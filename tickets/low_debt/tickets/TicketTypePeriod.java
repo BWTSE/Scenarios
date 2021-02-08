@@ -1,18 +1,13 @@
 package tickets;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class TicketTypePeriod extends AbstractTicketType {
 
     private final long duration;
 
-    public TicketTypePeriod(
-        String name, 
-        double price, 
-        List<Zone> validZones, 
-        long duration
-    ) {
+    public TicketTypePeriod(String name, double price, Set<Zone> validZones, long duration) {
         super(name, price, validZones);
         this.duration = duration;
     }
@@ -29,20 +24,15 @@ public class TicketTypePeriod extends AbstractTicketType {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || this.getClass() != o.getClass()) {
-            return false;
-        }
-        TicketTypePeriod ticketType = (TicketTypePeriod) o;
-        return Objects.equals(this.getName(), ticketType.getName())
-            && Objects.equals(this.getDuration(), ticketType.getDuration()
+        return super.equals(o)
+            && Objects.equals(this.getDuration(), ((TicketTypePeriod) o).getDuration()
         );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName(), this.getDuration());
+        return Objects.hash(
+            super.hashCode(), this.getDuration()
+        );
     }
 }

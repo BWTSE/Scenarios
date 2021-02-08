@@ -1,22 +1,18 @@
 package tickets;
 
-import java.util.Collection;
-import java.util.LinkedList;
+import java.util.EnumSet;
 import java.util.Objects;
+import java.util.Set;
 
 public abstract class AbstractTicketType {
     private final String name;
     private final double price;
-    private final Collection<Zone> validZones;
+    private final Set<Zone> validZones;
 
-    protected AbstractTicketType(
-        String name,
-        double price, 
-        Collection<Zone> validZones
-    ) {
+    protected AbstractTicketType(String name, double price, Set<Zone> validZones) {
         this.name = name;
         this.price = price;
-        this.validZones = new LinkedList<>(validZones);
+        this.validZones = EnumSet.copyOf(validZones);
     }
 
     public String getName() {
@@ -27,8 +23,8 @@ public abstract class AbstractTicketType {
         return this.price;
     }
 
-    public Collection<Zone> getValidZones() {
-        return new LinkedList<>(this.validZones);
+    public Set<Zone> getValidZones() {
+        return EnumSet.copyOf(this.validZones);
     }
 
     public abstract boolean isValidFor(
@@ -46,19 +42,17 @@ public abstract class AbstractTicketType {
         }
         AbstractTicketType ticketType = (AbstractTicketType) o;
         return Objects.equals(this.getName(), ticketType.getName())
-            && Objects.equals(this.getValidZones(), ticketType.getValidZones());
+            && Objects.equals(this.getValidZones(), ticketType.getValidZones())
+            && Objects.equals(this.getPrice(), ticketType.getPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName());
+        return Objects.hash(this.getName(), this.getValidZones(), this.getPrice());
     }
 
     @Override
     public String toString() {
-        return String.format(
-                "Ticket %s ",
-                this.getName()
-        );
+        return String.format("Ticket %s ", this.getName());
     }
 }

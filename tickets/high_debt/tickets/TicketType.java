@@ -4,11 +4,11 @@ import java.util.Collection;
 
 public interface TicketType {
 
-    public String getName();
+    String getName();
 
-    public double getPrice();
+    double getPrice();
 
-    public Collection<Zone> getValidZones();
+    Collection<Zone> getValidZones();
 
-    public abstract boolean isValidFor(Trip t, User u);
+    boolean isValidFor(Trip t, User u);
 }

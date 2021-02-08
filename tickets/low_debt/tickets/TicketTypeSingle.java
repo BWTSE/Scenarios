@@ -1,7 +1,7 @@
 package tickets;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class TicketTypeSingle extends AbstractTicketType {
 
@@ -11,7 +11,7 @@ public class TicketTypeSingle extends AbstractTicketType {
     public TicketTypeSingle(
         String name,  
         double price, 
-        List<Zone> validZones, 
+        Set<Zone> validZones, 
         int startHour,
         int endHour
     ) {
@@ -46,18 +46,15 @@ public class TicketTypeSingle extends AbstractTicketType {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || this.getClass() != o.getClass()) {
-            return false;
-        }
-        TicketTypeSingle ticketType = (TicketTypeSingle) o;
-        return Objects.equals(this.getName(), ticketType.getName());
+        return super.equals(o)
+            && Objects.equals(this.getStartHour(), ((TicketTypeSingle) o).getStartHour())
+            && Objects.equals(this.getEndHour(), ((TicketTypeSingle) o).getEndHour());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName(), this.getStartHour());
+        return Objects.hash(
+            super.hashCode(), this.getStartHour()
+        );
     }
 }
