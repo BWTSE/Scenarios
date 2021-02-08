@@ -13,12 +13,12 @@ public class Main {
 
     private static final HotelRoom r1 =
             new HotelRoom("921", "in The Stanley Hotel");
-    // private static final Cabin r2 = new Cabin("Whoville 26", "Home of the Who-steins");
+    private static final Cabin r2 = new Cabin("Whoville 26", "Home of the Who-steins");
     private static final Car r3 = new Car("ABC 123", "Volvo");
 
     private static final Collection<Resource> rs = List.of(
             r1,
-            // cabin,
+            r2,
             r3
     );
 
@@ -49,13 +49,11 @@ public class Main {
             }
         }
 
-        /*
         // Test Cabin booking
         Optional<Booking> cb = r2.book(new Interval(now.plusDays(20), now.plusDays(21)), alice);
         if (cb.isPresent()) {
             System.out.println("Cabin should only be bookable for a minimum of 3 days");
         }
-        */
 
         // Test Hotel booking
         Optional<Booking> hb = r1.book(
