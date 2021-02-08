@@ -24,17 +24,21 @@ public class Main {
     private static List<Zone> centrumPlus = Arrays.asList(Zone.CENTRAL, Zone.SUBURB);
     private static final TicketType centrumPlusSingle = 
         new TicketTypeSingle("Single Central + Suburbs Day", 49, centrumPlus, 4, 0);
+        /*
     private static final TicketType retireeSevenDayCPlus =
         new TicketTypePeriodRestricted("7-Day Old People TicketType", 199, centrumPlus, 2592000000L, 
         Collections.singletonList(User.PrimaryOccupation.RETIREE));
+        */
     private static List<Zone> allZones = Arrays.asList(Zone.CENTRAL, Zone.SUBURB, Zone.RURAL);
     private static final TicketType allSingleDay = 
         new TicketTypeSingle("Single All Regions Day", 69, allZones,5, 22);
     private static final TicketType goldenTicket =
         new TicketTypePeriod("30-Day Golden Ticket", 1999, allZones, 2_592_000_000L);
+        /*
     private static final TicketType monthStudent =
     new TicketTypePeriodRestricted( "30-Day Student TicketType", 199, allZones, 2592000000L, 
         Collections.singletonList(User.PrimaryOccupation.STUDENT));
+        */
     private static final List<TicketType> ticketTypeList = new LinkedList<>();
 
     public static void main(String[] args) {
@@ -55,6 +59,7 @@ public class Main {
         for (TicketType ticket : aliceTickets) {
             System.out.println(ticket.getName());
         }
+        /*
         if (aliceTickets.contains(retireeSevenDayCPlus) || aliceTickets.contains(monthStudent)) {
                 System.out.println("Alice (adult) found retiree or student ticket");
         }
@@ -70,5 +75,6 @@ public class Main {
             if (carlTickets.contains(retireeSevenDayCPlus)) {
                 System.out.println("Carl (student) found retiree ticket");
         }
+        */
     }
 }

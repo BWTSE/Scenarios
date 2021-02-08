@@ -15,7 +15,7 @@ public class TicketTypeSingle extends AbstractTicketType {
         int startHour,
         int endHour
     ) {
-        super(name,  price, validZones);
+        super(name, price, validZones);
         this.startHour = startHour;
         this.endHour = endHour;
     }
