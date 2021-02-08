@@ -50,7 +50,12 @@ public class Main {
         }
 
         // Test Cabin booking
+<<<<<<< Updated upstream
         Optional<Booking> cb = r2.book(new Interval(now.plusDays(20), now.plusDays(21)), u2);
+=======
+        
+        Optional<Booking> cb = r2.book(new Interval(n.plusDays(20), n.plusDays(21)), u1);
+>>>>>>> Stashed changes
         if (cb.isPresent()) {
             System.out.println("Cabin should only be bookable for a minimum of 3 days");
         }
