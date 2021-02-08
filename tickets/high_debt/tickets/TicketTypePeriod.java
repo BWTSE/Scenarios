@@ -8,14 +8,14 @@ public class TicketTypePeriod implements TicketType {
 
     private final String n;
     private final double p;
-    private final Set<Zone> validz;
-    private final long dur;
+    private final Set<Zone> zs;
+    private final long d;
 
-    public TicketTypePeriod(String n, double p, Set<Zone> validz, long dur) {
+    public TicketTypePeriod(String n, double p, Set<Zone> zs, long d) {
         this.n = n;
         this.p = p;
-        this.validz = EnumSet.copyOf(validz);
-        this.dur = dur;
+        this.zs = EnumSet.copyOf(zs);
+        this.d = d;
     }
 
     @Override
@@ -33,11 +33,11 @@ public class TicketTypePeriod implements TicketType {
     }
 
     public Set<Zone> getValidZones() {
-        return EnumSet.copyOf(this.validz);
+        return EnumSet.copyOf(this.zs);
     }
 
     public long getDuration() {
-        return this.dur;
+        return this.d;
     }
 
     @Override

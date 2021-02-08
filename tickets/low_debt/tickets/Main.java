@@ -12,9 +12,9 @@ public class Main {
     private static final User bob = new User("Bob", "bob@crypto", 75, User.Occupation.RETIREE);
     private static final User carl = new User("Carl", "carl@crypto", 21, User.Occupation.STUDENT);
     
-    private static EnumSet<Zone> centrumOnly = EnumSet.of(Zone.CENTRAL);
-    private static EnumSet<Zone> centrumPlus = EnumSet.of(Zone.CENTRAL, Zone.SUBURB);
-    private static EnumSet<Zone> allZones = EnumSet.of(Zone.CENTRAL, Zone.SUBURB, Zone.RURAL);
+    private static Set<Zone> centrumOnly = EnumSet.of(Zone.CENTRAL);
+    private static Set<Zone> centrumPlus = EnumSet.of(Zone.CENTRAL, Zone.SUBURB);
+    private static Set<Zone> allZones = EnumSet.of(Zone.CENTRAL, Zone.SUBURB, Zone.RURAL);
     
     private static final AbstractTicketType centralSingleDay =
         new TicketTypeSingle("Single Central Day", 29, centrumOnly, 5, 22);

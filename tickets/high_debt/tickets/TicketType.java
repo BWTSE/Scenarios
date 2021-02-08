@@ -1,6 +1,6 @@
 package tickets;
 
-import java.util.Collection;
+import java.util.Set;
 
 public interface TicketType {
 
@@ -8,7 +8,7 @@ public interface TicketType {
 
     double getPrice();
 
-    Collection<Zone> getValidZones();
+    Set<Zone> getValidZones();
 
     boolean isValidFor(Trip t, User u);
 }

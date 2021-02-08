@@ -18,8 +18,8 @@ public class TicketFinder {
         Set<TicketType> r = find(u, t);
 
         for (Iterator<TicketType> it = r.iterator(); it.hasNext();) {
-            TicketType element = it.next();
-            if (element.getPrice() >= maxp) {
+            TicketType e = it.next();
+            if (e.getPrice() >= maxp) {
                 it.remove();
             }
         }

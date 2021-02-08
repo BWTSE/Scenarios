@@ -8,29 +8,29 @@ public class TicketTypeSingle implements TicketType {
 
     private final String n;
     private final double p;
-    private final Set<Zone> validz;
-    private final int starth;
-    private final int endh;
+    private final Set<Zone> zs;
+    private final int sh;
+    private final int eh;
 
-    public TicketTypeSingle(String n, double p, Set<Zone> validz, int starth,int endh) {
+    public TicketTypeSingle(String n, double p, Set<Zone> zs, int sh, int eh) {
         this.n = n;
         this.p = p;
-        this.validz = EnumSet.copyOf(validz);
-        this.starth = starth;
-        this.endh = endh;
+        this.zs = EnumSet.copyOf(zs);
+        this.sh = sh;
+        this.eh = eh;
     }
 
     @Override
     public boolean isValidFor(Trip t, User u) {
-        if (this.starth < this.endh) {
+        if (this.sh < this.eh) {
             return
-                t.getTripStartTime().getHour() >= this.starth 
-                && t.getTripStartTime().getHour() < this.endh
+                t.getTripStartTime().getHour() >= this.sh 
+                && t.getTripStartTime().getHour() < this.eh
                 && this.getValidZones().contains(t.getStartZone()) 
                 && this.getValidZones().contains(t.getEndZone());
         } else {
-            return (t.getTripStartTime().getHour() >= this.starth 
-                    || t.getTripStartTime().getHour() > this.endh) 
+            return (t.getTripStartTime().getHour() >= this.sh 
+                    || t.getTripStartTime().getHour() > this.eh) 
                 && this.getValidZones().contains(t.getStartZone()) 
                 && this.getValidZones().contains(t.getEndZone());
         }
@@ -45,15 +45,15 @@ public class TicketTypeSingle implements TicketType {
     }
 
     public Set<Zone> getValidZones() {
-        return EnumSet.copyOf(this.validz);
+        return EnumSet.copyOf(this.zs);
     }
 
     public int getStartHour() {
-        return this.starth;
+        return this.sh;
     }
 
     public int getEndHour() {
-        return this.endh;
+        return this.eh;
     } 
 
     @Override
