@@ -51,7 +51,7 @@ public class Main {
 
         // Test Cabin booking
         
-        Optional<Booking> cb = r2.book(new Interval(n.plusDays(20), n.plusDays(21)), u1);
+        Optional<Booking> cb = r2.book(new Interval(n.plusDays(20), n.plusDays(21)), u2);
         if (cb.isPresent()) {
             System.out.println("Cabin should only be bookable for a minimum of 3 days");
         }
