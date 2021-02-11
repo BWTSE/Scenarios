@@ -43,11 +43,11 @@ public class Main {
         ttlst.add(t1);
         ttlst.add(t2);
         ttlst.add(t3);
-        ttlst.add(t3);
         ttlst.add(t4);
         ttlst.add(t5);
         ttlst.add(t6);
         ttlst.add(t7);
+        ttlst.add(t8);
 
         TicketFinder tf = new TicketFinder(ttlst);
 
