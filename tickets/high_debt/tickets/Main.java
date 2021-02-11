@@ -58,12 +58,12 @@ public class Main {
             tf.find(u1, new Trip(Zone.CENTRAL, Zone.SUBURB, t), 2000);
 
         if (ats.containsAll(new HashSet<>(Arrays.asList(t5, t8)))) {
-                System.out.println("Alice (adult) found a retiree or student t");
+                System.out.println("Alice (adult) found a retiree or student ticket");
         }
 
         for (TicketType tt : ats) {
             if (!tt.getValidZones().containsAll(EnumSet.of(Zone.SUBURB, Zone.CENTRAL))) {
-                    System.out.println("Alice found t that isnt valid for her trip:");
+                    System.out.println("Alice found ticket that isnt valid for her trip:");
                     System.out.println(tt.getName());
             }
         }
@@ -71,14 +71,14 @@ public class Main {
         Set<TicketType> bts = 
             tf.find(u2, new Trip(Zone.CENTRAL, Zone.CENTRAL, t), 2000);
         if (bts.contains(t8)) {
-            System.out.println("Bob (retiree) found the student t.");
+            System.out.println("Bob (retiree) found the student ticket.");
         }
         if (!bts.contains(t5)) {
-            System.out.println("Bob (retiree) didn't find the retiree t.");
+            System.out.println("Bob (retiree) didn't find the retiree ticket.");
         }
         for (TicketType tt : bts) {
             if (!tt.getValidZones().contains(Zone.CENTRAL)) {
-                 System.out.println("Bob found t that isn't valid for his trip:");
+                 System.out.println("Bob found ticket that isn't valid for his trip:");
                  System.out.println(tt.getName());
             }
         }
@@ -86,15 +86,15 @@ public class Main {
         Set<TicketType> cts = 
             tf.find(u3, new Trip(Zone.CENTRAL, Zone.CENTRAL, t), 2000);
         if (cts.contains(t5)) {
-            System.out.println("Carl (student) found the retiree t.");
+            System.out.println("Carl (student) found the retiree ticket.");
         }
         if (!cts.contains(t8)) {
-            System.out.println("Carl (student) didn't find the student t.");
+            System.out.println("Carl (student) didn't find the student ticket.");
         }
 
         for (TicketType tt : cts) {
             if (!tt.getValidZones().contains(Zone.CENTRAL)) {
-                System.out.println("Carl found t that isn't valid for his trip:");
+                System.out.println("Carl found ticket that isn't valid for his trip:");
                 System.out.println(tt.getName());
             }
         }
