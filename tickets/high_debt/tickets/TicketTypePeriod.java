@@ -51,6 +51,7 @@ public class TicketTypePeriod implements TicketType {
         TicketTypePeriod tt = (TicketTypePeriod) o;
         return Objects.equals(this.getName(), tt.getName())
             && Objects.equals(this.getDuration(), tt.getDuration())
+            && Objects.equals(this.getValidZones(), tt.getValidZones())
             && Objects.equals(this.getPrice(), tt.getPrice());
     }
 

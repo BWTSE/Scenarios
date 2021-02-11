@@ -23,6 +23,7 @@ public class TicketFinder {
                 it.remove();
             }
         }
+
         return results;
     }
 
