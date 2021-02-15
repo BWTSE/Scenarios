@@ -15,14 +15,14 @@ public class GroupRoom extends Resource {
      */
     @Override
     public Optional<Booking> book(Interval interval, User customer) {
-
         for (Booking booking : this.getBookings()) {
             if (booking.getInterval().getEnd().isAfter(LocalDateTime.now())
-                    && booking.getCustomer().equals(customer)
+                    && booking.getBooker().equals(customer)
             ) {
                 return Optional.empty();
             }
         }
+        
         return super.book(interval, customer);
     }
 }

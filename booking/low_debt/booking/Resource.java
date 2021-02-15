@@ -1,5 +1,6 @@
 package booking;
 
+import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -34,17 +35,22 @@ public class Resource {
                 return false;
             }
         }
+
         return true;
     }
 
     public Optional<Booking> book(Interval interval, User customer) {
-        if (this.available(interval)) {
-            Booking booking = new Booking(interval, customer);
-            bookings.add(booking);
-            return Optional.of(booking);
-        } else {
+        if (
+            !this.available(interval) 
+            || interval.getEnd().isBefore(interval.getStart())
+            || interval.getStart().isBefore(LocalDateTime.now())
+        ) {
             return Optional.empty();
         }
+
+        Booking booking = new Booking(interval, customer);
+        bookings.add(booking);
+        return Optional.of(booking);
     }
 
     @Override
@@ -52,9 +58,11 @@ public class Resource {
         if (this == o) {
             return true;
         }
+        
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         Resource resource = (Resource) o;
         return Objects.equals(this.getName(), resource.getName());
     }

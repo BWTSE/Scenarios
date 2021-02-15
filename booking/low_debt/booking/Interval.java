@@ -36,9 +36,11 @@ public class Interval {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+        
         Interval interval = (Interval) o;
         return Objects.equals(this.getStart(), interval.getStart()) &&
                 Objects.equals(this.getEnd(), interval.getEnd());

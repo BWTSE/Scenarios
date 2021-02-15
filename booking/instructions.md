@@ -1,12 +1,12 @@
 # Booking task
 
-This system is a simple booking system, where there are currently two types of resources available: classrooms and grouprooms.
+This system is a simple booking system, where there are currently two types of resources available: classrooms and group rooms.
 
-Your task is to extend system with a new class (`ComputerRoom`) representing rooms filled with computers. Because of the valuable hardware inside them, access to computer rooms is more limited than to other rooms.
+Your task is to extend the system with a new class (`ComputerRoom`) representing rooms filled with computers. Because of the valuable hardware inside them, access to computer rooms is more limited than to other rooms.
 
-Computer rooms should only be bookable between two full hours, (e.g. 13:00 to 14:00, but not 13:06 to 14:06) and they should only be available available during Office Hours of working days, i.e 7:00 to 17:00 Monday through Friday. 
+Computer rooms should only be bookable between two full hours, (e.g. 13:00 to 14:00, but not 13:06 to 14:06) but, unlike other classrooms, they should only be available during Office Hours of working days, i.e 7:00 to 17:00 Monday through Friday. 
 The new class should make sure these rules are not broken.
-The class should be a subtybe of `Resource` and the prewritten tests assume the constructor `ComputerRoom(String, String)` (arguments representing name and description).
+The class should be a subtype of `Resource` and the prewritten tests assume the constructor `ComputerRoom(String, String)` (arguments representing name and description).
 
 Reference for LocalDateTime can be found here: <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html" target="_blank" >Class LocalDateTime</a>
 
