@@ -60,7 +60,7 @@ public class Main {
         testTime = LocalDateTime.of(2021, 6, 5, 5, 0, 0);
         compRoomBooking = computerRoom.book(new Interval(testTime, testTime.plusHours(3)), bob);
         if (compRoomBooking.isPresent()) {
-            System.out.println("A computer room was successfully booked outside of office hours, this should not be possible");
+            System.out.println("A computer room was successfully booked during a weekend, this should not be possible");
         }
 
         testTime = LocalDateTime.of(2021, 6, 8, 12, 0, 0);
