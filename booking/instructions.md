@@ -1,20 +1,20 @@
 # Booking task
 
-This system is a simple booking system, where there are currently two types of resources available: hotel rooms and cars.
+This system is a simple booking system, where there are currently two types of resources available: classrooms and grouprooms.
 
-Your task is to extend system with a new class (`Cabin`) for bookable cabins.
-The prewritten tests assume the constructor `Cabin(String, String)` (arguments representing name and description) and be a subtype of `Resource`.
+Your task is to extend system with a new class (`ComputerRoom`) representing rooms filled with computers. Because of the valuable hardware inside them, access to computer rooms is more limited than to other rooms.
 
-Cabins are different from hotel rooms and cars because the minimum duration you can book them for is three (3) days (note that the restrictions that apply to cars and hotel rooms do not apply to cabins).
-Make sure to add this restriction to the `Cabin` class. 
+Computer rooms should only be bookable between two full hours, (e.g. 13:00 to 14:00, but not 13:06 to 14:06) and they should only be available available during Office Hours of working days, i.e 7:00 to 17:00 Monday through Friday. 
+The new class should make sure these rules are not broken.
+The class should be a subtybe of `Resource` and the prewritten tests assume the constructor `ComputerRoom(String, String)` (arguments representing name and description).
 
 Reference for LocalDateTime can be found here: <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html" target="_blank" >Class LocalDateTime</a>
 
 Feel free to modify the existing codebase (even the tests) in any way you want as long as you maintain existing functionality.
 
-Hint: the editor supports a [set of shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
+Tip: the editor supports a [set of shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
 
 ## Task checklist
 * Added a `Cabin` class as a subtype of `Resource`
-* Any Cabin bookings shorter than three (3) days are denied
+* Any computer room bookings outside of office hours are rejected.
 * Passes all tests in `Main.java`

@@ -8,7 +8,7 @@ The new class should be a subtype of `TicketType` and the prewritten tests assum
 
 Feel free to modify the existing codebase (even the tests) in any way you want as long as you maintain the existing functionality.
 
-Hint: the editor supports a [set of shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
+Tip: the editor supports a [set of shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
 
 ## Task checklist
 * Added a `TicketTypePeriodRestricted` as a subtype of `TicketType`.
