@@ -51,9 +51,7 @@ public class GroupRoom implements Resource {
 
     private boolean userHasBookingAlready (User u) {
         for (Booking b : this.getBookings()) {
-            if (
-                (b.getInterval().getEnd().isAfter(LocalDateTime.now()) && b.getBooker().equals(u))
-            ) {
+            if (b.getInterval().getEnd().isAfter(LocalDateTime.now()) && b.getBooker().equals(u)) {
                 return true;
             }
         }

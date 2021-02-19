@@ -8,11 +8,12 @@ The new class should be a subtype of `TicketType` and the prewritten tests assum
 
 Feel free to modify the existing codebase (even the tests) in any way you want as long as you maintain the existing functionality.
 
-Tip: the editor supports a [set of shortcuts](https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts).
+Tip: the editor supports a <a href="https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts" target="_blank" >set of shortcuts</a>.
 
 ## Task checklist
 * Added a `TicketTypePeriodRestricted` as a subtype of `TicketType`.
 * Restricted period tickets are only valid for the set of occupations passed to the constructor.
 * Passes all tests in `Main.java`
+
 
 Use the **Run Code** button below to test your solution.
