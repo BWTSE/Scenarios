@@ -16,28 +16,28 @@ public class Main {
     private static Set<Zone> centrumPlus = EnumSet.of(Zone.CENTRAL, Zone.SUBURB);
     private static Set<Zone> allZones = EnumSet.of(Zone.CENTRAL, Zone.SUBURB, Zone.RURAL);
     
-    private static final AbstractTicketType centralSingleDay =
+    private static final TicketType centralSingleDay =
         new TicketTypeSingle("Single Central Day", 29, centrumOnly, 5, 22);
-    private static final AbstractTicketType threeDayCentrum = 
+    private static final TicketType threeDayCentrum =
         new TicketTypePeriod("3-Day Period Central", 149, centrumOnly, 259_200_000L);
-    private static final AbstractTicketType monthCentrum = 
+    private static final TicketType monthCentrum =
         new TicketTypePeriod("1-Month Central", 749, centrumOnly, 2_592_000_000L);
-    private static final AbstractTicketType centrumPlusSingle = 
+    private static final TicketType centrumPlusSingle =
         new TicketTypeSingle("Single Central + Suburbs Day", 49, centrumPlus, 4, 0);
-    private static final AbstractTicketType retireeSevenDayCPlus =
+    private static final TicketType retireeSevenDayCPlus =
         new TicketTypePeriodRestricted("7-Day Old People TicketType", 199.0, centrumPlus, 2592000000L, 
         EnumSet.of(User.Occupation.RETIREE));
-    private static final AbstractTicketType allSingleDay = 
+    private static final TicketType allSingleDay =
         new TicketTypeSingle("Single All Regions Day", 69, allZones,5, 22);
-    private static final AbstractTicketType goldenTicket =
+    private static final TicketType goldenTicket =
         new TicketTypePeriod("30-Day Golden Ticket", 1999, allZones, 2_592_000_000L);
-    private static final AbstractTicketType monthStudent =
+    private static final TicketType monthStudent =
     new TicketTypePeriodRestricted( "30-Day Student TicketType", 199.0, allZones, 2592000000L, 
         EnumSet.of(User.Occupation.STUDENT));
 
     public static void main(String[] args) {
 
-        final Set<AbstractTicketType> ticketTypeList = new HashSet<>();
+        final Set<TicketType> ticketTypeList = new HashSet<>();
 
         ticketTypeList.add(centralSingleDay);
         ticketTypeList.add(threeDayCentrum);
@@ -54,21 +54,21 @@ public class Main {
         // Tests
         LocalDateTime time = LocalDateTime.of(2021, 3, 15, 5, 0);
 
-        Set<AbstractTicketType> aliceTickets = 
+        Set<TicketType> aliceTickets =
             ticketFinder.find(alice, new Trip(Zone.CENTRAL, Zone.SUBURB, time), 2000);
 
         if (aliceTickets.containsAll(new HashSet<>(Arrays.asList(monthStudent, retireeSevenDayCPlus)))) {
                 System.out.println("Alice (adult) found a retiree or student ticket");
         }
 
-        for (AbstractTicketType ticket : aliceTickets) {
+        for (TicketType ticket : aliceTickets) {
             if (!ticket.getValidZones().containsAll(EnumSet.of(Zone.SUBURB, Zone.CENTRAL))) {
                     System.out.println("Alice found ticket that isnt valid for her trip:");
                     System.out.println(ticket.getName());
             }
         }
     
-        Set<AbstractTicketType> bobTickets = 
+        Set<TicketType> bobTickets =
             ticketFinder.find(bob, new Trip(Zone.CENTRAL, Zone.CENTRAL, time), 2000);
         if (bobTickets.contains(monthStudent)) {
             System.out.println("Bob (retiree) found the student ticket.");
@@ -76,14 +76,14 @@ public class Main {
         if (!bobTickets.contains(retireeSevenDayCPlus)) {
             System.out.println("Bob (retiree) didn't find the retiree ticket.");
         }
-        for (AbstractTicketType ticket : bobTickets) {
+        for (TicketType ticket : bobTickets) {
             if (!ticket.getValidZones().contains(Zone.CENTRAL)) {
                  System.out.println("Bob found ticket that isn't valid for his trip:");
                  System.out.println(ticket.getName());
             }
         }
 
-        Set<AbstractTicketType> carlTickets = 
+        Set<TicketType> carlTickets =
             ticketFinder.find(carl, new Trip(Zone.CENTRAL, Zone.CENTRAL, time), 2000);
         if (carlTickets.contains(retireeSevenDayCPlus)) {
             System.out.println("Carl (student) found the retiree ticket.");
@@ -92,7 +92,7 @@ public class Main {
             System.out.println("Carl (student) didn't find the student ticket.");
         }
 
-        for (AbstractTicketType ticket : carlTickets) {
+        for (TicketType ticket : carlTickets) {
             if (!ticket.getValidZones().contains(Zone.CENTRAL)) {
                 System.out.println("Carl found ticket that isn't valid for his trip:");
                 System.out.println(ticket.getName());
