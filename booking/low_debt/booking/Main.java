@@ -60,7 +60,7 @@ public class Main {
         testTime = LocalDateTime.of(2021, 6, 8, 12, 0, 0);
         compRoomBooking = computerRoom.book(new Interval(testTime, testTime.plusHours(3)), bob);
         if (!compRoomBooking.isPresent()) {
-            System.out.println("Failed to book computer room at 12:00 on a Tuesday, this should be possible");
+            System.out.println("Failed to book computer room during office hours, this should be possible");
         }
 
         // Test Class Room booking
