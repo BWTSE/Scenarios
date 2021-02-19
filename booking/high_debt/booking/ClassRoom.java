@@ -92,4 +92,14 @@ public class ClassRoom implements Resource {
     public int hashCode() {
         return Objects.hash(super.hashCode(), this.getHasProjector());
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Resource %s \"%s\" #bookings: %s",
+                this.getName(),
+                this.getDescription(),
+                this.getBookings().size()
+        );
+    }
 }

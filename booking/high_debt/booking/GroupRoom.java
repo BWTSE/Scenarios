@@ -80,4 +80,14 @@ public class GroupRoom implements Resource {
     public int hashCode() {
         return Objects.hash(super.hashCode(), this.getHasWhiteboard());
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Resource %s \"%s\" #bookings: %s",
+                this.getName(),
+                this.getDescription(),
+                this.getBookings().size()
+        );
+    }
 }
