@@ -14,3 +14,5 @@ Tip: the editor supports a [set of shortcuts](https://github.com/ajaxorg/ace/wik
 * Added a `TicketTypePeriodRestricted` as a subtype of `TicketType`.
 * Restricted period tickets are only valid for the set of occupations passed to the constructor.
 * Passes all tests in `Main.java`
+
+Use the **Run Code** button below to test your solution.

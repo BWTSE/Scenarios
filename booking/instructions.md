@@ -18,3 +18,5 @@ Tip: the editor supports a [set of shortcuts](https://github.com/ajaxorg/ace/wik
 * Added a `Cabin` class as a subtype of `Resource`
 * Any computer room bookings outside of office hours are rejected.
 * Passes all tests in `Main.java`
+
+Use the **Run Code** button below to test your solution.
