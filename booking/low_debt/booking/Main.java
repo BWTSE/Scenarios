@@ -12,7 +12,7 @@ public class Main {
     private static final User bob = new User("Bob", "bob@crypto");
 
     private static final ClassRoom classRoom = new ClassRoom("HB2", " at Hörsalsvägen 2", true);
-    private static final ComputerRoom computerRoom = new ComputerRoom("J029", "in Jupiter", false, 7, 17);
+    private static final ComputerClassRoom computerRoom = new ComputerClassRoom("J029", "in Jupiter", false, 7, 17);
     private static final GroupRoom groupRoom = new GroupRoom("J317", "in Jupiter", true);
 
     private static final Collection<Resource> resources = List.of(
