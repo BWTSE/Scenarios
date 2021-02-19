@@ -20,7 +20,6 @@ public class ClassRoom extends Room {
 
     /*
     Only allows bookings that start on the hour. (Floors second and microsecond values)
-    Does not allow 
     */
     @Override
     public Optional<Booking> book(Interval interval, User customer) {

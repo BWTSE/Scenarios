@@ -48,9 +48,10 @@ public class ClassRoom implements Room {
         return true;
     }
 
+
+
     /*
     Only allows bookings that start on the hour. (Floors second and microsecond values)
-    Does not allow 
     */
     public Optional<Booking> book(Interval i, User u) {
         if (
