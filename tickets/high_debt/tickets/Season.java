@@ -13,7 +13,7 @@ public enum Season {
     private final transient Set<Month> months;
     
     Season (Set<Month> months) {
-        this.months = months;
+        this.months = EnumSet.copyOf(months);
     }
 
     public boolean isDateWithin(LocalDateTime date) {
