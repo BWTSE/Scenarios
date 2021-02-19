@@ -53,8 +53,6 @@ public class TicketTypeSingle extends AbstractTicketType {
 
     @Override
     public int hashCode() {
-        return Objects.hash(
-            super.hashCode(), this.getStartHour()
-        );
+        return Objects.hash(super.hashCode(), this.getStartHour());
     }
 }

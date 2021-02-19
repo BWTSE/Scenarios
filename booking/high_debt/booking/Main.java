@@ -11,9 +11,9 @@ public class Main {
     private static final User u1 = new User("Alice", "alice@crypto");
     private static final User u2 = new User("Bob", "bob@crypto");
 
-    private static final ClassRoom r1 = new ClassRoom("HB2", " at Hörsalsvägen 2");
-    private static final ComputerRoom r2 = new ComputerRoom("J029", "in Jupiter", 7, 17);
-    private static final GroupRoom r3 = new GroupRoom("J317", "in Jupiter");
+    private static final ClassRoom r1 = new ClassRoom("HB2", " at Hörsalsvägen 2", true);
+    private static final ComputerRoom r2 = new ComputerRoom("J029", "in Jupiter", false, 7, 17);
+    private static final GroupRoom r3 = new GroupRoom("J317", "in Jupiter", true);
 
     private static final Collection<Resource> rs = List.of(
             r1,

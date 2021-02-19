@@ -32,7 +32,7 @@ public class Main {
     private static final AbstractTicketType goldenTicket =
         new TicketTypePeriod("30-Day Golden Ticket", 1999, allZones, 2_592_000_000L);
     private static final AbstractTicketType monthStudent =
-    new TicketTypePeriodRestricted( "30-Day Student TicketType", 199.0, allZones, 2592000000L, 
+        new TicketTypePeriodRestricted( "30-Day Student TicketType", 199.0, allZones, 2592000000L, 
         EnumSet.of(User.Occupation.STUDENT));
 
     public static void main(String[] args) {

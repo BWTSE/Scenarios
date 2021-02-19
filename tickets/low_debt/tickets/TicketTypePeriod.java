@@ -25,8 +25,7 @@ public class TicketTypePeriod extends AbstractTicketType {
     @Override
     public boolean equals(Object o) {
         return super.equals(o)
-            && Objects.equals(this.getDuration(), ((TicketTypePeriod) o).getDuration()
-        );
+            && Objects.equals(this.getDuration(), ((TicketTypePeriod) o).getDuration());
     }
 
     @Override

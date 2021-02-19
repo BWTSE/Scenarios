@@ -2,12 +2,20 @@ package booking;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ClassRoom extends Resource {
 
-    public ClassRoom(String name, String description) {
+    private final boolean hasProjector;
+
+    public ClassRoom(String name, String description, boolean hasProjector) {
         super(name, description);
+        this.hasProjector = hasProjector;
+    }
+
+    public boolean getHasProjector() {
+        return this.hasProjector;
     }
 
     /*
@@ -31,5 +39,16 @@ public class ClassRoom extends Resource {
             return Optional.empty();
         }
         return super.book(new Interval(bookingStart, bookingEnd), customer);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o)
+            && Objects.equals(this.getHasProjector(), ((ClassRoom) o).getHasProjector());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), this.getHasProjector());
     }
 }

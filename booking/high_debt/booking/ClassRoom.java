@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class ClassRoom implements Resource {
@@ -13,9 +14,12 @@ public class ClassRoom implements Resource {
 
     private final List<Booking> bs = new LinkedList<>();
 
-    protected ClassRoom(String n, String d) {
+    private boolean hasP;
+
+    public ClassRoom(String n, String d, boolean hasP) {
         this.n = n;
         this.d = d;
+        this.hasP = hasP;
     }
 
     public String getName() {
@@ -24,6 +28,10 @@ public class ClassRoom implements Resource {
 
     public String getDescription() {
         return this.d;
+    }
+
+    public boolean getHasProjector() {
+        return this.hasP;
     }
 
     public List<Booking> getBookings() {
@@ -72,5 +80,16 @@ public class ClassRoom implements Resource {
             .with(ChronoField.NANO_OF_SECOND, 0);
 
         return !(bed.getMinute() != 0|| bed.with(ChronoField.HOUR_OF_DAY, 0).isAfter(bst));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o)
+            && Objects.equals(this.getHasProjector(), ((ClassRoom) o).getHasProjector());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), this.getHasProjector());
     }
 }

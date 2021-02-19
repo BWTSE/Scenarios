@@ -3,18 +3,21 @@ package booking;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class GroupRoom implements Resource {
 
     private final String n;
     private final String d;
+    private final boolean hasWhiteboard;
 
     private final List<Booking> bs = new LinkedList<>();
 
-    protected GroupRoom(String n, String d) {
+    protected GroupRoom(String n, String d, boolean hasWhiteboard) {
         this.n = n;
         this.d = d;
+        this.hasWhiteboard = hasWhiteboard;
     }
 
     public String getName() {
@@ -23,6 +26,10 @@ public class GroupRoom implements Resource {
 
     public String getDescription() {
         return this.d;
+    }
+
+    public boolean getHasWhiteboard() {
+        return this.hasWhiteboard;
     }
 
     public List<Booking> getBookings() {
@@ -61,5 +68,16 @@ public class GroupRoom implements Resource {
 
     private static boolean startBeforeEnd(Interval i) {
         return !(i.getEnd().isBefore(i.getStart()) || i.getStart().isBefore(LocalDateTime.now()));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o)
+            && Objects.equals(this.getHasWhiteboard(), ((GroupRoom) o).getHasWhiteboard());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), this.getHasWhiteboard());
     }
 }
