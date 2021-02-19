@@ -18,21 +18,19 @@ public class Main {
     
     private static final TicketType centralSingleDay =
         new TicketTypeSingle("Single Central Day", 29, centrumOnly, 5, 22);
-    private static final TicketType threeDayCentrum =
-        new TicketTypePeriod("3-Day Period Central", 149, centrumOnly, 259_200_000L);
-    private static final TicketType monthCentrum =
-        new TicketTypePeriod("1-Month Central", 749, centrumOnly, 2_592_000_000L);
+    private static final TicketType centralWinter =
+        new TicketTypeSeasonal("Central Winter Ticket", 149, centrumOnly, Season.WINTER);
+    private static final TicketType centralSummer =
+        new TicketTypeSeasonal("Central Summer Ticket", 749, centrumOnly, Season.SUMMER);
     private static final TicketType centrumPlusSingle =
         new TicketTypeSingle("Single Central + Suburbs Day", 49, centrumPlus, 4, 0);
-    private static final TicketType retireeSevenDayCPlus =
-        new TicketTypePeriodRestricted("7-Day Old People TicketType", 199.0, centrumPlus, 2592000000L, 
+    private static final TicketType retireeWinter =
+        new TicketTypeSeasonalRestricted("Retiree Winter Ticket", 199.0, centrumPlus, Season.WINTER, 
         EnumSet.of(User.Occupation.RETIREE));
     private static final TicketType allSingleDay =
         new TicketTypeSingle("Single All Regions Day", 69, allZones,5, 22);
-    private static final TicketType goldenTicket =
-        new TicketTypePeriod("30-Day Golden Ticket", 1999, allZones, 2_592_000_000L);
-    private static final TicketType monthStudent =
-    new TicketTypePeriodRestricted( "30-Day Student TicketType", 199.0, allZones, 2592000000L, 
+    private static final TicketType studentWinter =
+        new TicketTypeSeasonalRestricted( "Student Winter Ticket", 199.0, allZones, Season.WINTER, 
         EnumSet.of(User.Occupation.STUDENT));
 
     public static void main(String[] args) {
@@ -40,24 +38,23 @@ public class Main {
         final Set<TicketType> ticketTypeList = new HashSet<>();
 
         ticketTypeList.add(centralSingleDay);
-        ticketTypeList.add(threeDayCentrum);
-        ticketTypeList.add(monthCentrum);
+        ticketTypeList.add(centralWinter);
+        ticketTypeList.add(centralSummer);
         ticketTypeList.add(centrumPlusSingle);
         ticketTypeList.add(allSingleDay);
-        ticketTypeList.add(goldenTicket);
-        ticketTypeList.add(retireeSevenDayCPlus);
-        ticketTypeList.add(monthStudent);
+        ticketTypeList.add(retireeWinter);
+        ticketTypeList.add(studentWinter);
 
 
         TicketFinder ticketFinder = new TicketFinder(ticketTypeList);
 
         // Tests
-        LocalDateTime time = LocalDateTime.of(2021, 3, 15, 5, 0);
+        LocalDateTime time = LocalDateTime.of(2021, 12, 15, 5, 0);
 
         Set<TicketType> aliceTickets =
             ticketFinder.find(alice, new Trip(Zone.CENTRAL, Zone.SUBURB, time), 2000);
 
-        if (aliceTickets.containsAll(new HashSet<>(Arrays.asList(monthStudent, retireeSevenDayCPlus)))) {
+        if (aliceTickets.containsAll(new HashSet<>(Arrays.asList(studentWinter, retireeWinter)))) {
                 System.out.println("Alice (adult) found a retiree or student ticket");
         }
 
@@ -70,10 +67,10 @@ public class Main {
     
         Set<TicketType> bobTickets =
             ticketFinder.find(bob, new Trip(Zone.CENTRAL, Zone.CENTRAL, time), 2000);
-        if (bobTickets.contains(monthStudent)) {
+        if (bobTickets.contains(studentWinter)) {
             System.out.println("Bob (retiree) found the student ticket.");
         }
-        if (!bobTickets.contains(retireeSevenDayCPlus)) {
+        if (!bobTickets.contains(retireeWinter)) {
             System.out.println("Bob (retiree) didn't find the retiree ticket.");
         }
         for (TicketType ticket : bobTickets) {
@@ -85,10 +82,10 @@ public class Main {
 
         Set<TicketType> carlTickets =
             ticketFinder.find(carl, new Trip(Zone.CENTRAL, Zone.CENTRAL, time), 2000);
-        if (carlTickets.contains(retireeSevenDayCPlus)) {
+        if (carlTickets.contains(retireeWinter)) {
             System.out.println("Carl (student) found the retiree ticket.");
         }
-        if (!carlTickets.contains(monthStudent)) {
+        if (!carlTickets.contains(studentWinter)) {
             System.out.println("Carl (student) didn't find the student ticket.");
         }
 
