@@ -74,6 +74,11 @@ public class TicketTypeSingle implements TicketType {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getName(), this.getPrice(), this.getStartHour());
+        return Objects.hash(
+            this.getName(),
+            this.getPrice(),
+            this.getStartHour(),
+            this.getEndHour()
+        );
     }
 }
