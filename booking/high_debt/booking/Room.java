@@ -3,7 +3,7 @@ package booking;
 import java.util.List;
 import java.util.Optional;
 
-public interface Resource {
+public interface Room {
     String getName();
 
     String getDescription();

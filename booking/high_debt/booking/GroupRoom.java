@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class GroupRoom implements Resource {
+public class GroupRoom implements Room {
 
     private final String n;
     private final String d;
@@ -46,6 +46,10 @@ public class GroupRoom implements Resource {
         return true;
     }
 
+    /*
+    Due to the popularity of some specific group rooms,
+     no user is allowed to have more than one upcoming booking for a group room.
+     */
     public Optional<Booking> book(Interval i, User u) {
         if (this.userHasBookingAlready(u) || !this.available(i) || !startBeforeEnd(i)) {
             return Optional.empty();

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ClassRoom implements Resource {
+public class ClassRoom implements Room {
 
     private final String n;
     private final String d;
@@ -48,9 +48,10 @@ public class ClassRoom implements Resource {
         return true;
     }
 
+
+
     /*
     Only allows bookings that start on the hour. (Floors second and microsecond values)
-    Does not allow 
     */
     public Optional<Booking> book(Interval i, User u) {
         if (

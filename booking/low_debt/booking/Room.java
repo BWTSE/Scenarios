@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class Resource {
+public class Room {
     private final String name;
     private final String description;
 
     private final List<Booking> bookings = new LinkedList<>();
 
-    protected Resource(String name, String description) {
+    protected Room(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -63,8 +63,8 @@ public class Resource {
             return false;
         }
 
-        Resource resource = (Resource) o;
-        return Objects.equals(this.getName(), resource.getName());
+        Room room = (Room) o;
+        return Objects.equals(this.getName(), room.getName());
     }
 
     @Override
@@ -75,7 +75,7 @@ public class Resource {
     @Override
     public String toString() {
         return String.format(
-                "Resource %s \"%s\" #bookings: %s",
+                "Room %s \"%s\" #bookings: %s",
                 this.getName(),
                 this.getDescription(),
                 this.getBookings().size()

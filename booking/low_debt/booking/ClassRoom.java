@@ -5,7 +5,7 @@ import java.time.temporal.ChronoField;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ClassRoom extends Resource {
+public class ClassRoom extends Room {
 
     private final boolean hasProjector;
 
@@ -20,7 +20,6 @@ public class ClassRoom extends Resource {
 
     /*
     Only allows bookings that start on the hour. (Floors second and microsecond values)
-    Does not allow 
     */
     @Override
     public Optional<Booking> book(Interval interval, User customer) {

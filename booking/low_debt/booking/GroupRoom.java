@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Optional;
 
-public class GroupRoom extends Resource {
+public class GroupRoom extends Room {
 
     private final boolean hasWhiteoard;
     
