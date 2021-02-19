@@ -4,19 +4,19 @@ import java.util.Objects;
 
 public class Booking {
     private final Interval i;
-    private final User c;
+    private final User u;
 
-    public Booking(Interval i, User c) {
+    public Booking(Interval i, User u) {
         this.i = i;
-        this.c = c;
+        this.u = u;
     }
 
     public Interval getInterval() {
         return this.i;
     }
 
-    public User getCustomer() {
-        return this.c;
+    public User getBooker() {
+        return this.u;
     }
 
     @Override
@@ -29,14 +29,14 @@ public class Booking {
         }
         Booking b = (Booking) o;
         return Objects.equals(this.getInterval(), b.getInterval()) &&
-                Objects.equals(this.getCustomer(), b.getCustomer());
+                Objects.equals(this.getBooker(), b.getBooker());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
                 this.getInterval(),
-                this.getCustomer()
+                this.getBooker()
         );
     }
 
@@ -45,7 +45,7 @@ public class Booking {
         return String.format(
                 "[%s] by (%s)",
                 this.getInterval().toString(),
-                this.getCustomer().toString()
+                this.getBooker().toString()
         );
     }
 }

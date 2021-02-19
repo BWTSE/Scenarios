@@ -21,14 +21,26 @@ public class Interval {
         return e;
     }
 
+    public boolean isDuring(LocalDateTime t) {
+        return !t.isBefore(this.getStart()) && !t.isAfter(this.getEnd());
+    }
+
+    public boolean overlapsWith(Interval o) {
+        return this.isDuring(o.getStart())
+                || this.isDuring(o.getEnd())
+                || o.isDuring(this.getStart());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+        
         Interval i = (Interval) o;
         return Objects.equals(this.getStart(), i.getStart()) &&
                 Objects.equals(this.getEnd(), i.getEnd());
@@ -41,11 +53,11 @@ public class Interval {
 
     @Override
     public String toString() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
         return String.format(
                 "%s to %s",
-                dtf.format(this.getStart()),
-                dtf.format(this.getEnd())
+                f.format(this.getStart()),
+                f.format(this.getEnd())
         );
     }
 }

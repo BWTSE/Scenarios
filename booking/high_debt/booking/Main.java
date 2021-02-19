@@ -6,15 +6,14 @@ import java.util.List;
 import java.util.Optional;
 
 public class Main {
-    private static final LocalDateTime n = LocalDateTime.now().plusMinutes(5);
+    private static final LocalDateTime now = LocalDateTime.now().plusMinutes(5);
 
     private static final User u1 = new User("Alice", "alice@crypto");
     private static final User u2 = new User("Bob", "bob@crypto");
 
-    private static final HotelRoom r1 =
-            new HotelRoom("921", "in The Stanley Hotel");
-    private static final Cabin r2 = new Cabin("Whoville 26", "Home of the Who-steins");
-    private static final Car r3 = new Car("ABC 123", "Volvo");
+    private static final ClassRoom r1 = new ClassRoom("HB2", " at Hörsalsvägen 2");
+    private static final ComputerRoom r2 = new ComputerRoom("J029", "in Jupiter", 7, 17);
+    private static final GroupRoom r3 = new GroupRoom("J317", "in Jupiter");
 
     private static final Collection<Resource> rs = List.of(
             r1,
@@ -27,8 +26,10 @@ public class Main {
 
         // Tests basic booking functionality
         for (Resource r : rs) {
-            Interval i1 = new Interval(n.plusDays(1), n.plusDays(8));
-            Interval i2 = new Interval(n.plusDays(10), n.plusDays(15));
+            LocalDateTime t1 = LocalDateTime.of(2021, 6, 1, 12, 0, 0);
+            Interval i1 = new Interval(t1, t1.plusHours(3));
+            LocalDateTime t2 = t1.plusDays(1);
+            Interval i2 = new Interval(t2, t2.plusHours(2));
 
             Optional<Booking> b1 = r.book(i1, u1);
             if (b1.isEmpty()) {
@@ -49,37 +50,52 @@ public class Main {
             }
         }
 
-        // Test Cabin booking
-        
-        Optional<Booking> cb = r2.book(new Interval(n.plusDays(20), n.plusDays(21)), u2);
-        if (cb.isPresent()) {
-            System.out.println("Cabin should only be bookable for a minimum of 3 days");
+        // Test GroupRoom booking
+        LocalDateTime t = LocalDateTime.of(2021, 6, 1, 5, 0, 0);
+        Optional<Booking> b = r2.book(new Interval(t, t.plusHours(3)), u2);
+        if (b.isPresent()) {
+            System.out.println("A computer room was successfully booked outside of office hours, this should not be possible");
         }
 
-        // Test Hotel booking
-        Optional<Booking> hb = r1.book(
-                new Interval(n.plusDays(20), n.plusDays(25)),
-                u2
+        t = LocalDateTime.of(2021, 6, 5, 5, 0, 0);
+        b = r2.book(new Interval(t, t.plusHours(3)), u2);
+        if (b.isPresent()) {
+            System.out.println("A computer room was successfully booked during a weekend, this should not be possible");
+        }
+
+        t = LocalDateTime.of(2021, 6, 8, 12, 0, 0);
+        b = r2.book(new Interval(t, t.plusHours(3)), u2);
+        if (!b.isPresent()) {
+            System.out.println("Failed to book computer room at 12:00 on a Tuesday, this should be possible");
+        }
+
+        // Test Class Room booking
+        b = r1.book(
+            new Interval(t, t.plusHours(1)),
+            u2
         );
-        if (hb.isPresent()) {
-            if (hb.get().getInterval().getStart().getHour() != 15) {
-                System.out.println("Hotel bookings should always start at 15");
+        if (b.isPresent()) {
+            if (b.get().getInterval().getStart().getMinute() != 0) {
+                System.out.println("Class room bookings should always start at whole hours.");
             }
-            if (hb.get().getInterval().getEnd().getHour() != 11) {
-                System.out.println("Hotel bookings should always end at 11");
-            }
-        } else {
-            System.out.println("Hotel bookings should be possible");
         }
 
-        // Test Car booking
+        b = r1.book(
+            new Interval(t, t.plusDays(1)),
+            u2
+        );
+        if (b.isPresent()) {
+            System.out.println("Class room bookings not stretch over two days.");
+        }
+
+        // Test GroupRoom booking
         // Previous booking is made in the loop above
-        Optional<Booking> cb2 = r3.book(
-                new Interval(n.plusDays(20), n.plusDays(25)),
+        Optional<Booking> groupRoomBooking = r3.book(
+                new Interval(now.plusDays(20), now.plusDays(25)),
                 u1
         );
-        if (cb2.isPresent()) {
-            System.out.println("Every user should only be able to have one upcoming car booking");
+        if (groupRoomBooking.isPresent()) {
+            System.out.println("Every user should only be able to have one upcoming groupRoom booking");
         }
 
         System.out.println("If there were no previous output all tests passed");
