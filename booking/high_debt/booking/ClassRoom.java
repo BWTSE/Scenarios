@@ -45,20 +45,11 @@ public class ClassRoom implements Resource {
     Does not allow 
     */
     public Optional<Booking> book(Interval i, User u) {
-        LocalDateTime bst = i.getStart()
-            .with(ChronoField.SECOND_OF_MINUTE, 0)
-            .with(ChronoField.NANO_OF_SECOND, 0);
-        LocalDateTime bed = i.getStart()
-            .with(ChronoField.SECOND_OF_MINUTE, 0)
-            .with(ChronoField.NANO_OF_SECOND, 0);
-
         if (
-            bst.getMinute() != 0
-            || bed.getMinute() != 0
-            || bed.with(ChronoField.HOUR_OF_DAY, 0).isAfter(bst)
-            || !this.available(i) 
-            || i.getEnd().isBefore(i.getStart())
-            || i.getStart().isBefore(LocalDateTime.now())
+            i.getStart().with(ChronoField.HOUR_OF_DAY, 0).isAfter(i.getEnd())
+            || !available(i)
+            || !startAndEndAtHour(i)
+            || !startBeforeEnd(i)
         ) {
             return Optional.empty();
         }
@@ -66,5 +57,20 @@ public class ClassRoom implements Resource {
         Booking b = new Booking(i, u);
         bs.add(b);
         return Optional.of(b);
+    }
+
+    private static boolean startBeforeEnd(Interval i) {
+        return !(i.getEnd().isBefore(i.getStart()) || i.getStart().isBefore(LocalDateTime.now()));
+    }
+
+    private static boolean startAndEndAtHour(Interval i) {
+        LocalDateTime bst = i.getStart()
+            .with(ChronoField.SECOND_OF_MINUTE, 0)
+            .with(ChronoField.NANO_OF_SECOND, 0);
+        LocalDateTime bed = i.getStart()
+            .with(ChronoField.SECOND_OF_MINUTE, 0)
+            .with(ChronoField.NANO_OF_SECOND, 0);
+
+        return !(bed.getMinute() != 0|| bed.with(ChronoField.HOUR_OF_DAY, 0).isAfter(bst));
     }
 }

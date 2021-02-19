@@ -40,20 +40,28 @@ public class GroupRoom implements Resource {
     }
 
     public Optional<Booking> book(Interval i, User u) {
-        for (Booking b : this.getBookings()) {
-            if (
-                b.getInterval().getEnd().isAfter(LocalDateTime.now())
-                && b.getBooker().equals(u)
-                || !this.available(i) 
-                || i.getEnd().isBefore(i.getStart())
-                || i.getStart().isBefore(LocalDateTime.now())
-            ) {
-                return Optional.empty();
-            }
+        if (this.userHasBookingAlready(u) || !this.available(i) || !startBeforeEnd(i)) {
+            return Optional.empty();
         }
 
         Booking b = new Booking(i, u);
         bs.add(b);
         return Optional.of(b);
+    }
+
+    private boolean userHasBookingAlready (User u) {
+        for (Booking b : this.getBookings()) {
+            if (
+                (b.getInterval().getEnd().isAfter(LocalDateTime.now()) && b.getBooker().equals(u))
+            ) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static boolean startBeforeEnd(Interval i) {
+        return !(i.getEnd().isBefore(i.getStart()) || i.getStart().isBefore(LocalDateTime.now()));
     }
 }
