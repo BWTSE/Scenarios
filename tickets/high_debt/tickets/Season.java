@@ -10,7 +10,7 @@ public enum Season {
     SUMMER(EnumSet.of(Month.JUNE, Month.JULY, Month.AUGUST)),
     AUTUMN(EnumSet.of(Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER)),
     WINTER(EnumSet.of(Month.DECEMBER, Month.JANUARY, Month.FEBRUARY));
-    private final transient Set<Month> months;
+    private transient Set<Month> months;
     
     Season (Set<Month> months) {
         this.months = EnumSet.copyOf(months);
