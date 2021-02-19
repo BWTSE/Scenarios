@@ -5,17 +5,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Ticket {
-    private final AbstractTicketType ticketType;
+    private final TicketType ticketType;
     private final User user;
     private final LocalDateTime timeOfPurchase;
 
-    public Ticket(AbstractTicketType ticketType, User user) {
+    public Ticket(TicketType ticketType, User user) {
         this.ticketType = ticketType;
         this.user = user;
         this.timeOfPurchase = LocalDateTime.now();
     }
 
-    public AbstractTicketType getTicketType() {
+    public TicketType getTicketType() {
         return this.ticketType;
     }
 

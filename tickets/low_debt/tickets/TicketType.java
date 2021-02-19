@@ -4,12 +4,12 @@ import java.util.EnumSet;
 import java.util.Objects;
 import java.util.Set;
 
-public abstract class AbstractTicketType {
+public class TicketType {
     private final String name;
     private final double price;
     private final Set<Zone> validZones;
 
-    protected AbstractTicketType(String name, double price, Set<Zone> validZones) {
+    protected TicketType(String name, double price, Set<Zone> validZones) {
         this.name = name;
         this.price = price;
         this.validZones = EnumSet.copyOf(validZones);
@@ -27,10 +27,10 @@ public abstract class AbstractTicketType {
         return EnumSet.copyOf(this.validZones);
     }
 
-    public abstract boolean isValidFor(
-        Trip trip, 
-        User user
-    );
+    public boolean isValidFor(Trip trip, User user) {
+        return this.getValidZones().contains(trip.getStartZone())
+                && this.getValidZones().contains(trip.getEndZone());
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -40,7 +40,7 @@ public abstract class AbstractTicketType {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        AbstractTicketType ticketType = (AbstractTicketType) o;
+        TicketType ticketType = (TicketType) o;
         return Objects.equals(this.getName(), ticketType.getName())
             && Objects.equals(this.getValidZones(), ticketType.getValidZones())
             && Objects.equals(this.getPrice(), ticketType.getPrice());

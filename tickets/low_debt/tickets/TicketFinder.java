@@ -8,17 +8,17 @@ import java.util.Set;
 
 public class TicketFinder {
 
-    private final Set<AbstractTicketType> ticketTypes;
+    private final Set<TicketType> ticketTypes;
 
-    public TicketFinder(Collection<AbstractTicketType> ticketTypeList) {
+    public TicketFinder(Collection<TicketType> ticketTypeList) {
         this.ticketTypes = new HashSet<>(ticketTypeList);
     }
 
-    public Set<AbstractTicketType> find(User user, Trip trip, double maxPrice) {
-        Set<AbstractTicketType> results = find(user, trip);
+    public Set<TicketType> find(User user, Trip trip, double maxPrice) {
+        Set<TicketType> results = find(user, trip);
 
-        for (Iterator<AbstractTicketType> it = results.iterator(); it.hasNext();) {
-            AbstractTicketType element = it.next();
+        for (Iterator<TicketType> it = results.iterator(); it.hasNext();) {
+            TicketType element = it.next();
             if (element.getPrice() >= maxPrice) {
                 it.remove();
             }
@@ -27,9 +27,9 @@ public class TicketFinder {
         return results;
     }
 
-    public Set<AbstractTicketType> find(User user, Trip trip) {
-        Set<AbstractTicketType> results = new HashSet<>();
-        for (AbstractTicketType TicketType : ticketTypes) {
+    public Set<TicketType> find(User user, Trip trip) {
+        Set<TicketType> results = new HashSet<>();
+        for (tickets.TicketType TicketType : ticketTypes) {
             if (TicketType.isValidFor(trip, user)) {
                 results.add(TicketType);
             }
@@ -37,7 +37,7 @@ public class TicketFinder {
         return results;
     }
 
-    public Optional<Ticket> purchaseTicket(User user, AbstractTicketType ticketType, Trip trip) {
+    public Optional<Ticket> purchaseTicket(User user, TicketType ticketType, Trip trip) {
         if(find(user, trip).contains(ticketType)) {
             return Optional.of(new Ticket(ticketType, user));
         } else {
@@ -45,7 +45,7 @@ public class TicketFinder {
         }
     }
 
-    public Set<AbstractTicketType> getTicketTypes() {
+    public Set<TicketType> getTicketTypes() {
         return new HashSet<>(this.ticketTypes);
     }
 }

@@ -3,19 +3,13 @@ package tickets;
 import java.util.Objects;
 import java.util.Set;
 
-public class TicketTypePeriod extends AbstractTicketType {
+public class TicketTypePeriod extends TicketType {
 
     private final long duration;
 
     public TicketTypePeriod(String name, double price, Set<Zone> validZones, long duration) {
         super(name, price, validZones);
         this.duration = duration;
-    }
-
-    @Override
-    public boolean isValidFor(Trip trip, User user) {
-        return this.getValidZones().contains(trip.getStartZone()) 
-            && this.getValidZones().contains(trip.getEndZone());
     }
 
     public long getDuration() {

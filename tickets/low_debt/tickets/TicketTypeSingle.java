@@ -3,7 +3,7 @@ package tickets;
 import java.util.Objects;
 import java.util.Set;
 
-public class TicketTypeSingle extends AbstractTicketType {
+public class TicketTypeSingle extends TicketType {
 
     private final int startHour;
     private final int endHour;
@@ -26,13 +26,14 @@ public class TicketTypeSingle extends AbstractTicketType {
             return
                 trip.getTripStartTime().getHour() >= this.startHour 
                 && trip.getTripStartTime().getHour() < this.endHour
-                && this.getValidZones().contains(trip.getStartZone()) 
-                && this.getValidZones().contains(trip.getEndZone());
+                && super.isValidFor(trip, user);
         } else {
-            return (trip.getTripStartTime().getHour() >= this.startHour 
-                    || trip.getTripStartTime().getHour() > this.endHour) 
-                && this.getValidZones().contains(trip.getStartZone()) 
-                && this.getValidZones().contains(trip.getEndZone());
+            return
+                (
+                    trip.getTripStartTime().getHour() >= this.startHour
+                    || trip.getTripStartTime().getHour() > this.endHour
+                )
+                && super.isValidFor(trip, user);
         }
     }
 
