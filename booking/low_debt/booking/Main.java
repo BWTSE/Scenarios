@@ -15,7 +15,7 @@ public class Main {
     private static final ComputerClassRoom computerRoom = new ComputerClassRoom("J029", "in Jupiter", false, 7, 17);
     private static final GroupRoom groupRoom = new GroupRoom("J317", "in Jupiter", true);
 
-    private static final Collection<Resource> resources = List.of(
+    private static final Collection<Room> rooms = List.of(
             classRoom,
             computerRoom,
             groupRoom
@@ -25,27 +25,27 @@ public class Main {
     public static void main(String[] args) {
 
         // Tests basic booking functionality
-        for (Resource resource : resources) {
+        for (Room room : rooms) {
             LocalDateTime testTime = LocalDateTime.of(2021, 6, 1, 12, 0, 0);
             Interval firstInterval = new Interval(testTime, testTime.plusHours(3));
             LocalDateTime testTime2 = testTime.plusDays(1);
             Interval secondInterval = new Interval(testTime2, testTime2.plusHours(2));
 
-            Optional<Booking> booking1 = resource.book(firstInterval, alice);
+            Optional<Booking> booking1 = room.book(firstInterval, alice);
             if (booking1.isEmpty()) {
-                System.out.println("Resources should be bookable: " + resource.toString());
+                System.out.println("Rooms should be bookable: " + room.toString());
             }
 
-            Optional<Booking> booking2 = resource.book(firstInterval, bob);
+            Optional<Booking> booking2 = room.book(firstInterval, bob);
             if (booking2.isPresent()) {
-                System.out.println("Resources should not be double booked: " + resource.toString());
+                System.out.println("Rooms should not be double booked: " + room.toString());
             }
 
-            Optional<Booking> booking3 = resource.book(secondInterval, bob);
+            Optional<Booking> booking3 = room.book(secondInterval, bob);
             if (booking3.isEmpty()) {
                 System.out.println(
-                        "Resources should be bookable after previous booking: "
-                                + resource.toString()
+                        "Rooms should be bookable after previous booking: "
+                                + room.toString()
                 );
             }
         }

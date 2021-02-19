@@ -1,13 +1,13 @@
 # Booking task
 
-This system is a simple booking system, where there are currently two types of resources available: classrooms and group rooms.
+This system is a simple booking system, where there are currently two types of rooms available: classrooms and group rooms.
 
 Your task is to extend the system with a new class (`ComputerClassRoom`) representing classrooms filled with computers. Because of the valuable hardware inside them, access to computer rooms is more limited than to other rooms.
 
 Computer rooms should **only be bookable between two full hours** (e.g. 13:00 to 14:00, but not 13:06 to 14:06). Unlike other classrooms, they should **only be available during a specified time-period each day**. 
 The new class should make sure these rules are not broken.
 
-The class should be a subtype of `Resource` and the prewritten tests assume the constructor `ComputerRoom(String, String, boolean, int, int)`. Arguments represent name, description, wether the room has a projector, hour of opening, hour of closing.
+The class should be a subtype of `Room` and the prewritten tests assume the constructor `ComputerRoom(String, String, boolean, int, int)`. Arguments represent name, description, wether the room has a projector, hour of opening, hour of closing.
 
 Reference for LocalDateTime can be found here: <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html" target="_blank" >Class LocalDateTime</a>
 
@@ -16,7 +16,7 @@ Feel free to modify the existing codebase (even the tests) in any way you want a
 Tip: the editor supports a <a href="https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts" target="_blank" >set of shortcuts</a>.
 
 ## Task checklist
-* Added a `ComputerClassRoom` class as a subtype of `Resource`
+* Added a `ComputerClassRoom` class as a subtype of `Room`
 * Any computer room bookings outside the opening hours are rejected.
 * Passes all tests in `Main.java`
 

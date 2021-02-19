@@ -15,7 +15,7 @@ public class Main {
     private static final ComputerClassRoom r2 = new ComputerClassRoom("J029", "in Jupiter", false, 7, 17);
     private static final GroupRoom r3 = new GroupRoom("J317", "in Jupiter", true);
 
-    private static final Collection<Resource> rs = List.of(
+    private static final Collection<Room> rs = List.of(
             r1,
             r2,
             r3
@@ -25,7 +25,7 @@ public class Main {
     public static void main(String[] args) {
 
         // Tests basic booking functionality
-        for (Resource r : rs) {
+        for (Room r : rs) {
             LocalDateTime t1 = LocalDateTime.of(2021, 6, 1, 12, 0, 0);
             Interval i1 = new Interval(t1, t1.plusHours(3));
             LocalDateTime t2 = t1.plusDays(1);
@@ -33,18 +33,18 @@ public class Main {
 
             Optional<Booking> b1 = r.book(i1, u1);
             if (b1.isEmpty()) {
-                System.out.println("Resources should be bookable: " + r.toString());
+                System.out.println("Rooms should be bookable: " + r.toString());
             }
 
             Optional<Booking> b2 = r.book(i1, u2);
             if (b2.isPresent()) {
-                System.out.println("Resources should not be double booked: " + r.toString());
+                System.out.println("Rooms should not be double booked: " + r.toString());
             }
 
             Optional<Booking> b3 = r.book(i2, u2);
             if (b3.isEmpty()) {
                 System.out.println(
-                        "Resources should be bookable after previous booking: "
+                        "Rooms should be bookable after previous booking: "
                                 + r.toString()
                 );
             }

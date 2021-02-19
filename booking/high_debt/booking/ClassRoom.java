@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ClassRoom implements Resource {
+public class ClassRoom implements Room {
 
     private final String n;
     private final String d;

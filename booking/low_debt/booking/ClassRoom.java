@@ -5,7 +5,7 @@ import java.time.temporal.ChronoField;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ClassRoom extends Resource {
+public class ClassRoom extends Room {
 
     private final boolean hasProjector;
 
