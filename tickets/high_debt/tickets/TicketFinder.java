@@ -8,18 +8,18 @@ import java.util.Set;
 
 public class TicketFinder {
 
-    private final Set<TicketType> ttset;
+    private final Set<TicketType> ts;
 
-    public TicketFinder(Collection<TicketType> ttset) {
-        this.ttset = new HashSet<>(ttset);
+    public TicketFinder(Collection<TicketType> ts) {
+        this.ts = new HashSet<>(ts);
     }
 
-    public Set<TicketType> find(User u, Trip t, double maxp) {
+    public Set<TicketType> find(User u, Trip t, double p) {
         Set<TicketType> r = find(u, t);
 
         for (Iterator<TicketType> it = r.iterator(); it.hasNext();) {
             TicketType e = it.next();
-            if (e.getPrice() >= maxp) {
+            if (e.getPrice() >= p) {
                 it.remove();
             }
         }
@@ -28,7 +28,7 @@ public class TicketFinder {
 
     public Set<TicketType> find(User u, Trip t) {
         Set<TicketType> r = new HashSet<>();
-        for (TicketType TicketType : ttset) {
+        for (TicketType TicketType : ts) {
             if (TicketType.isValidFor(t, u)) {
                 r.add(TicketType);
             }
@@ -45,6 +45,6 @@ public class TicketFinder {
     }
 
     public Set<TicketType> getticketTypes() {
-        return new HashSet<>(this.ttset);
+        return new HashSet<>(this.ts);
     }
 }

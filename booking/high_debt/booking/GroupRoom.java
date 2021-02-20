@@ -10,14 +10,14 @@ public class GroupRoom implements Room {
 
     private final String n;
     private final String d;
-    private final boolean hasWhiteboard;
+    private final boolean w;
 
     private final List<Booking> bs = new LinkedList<>();
 
-    protected GroupRoom(String n, String d, boolean hasWhiteboard) {
+    protected GroupRoom(String n, String d, boolean w) {
         this.n = n;
         this.d = d;
-        this.hasWhiteboard = hasWhiteboard;
+        this.w = w;
     }
 
     public String getName() {
@@ -29,7 +29,7 @@ public class GroupRoom implements Room {
     }
 
     public boolean getHasWhiteboard() {
-        return this.hasWhiteboard;
+        return this.w;
     }
 
     public List<Booking> getBookings() {

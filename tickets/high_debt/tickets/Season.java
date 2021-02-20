@@ -10,13 +10,13 @@ public enum Season {
     SUMMER(EnumSet.of(Month.JUNE, Month.JULY, Month.AUGUST)),
     AUTUMN(EnumSet.of(Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER)),
     WINTER(EnumSet.of(Month.DECEMBER, Month.JANUARY, Month.FEBRUARY));
-    private transient Set<Month> months;
+    private transient Set<Month> m;
     
-    Season (Set<Month> months) {
-        this.months = EnumSet.copyOf(months);
+    Season (Set<Month> m) {
+        this.m = EnumSet.copyOf(m);
     }
 
     public boolean isDateWithin(LocalDateTime date) {
-        return this.months.contains(date.getMonth());
+        return this.m.contains(date.getMonth());
     }
 }

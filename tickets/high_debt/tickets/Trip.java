@@ -6,26 +6,26 @@ import java.util.Objects;
 
 public class Trip {
 
-    private final Zone startz;
-    private final Zone endz;
-    private final LocalDateTime tstart;
+    private final Zone sz;
+    private final Zone ez;
+    private final LocalDateTime t;
 
-    public Trip(Zone startz, Zone endz, LocalDateTime tstart) {
-        this.startz = startz;
-        this.endz = endz;
-        this.tstart = tstart;
+    public Trip(Zone sz, Zone ez, LocalDateTime t) {
+        this.sz = sz;
+        this.ez = ez;
+        this.t = t;
     }
 
     public Zone getStartZone() {
-        return this.startz;
+        return this.sz;
     }
 
     public Zone getEndZone() {
-        return this.endz;
+        return this.ez;
     }
     
     public LocalDateTime getTripStartTime() {
-        return this.tstart;
+        return this.t;
     }
 
     @Override 

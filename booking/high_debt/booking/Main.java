@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Main {
-    private static final LocalDateTime now = LocalDateTime.now().plusMinutes(5);
+    private static final LocalDateTime n = LocalDateTime.now().plusMinutes(5);
 
     private static final User u1 = new User("Alice", "alice@crypto");
     private static final User u2 = new User("Bob", "bob@crypto");
@@ -85,7 +85,7 @@ public class Main {
         // Test GroupRoom booking
         // Previous booking is made in the loop above
         Optional<Booking> groupRoomBooking = r3.book(
-                new Interval(now.plusDays(20), now.plusDays(25)),
+                new Interval(n.plusDays(20), n.plusDays(25)),
                 u1
         );
         if (groupRoomBooking.isPresent()) {

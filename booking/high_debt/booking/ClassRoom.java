@@ -14,12 +14,12 @@ public class ClassRoom implements Room {
 
     private final List<Booking> bs = new LinkedList<>();
 
-    private boolean hasP;
+    private boolean p;
 
-    public ClassRoom(String n, String d, boolean hasP) {
+    public ClassRoom(String n, String d, boolean p) {
         this.n = n;
         this.d = d;
-        this.hasP = hasP;
+        this.p = p;
     }
 
     public String getName() {
@@ -31,7 +31,7 @@ public class ClassRoom implements Room {
     }
 
     public boolean getHasProjector() {
-        return this.hasP;
+        return this.p;
     }
 
     public List<Booking> getBookings() {
