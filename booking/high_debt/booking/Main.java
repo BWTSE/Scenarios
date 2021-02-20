@@ -54,13 +54,13 @@ public class Main {
         LocalDateTime t = LocalDateTime.of(2021, 6, 1, 5, 0, 0);
         Optional<Booking> b = r2.book(new Interval(t, t.plusHours(3)), u2);
         if (b.isPresent()) {
-            System.out.println("A computer room was successfully booked outside of office hours, this should not be possible");
+            System.out.println("A computer room was successfully booked outside of allowed hours, this should not be possible");
         }
 
         t = LocalDateTime.of(2021, 6, 8, 12, 0, 0);
         b = r2.book(new Interval(t, t.plusHours(3)), u2);
         if (!b.isPresent()) {
-            System.out.println("Failed to book computer room during office hours, this should be possible");
+            System.out.println("Failed to book computer room during allowed hours, this should be possible");
         }
 
         // Test Class Room booking
