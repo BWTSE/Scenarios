@@ -51,7 +51,8 @@ public class ClassRoom implements Room {
 
 
     /*
-    Only allows bookings that start on the hour. (Floors second and microsecond values)
+    Only allows bookings that start on the hour. (Floors second and microsecond values).
+    Also makes sure that the booking is valid and that the room is available.
     */
     public Optional<Booking> book(Interval i, User u) {
         if (

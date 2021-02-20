@@ -20,6 +20,10 @@ public class TicketTypeSingle implements TicketType {
         this.eh = eh;
     }
 
+    /*
+    Makes sure that the trip is during the right time of the day.
+    Also checks that the ticket is valid in the zones of the trip.
+     */
     @Override
     public boolean isValidFor(Trip t, User u) {
         if (this.sh < this.eh) {

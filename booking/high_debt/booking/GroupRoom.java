@@ -49,6 +49,7 @@ public class GroupRoom implements Room {
     /*
     Due to the popularity of some specific group rooms,
      no user is allowed to have more than one upcoming booking for a group room.
+    Also makes sure that the booking is valid and that the room is available.
      */
     public Optional<Booking> book(Interval i, User u) {
         if (this.userHasBookingAlready(u) || !this.available(i) || !startBeforeEnd(i)) {

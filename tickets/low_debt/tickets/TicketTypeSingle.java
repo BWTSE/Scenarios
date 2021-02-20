@@ -20,6 +20,9 @@ public class TicketTypeSingle extends TicketType {
         this.endHour = endHour;
     }
 
+    /*
+    Makes sure that the trip is during the right time of the day.
+     */
     @Override
     public boolean isValidFor(Trip trip, User user) {
         if (this.startHour < this.endHour) {

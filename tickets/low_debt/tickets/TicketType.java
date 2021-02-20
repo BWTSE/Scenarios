@@ -27,6 +27,9 @@ public class TicketType {
         return EnumSet.copyOf(this.validZones);
     }
 
+    /*
+    Checks that the ticket is valid in the zones of the trip.
+     */
     public boolean isValidFor(Trip trip, User user) {
         return this.getValidZones().contains(trip.getStartZone())
             && this.getValidZones().contains(trip.getEndZone());

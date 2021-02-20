@@ -12,6 +12,9 @@ public class TicketTypeSeasonal extends TicketType {
         this.validSeason = validSeason;
     }
 
+    /*
+    Make sure that the trip is during the correct season.
+     */
     @Override
     public boolean isValidFor(Trip trip, User user) {
         return super.isValidFor(trip, user)

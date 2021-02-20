@@ -39,6 +39,9 @@ public class Room {
         return true;
     }
 
+    /*
+    Makes sure that the booking is valid and that the room is available.
+     */
     public Optional<Booking> book(Interval interval, User customer) {
         if (
             !this.available(interval) 

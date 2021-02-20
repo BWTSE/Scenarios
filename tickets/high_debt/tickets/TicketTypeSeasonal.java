@@ -18,6 +18,10 @@ public class TicketTypeSeasonal implements TicketType {
         this.vs = vs;
     }
 
+    /*
+    Make sure that the trip is during the correct season.
+    Also checks that the ticket is valid in the zones of the trip.
+     */
     @Override
     public boolean isValidFor(Trip t, User u) {
         return this.getValidZones().contains(t.getStartZone())
