@@ -41,7 +41,7 @@ public class TicketTypeSeasonal implements TicketType {
         return EnumSet.copyOf(this.zs);
     }
     
-    private Season getValidSeason() {
+    public Season getValidSeason() {
         return this.vs;
     }
 
