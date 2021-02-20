@@ -14,7 +14,7 @@ public class ClassRoom extends Room {
         this.hasProjector = hasProjector;
     }
 
-    public boolean getHasProjector() {
+    public boolean hasProjector() {
         return this.hasProjector;
     }
 
@@ -45,11 +45,11 @@ public class ClassRoom extends Room {
     @Override
     public boolean equals(Object o) {
         return super.equals(o)
-            && Objects.equals(this.getHasProjector(), ((ClassRoom) o).getHasProjector());
+            && Objects.equals(this.hasProjector(), ((ClassRoom) o).hasProjector());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), this.getHasProjector());
+        return Objects.hash(super.hashCode(), this.hasProjector());
     }
 }

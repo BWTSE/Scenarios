@@ -6,15 +6,15 @@ import java.util.Optional;
 
 public class GroupRoom extends Room {
 
-    private final boolean hasWhiteoard;
+    private final boolean hasWhiteboard;
     
     public GroupRoom(String name, String description, boolean hasWhiteboard) {
         super(name, description);
-        this.hasWhiteoard = hasWhiteboard;
+        this.hasWhiteboard = hasWhiteboard;
     }
 
-    public boolean getHasWhiteboard() {
-        return this.hasWhiteoard;
+    public boolean hasWhiteboard() {
+        return this.hasWhiteboard;
     }
 
     /*
@@ -37,11 +37,11 @@ public class GroupRoom extends Room {
     @Override
     public boolean equals(Object o) {
         return super.equals(o)
-            && Objects.equals(this.getHasWhiteboard(), ((GroupRoom) o).getHasWhiteboard());
+            && Objects.equals(this.hasWhiteboard(), ((GroupRoom) o).hasWhiteboard());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), this.getHasWhiteboard());
+        return Objects.hash(super.hashCode(), this.hasWhiteboard());
     }
 }

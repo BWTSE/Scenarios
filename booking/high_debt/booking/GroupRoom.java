@@ -28,7 +28,7 @@ public class GroupRoom implements Room {
         return this.d;
     }
 
-    public boolean getHasWhiteboard() {
+    public boolean hasWhiteboard() {
         return this.w;
     }
 
@@ -79,12 +79,12 @@ public class GroupRoom implements Room {
     @Override
     public boolean equals(Object o) {
         return super.equals(o)
-            && Objects.equals(this.getHasWhiteboard(), ((GroupRoom) o).getHasWhiteboard());
+            && Objects.equals(this.hasWhiteboard(), ((GroupRoom) o).hasWhiteboard());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), this.getHasWhiteboard());
+        return Objects.hash(super.hashCode(), this.hasWhiteboard());
     }
 
     @Override

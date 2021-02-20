@@ -30,7 +30,7 @@ public class ClassRoom implements Room {
         return this.d;
     }
 
-    public boolean getHasProjector() {
+    public boolean hasProjector() {
         return this.p;
     }
 
@@ -87,12 +87,12 @@ public class ClassRoom implements Room {
     @Override
     public boolean equals(Object o) {
         return super.equals(o)
-            && Objects.equals(this.getHasProjector(), ((ClassRoom) o).getHasProjector());
+            && Objects.equals(this.hasProjector(), ((ClassRoom) o).hasProjector());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), this.getHasProjector());
+        return Objects.hash(super.hashCode(), this.hasProjector());
     }
 
     @Override
