@@ -16,9 +16,9 @@ public class Main {
     private static final GroupRoom groupRoom = new GroupRoom("J317", "in Jupiter", true);
 
     private static final Collection<Room> rooms = List.of(
-            classRoom,
-            computerRoom,
-            groupRoom
+        classRoom,
+        computerRoom,
+        groupRoom
     );
 
     // Runs some simple tests for the booking system
@@ -44,8 +44,8 @@ public class Main {
             Optional<Booking> booking3 = room.book(secondInterval, bob);
             if (booking3.isEmpty()) {
                 System.out.println(
-                        "Rooms should be bookable after previous booking: "
-                                + room.toString()
+                    "Rooms should be bookable after previous booking: "
+                    + room.toString()
                 );
             }
         }
@@ -86,8 +86,8 @@ public class Main {
         // Test GroupRoom booking
         // Previous booking is made in the loop above
         Optional<Booking> groupRoomBooking = groupRoom.book(
-                new Interval(now.plusDays(20), now.plusDays(25)),
-                alice
+            new Interval(now.plusDays(20), now.plusDays(25)),
+            alice
         );
         if (groupRoomBooking.isPresent()) {
             System.out.println("Every user should only be able to have one upcoming groupRoom booking");
