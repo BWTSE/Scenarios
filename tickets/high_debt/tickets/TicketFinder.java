@@ -23,16 +23,19 @@ public class TicketFinder {
                 it.remove();
             }
         }
+
         return r;
     }
 
     public Set<TicketType> find(User u, Trip t) {
         Set<TicketType> r = new HashSet<>();
+
         for (TicketType TicketType : ts) {
             if (TicketType.isValidFor(t, u)) {
                 r.add(TicketType);
             }
         }
+
         return r;
     }
 

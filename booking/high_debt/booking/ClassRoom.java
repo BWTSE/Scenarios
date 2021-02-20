@@ -48,8 +48,6 @@ public class ClassRoom implements Room {
         return true;
     }
 
-
-
     /*
     Only allows bookings that start on the hour. (Floors second and microsecond values).
     Also makes sure that the booking is valid and that the room is available.
@@ -66,6 +64,7 @@ public class ClassRoom implements Room {
 
         Booking b = new Booking(i, u);
         bs.add(b);
+
         return Optional.of(b);
     }
 
@@ -77,6 +76,7 @@ public class ClassRoom implements Room {
         LocalDateTime bst = i.getStart()
             .with(ChronoField.SECOND_OF_MINUTE, 0)
             .with(ChronoField.NANO_OF_SECOND, 0);
+
         LocalDateTime bed = i.getStart()
             .with(ChronoField.SECOND_OF_MINUTE, 0)
             .with(ChronoField.NANO_OF_SECOND, 0);

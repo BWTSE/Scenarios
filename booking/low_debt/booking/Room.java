@@ -53,6 +53,7 @@ public class Room {
 
         Booking booking = new Booking(interval, customer);
         bookings.add(booking);
+
         return Optional.of(booking);
     }
 

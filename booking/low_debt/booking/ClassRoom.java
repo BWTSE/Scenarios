@@ -26,6 +26,7 @@ public class ClassRoom extends Room {
         LocalDateTime bookingStart = interval.getStart()
             .with(ChronoField.SECOND_OF_MINUTE, 0)
             .with(ChronoField.NANO_OF_SECOND, 0);
+
         LocalDateTime bookingEnd = interval.getStart()
             .with(ChronoField.SECOND_OF_MINUTE, 0)
             .with(ChronoField.NANO_OF_SECOND, 0);
@@ -37,6 +38,7 @@ public class ClassRoom extends Room {
         ) {
             return Optional.empty();
         }
+
         return super.book(new Interval(bookingStart, bookingEnd), customer);
     }
 

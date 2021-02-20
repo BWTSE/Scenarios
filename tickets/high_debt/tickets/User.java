@@ -44,9 +44,11 @@ public class User {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         User u = (User) o;
         return Objects.equals(getEmail(), u.getEmail());
     }

@@ -40,9 +40,11 @@ public class TicketType {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         TicketType ticketType = (TicketType) o;
         return Objects.equals(this.getName(), ticketType.getName())
             && Objects.equals(this.getValidZones(), ticketType.getValidZones())

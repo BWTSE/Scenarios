@@ -27,8 +27,8 @@ public class Interval {
 
     public boolean overlapsWith(Interval other) {
         return this.isDuring(other.getStart())
-                || this.isDuring(other.getEnd())
-                || other.isDuring(this.getStart());
+            || this.isDuring(other.getEnd())
+            || other.isDuring(this.getStart());
     }
 
     @Override
@@ -54,6 +54,7 @@ public class Interval {
     @Override
     public String toString() {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
         return String.format(
                 "%s to %s",
                 dateTimeFormatter.format(this.getStart()),

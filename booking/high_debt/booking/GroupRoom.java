@@ -58,6 +58,7 @@ public class GroupRoom implements Room {
 
         Booking b = new Booking(i, u);
         bs.add(b);
+
         return Optional.of(b);
     }
 

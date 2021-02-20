@@ -33,9 +33,11 @@ public class Trip {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         Trip trip = (Trip) o;
         return Objects.equals(this.getStartZone(), trip.getStartZone())
             && Objects.equals(this.getEndZone(), trip.getEndZone())
@@ -50,6 +52,7 @@ public class Trip {
     @Override
     public String toString() {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
         return String.format(
             "Trip from %s to %s starting at %s", 
             this.getStartZone(), 

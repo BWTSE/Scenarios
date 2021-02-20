@@ -50,9 +50,11 @@ public class TicketTypeSeasonal implements TicketType {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         TicketTypeSeasonal tt = (TicketTypeSeasonal) o;
         return Objects.equals(this.getName(), tt.getName())
             && Objects.equals(this.getValidSeason(), tt.getValidSeason())

@@ -24,9 +24,11 @@ public class Booking {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         Booking b = (Booking) o;
         return Objects.equals(this.getInterval(), b.getInterval()) &&
                 Objects.equals(this.getBooker(), b.getBooker());

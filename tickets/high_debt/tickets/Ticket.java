@@ -36,9 +36,11 @@ public class Ticket {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         Ticket t = (Ticket) o;
         return Objects.equals(this.getTicketType(), t.getTicketType())
             && Objects.equals(this.getUser(), t.getUser())
@@ -53,6 +55,7 @@ public class Ticket {
     @Override
     public String toString() {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
         return String.format(
             "Ticket: %s Valid for u: %s time of purchase: %s",
             this.getTicketType().getName(),

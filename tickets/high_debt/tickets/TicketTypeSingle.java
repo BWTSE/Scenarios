@@ -65,9 +65,11 @@ public class TicketTypeSingle implements TicketType {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         TicketTypeSingle tt = (TicketTypeSingle) o;
         return Objects.equals(this.getName(), tt.getName())
             && Objects.equals(this.getValidZones(), tt.getValidZones())

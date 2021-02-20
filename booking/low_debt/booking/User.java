@@ -25,9 +25,11 @@ public class User {
         if (this == o) {
             return true;
         }
+
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
+
         User user = (User) o;
         return Objects.equals(getEmail(), user.getEmail());
     }

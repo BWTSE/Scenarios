@@ -29,11 +29,13 @@ public class TicketFinder {
 
     public Set<TicketType> find(User user, Trip trip) {
         Set<TicketType> results = new HashSet<>();
+
         for (tickets.TicketType TicketType : ticketTypes) {
             if (TicketType.isValidFor(trip, user)) {
                 results.add(TicketType);
             }
         }
+
         return results;
     }
 
