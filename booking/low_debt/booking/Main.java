@@ -68,10 +68,11 @@ public class Main {
             new Interval(testTime, testTime.plusHours(1)),
             bob
         );
-        if (classRoomBooking.isPresent()) {
-            if (classRoomBooking.get().getInterval().getStart().getMinute() != 0) {
+        if (
+            classRoomBooking.isPresent()
+            && classRoomBooking.get().getInterval().getStart().getMinute() != 0
+        ) {
                 System.out.println("Class room bookings should always start at whole hours.");
-            }
         }
 
         classRoomBooking = classRoom.book(

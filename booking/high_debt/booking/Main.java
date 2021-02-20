@@ -68,10 +68,8 @@ public class Main {
             new Interval(t, t.plusHours(1)),
             u2
         );
-        if (b.isPresent()) {
-            if (b.get().getInterval().getStart().getMinute() != 0) {
-                System.out.println("Class room bookings should always start at whole hours.");
-            }
+        if (b.isPresent() && b.get().getInterval().getStart().getMinute() != 0) {
+            System.out.println("Class room bookings should always start at whole hours.");
         }
 
         b = r1.book(
