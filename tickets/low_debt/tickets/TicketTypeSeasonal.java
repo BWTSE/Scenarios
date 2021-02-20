@@ -14,16 +14,8 @@ public class TicketTypeSeasonal extends TicketType {
 
     @Override
     public boolean isValidFor(Trip trip, User user) {
-        return zonesValid(trip) && timeValid(trip);
-    }
-
-    private boolean zonesValid(Trip trip){ 
-        return this.getValidZones().contains(trip.getStartZone()) 
-            && this.getValidZones().contains(trip.getEndZone());
-    }
-
-    private boolean timeValid(Trip trip) {
-        return this.getValidSeason().isDateWithin(trip.getTripStartTime());
+        return super.isValidFor(trip, user)
+            && this.getValidSeason().isDateWithin(trip.getTripStartTime());
     }
 
     public Season getValidSeason() {

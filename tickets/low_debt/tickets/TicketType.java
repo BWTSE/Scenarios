@@ -29,7 +29,7 @@ public class TicketType {
 
     public boolean isValidFor(Trip trip, User user) {
         return this.getValidZones().contains(trip.getStartZone())
-                && this.getValidZones().contains(trip.getEndZone());
+            && this.getValidZones().contains(trip.getEndZone());
     }
 
     @Override
