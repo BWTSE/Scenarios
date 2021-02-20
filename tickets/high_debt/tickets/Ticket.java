@@ -41,10 +41,10 @@ public class Ticket {
             return false;
         }
 
-        Ticket t = (Ticket) o;
-        return Objects.equals(this.getTicketType(), t.getTicketType())
-            && Objects.equals(this.getUser(), t.getUser())
-            && Objects.equals(this.getTimeOfPurchase(), t.getTimeOfPurchase());
+        Ticket t2 = (Ticket) o;
+        return Objects.equals(this.getTicketType(), t2.getTicketType())
+            && Objects.equals(this.getUser(), t2.getUser())
+            && Objects.equals(this.getTimeOfPurchase(), t2.getTimeOfPurchase());
     }
 
     @Override
