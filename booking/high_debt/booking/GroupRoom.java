@@ -88,7 +88,7 @@ public class GroupRoom implements Room {
     @Override
     public String toString() {
         return String.format(
-                "Resource %s \"%s\" #bookings: %s",
+                "Room %s \"%s\" #bookings: %s",
                 this.getName(),
                 this.getDescription(),
                 this.getBookings().size()
