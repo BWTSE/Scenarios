@@ -55,13 +55,13 @@ public class Main {
             tf.find(u1, new Trip(Zone.CENTRAL, Zone.SUBURB, t), 2000);
 
         if (u1ts.containsAll(new HashSet<>(Arrays.asList(t7, t5)))) {
-                System.out.println("Alice (adult) found a retiree or student ticket");
+            System.out.println("Alice (adult) found a retiree or student ticket");
         }
 
         for (TicketType tic : u1ts) {
             if (!tic.getValidZones().containsAll(EnumSet.of(Zone.SUBURB, Zone.CENTRAL))) {
-                    System.out.println("Alice found ticket that isnt valid for her trip:");
-                    System.out.println(tic.getName());
+                System.out.println("Alice found ticket that isnt valid for her trip:");
+                System.out.println(tic.getName());
             }
         }
     
@@ -75,8 +75,8 @@ public class Main {
         }
         for (TicketType tic : u2ts) {
             if (!tic.getValidZones().contains(Zone.CENTRAL)) {
-                 System.out.println("Bob found ticket that isn't valid for his trip:");
-                 System.out.println(tic.getName());
+                System.out.println("Bob found ticket that isn't valid for his trip:");
+                System.out.println(tic.getName());
             }
         }
 

@@ -55,13 +55,13 @@ public class Main {
             ticketFinder.find(alice, new Trip(Zone.CENTRAL, Zone.SUBURB, time), 2000);
 
         if (aliceTickets.containsAll(new HashSet<>(Arrays.asList(studentWinter, retireeWinter)))) {
-                System.out.println("Alice (adult) found a retiree or student ticket");
+            System.out.println("Alice (adult) found a retiree or student ticket");
         }
 
         for (TicketType ticket : aliceTickets) {
             if (!ticket.getValidZones().containsAll(EnumSet.of(Zone.SUBURB, Zone.CENTRAL))) {
-                    System.out.println("Alice found ticket that isnt valid for her trip:");
-                    System.out.println(ticket.getName());
+                System.out.println("Alice found ticket that isnt valid for her trip:");
+                System.out.println(ticket.getName());
             }
         }
     
@@ -75,8 +75,8 @@ public class Main {
         }
         for (TicketType ticket : bobTickets) {
             if (!ticket.getValidZones().contains(Zone.CENTRAL)) {
-                 System.out.println("Bob found ticket that isn't valid for his trip:");
-                 System.out.println(ticket.getName());
+                System.out.println("Bob found ticket that isn't valid for his trip:");
+                System.out.println(ticket.getName());
             }
         }
 
