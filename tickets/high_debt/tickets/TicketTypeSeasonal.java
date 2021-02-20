@@ -60,4 +60,9 @@ public class TicketTypeSeasonal implements TicketType {
     public int hashCode() {
         return Objects.hash(this.getName(), this.getPrice(), this.getValidSeason());
     }
+
+    @Override
+    public String toString() {
+        return String.format("Ticket %s ", this.getName());
+    }
 }

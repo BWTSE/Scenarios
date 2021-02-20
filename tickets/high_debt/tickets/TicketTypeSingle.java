@@ -81,4 +81,9 @@ public class TicketTypeSingle implements TicketType {
             this.getEndHour()
         );
     }
+
+    @Override
+    public String toString() {
+        return String.format("Ticket %s ", this.getName());
+    }
 }
