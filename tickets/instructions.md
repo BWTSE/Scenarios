@@ -1,6 +1,6 @@
 # Tickets Task
 
-This is a system that models a public transport ticket system. It finds the tickets that are valid for a specific trip and user at a specific time.
+This is a system that models a public transport ticket system. It finds the ticket types that are valid for a specific trip and user at a specific time.
 
 Your task is to add a TicketTypeSeasonalRestricted class that works like a seasonal ticket but only is valid for certain groups, i.e. students and/or retirees.
 
