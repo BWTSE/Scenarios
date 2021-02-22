@@ -4,7 +4,7 @@ This system is a simple booking system, where there are currently two types of r
 
 Your task is to add a `ComputerClassRoom` class that works like an ordinary classroom, but unlike them, they should also only be available during a specified period of time each day.
 
-The prewritten tests assume the constructor `ComputerClassRoom(String, String, boolean, int, int)` where the arguments represent: the name of the room, a description of the room, whether the room has a projector, the hour of opening, the hour of closing.
+The prewritten tests assume the following constuctor for the new class: `ComputerClassRoom(String, String, boolean, int, int)` where the arguments represent: the name of the room, a description of the room, whether the room has a projector, the hour of opening, the hour of closing.
 
 Feel free to modify the existing codebase (even the tests) in any way you want as long as you maintain existing functionality.
 
