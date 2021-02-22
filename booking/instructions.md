@@ -2,23 +2,22 @@
 
 This system is a simple booking system, where there are currently two types of rooms available: classrooms and group rooms.
 
-Your task is to extend the system with a new class (`ComputerClassRoom`) representing classrooms filled with computers. Because of the valuable hardware inside them, access to computer rooms is more limited than to other classrooms.
+Your task is to add a `ComputerClassRoom` class that works like an ordinary classroom, but unlike them, they should also only be available during a specified period of time each day.
 
-Computer rooms should **only be bookable between two full hours** (e.g. 13:00 to 14:00, but not 13:06 to 14:06). Unlike other classrooms, they should also **only be available during a specified time-period each day**. 
-The new class should make sure these rules are not broken.
-
-The class should be a subtype of `Room` and the prewritten tests assume the constructor `ComputerClassRoom(String, String, boolean, int, int)`. Arguments represent name, description, wether the room has a projector, hour of opening, hour of closing.
-
-Reference for LocalDateTime can be found here: <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html" target="_blank" >Class LocalDateTime</a>
+The prewritten tests assume the constructor `ComputerClassRoom(String, String, boolean, int, int)` where the arguments represent: the name of the room, a description of the room, whether the room has a projector, the hour of opening, the hour of closing.
 
 Feel free to modify the existing codebase (even the tests) in any way you want as long as you maintain existing functionality.
 
-Tip: the editor supports a <a href="https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts" target="_blank" >set of shortcuts</a>.
-
 ## Task checklist
-* Added a `ComputerClassRoom` class as a subtype of `Room`
-* Any computer room bookings outside the opening hours are rejected.
-* Passes all tests in `Main.java`
+* Added a `ComputerClassRoom` class that:
+	* has all of the same booking limitations that `ClassRoom` has.
+	* can only be booked between the opening and closing hours passed to the constructor.
+	* can be stored in collections of `Room` and be used as a substitute for `Room`.
+* The code compiles and passes all tests in `Main.java` 
+	* Use the **Run Code** button below to test your solution
 
+<br>
 
-Use the **Run Code** button below to test your solution.
+Reference for LocalDateTime can be found here: <a href="https://docs.oracle.com/javase/8/docs/api/java/time/LocalDateTime.html" target="_blank" >Class LocalDateTime</a>
+
+Tip: the editor supports a <a href="https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts" target="_blank" >set of shortcuts</a>.
