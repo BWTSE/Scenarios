@@ -77,7 +77,7 @@ public class ClassRoom implements Room {
             .with(ChronoField.SECOND_OF_MINUTE, 0)
             .with(ChronoField.NANO_OF_SECOND, 0);
 
-        LocalDateTime bed = i.getStart()
+        LocalDateTime bed = i.getEnd()
             .with(ChronoField.SECOND_OF_MINUTE, 0)
             .with(ChronoField.NANO_OF_SECOND, 0);
 

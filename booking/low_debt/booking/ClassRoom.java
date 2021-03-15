@@ -27,7 +27,7 @@ public class ClassRoom extends Room {
             .with(ChronoField.SECOND_OF_MINUTE, 0)
             .with(ChronoField.NANO_OF_SECOND, 0);
 
-        LocalDateTime bookingEnd = interval.getStart()
+        LocalDateTime bookingEnd = interval.getEnd()
             .with(ChronoField.SECOND_OF_MINUTE, 0)
             .with(ChronoField.NANO_OF_SECOND, 0);
 
