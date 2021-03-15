@@ -38,9 +38,9 @@ public class ClassRoom implements Room {
         return List.copyOf(this.bs);
     }
 
-    private boolean available(Interval interval) {
-        for (Booking booking : this.getBookings()) {
-            if (booking.getInterval().overlapsWith(interval)) {
+    private boolean available(Interval i) {
+        for (Booking b : this.getBookings()) {
+            if (b.getInterval().overlapsWith(i)) {
                 return false;
             }
         }
