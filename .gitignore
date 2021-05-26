@@ -1,8 +1,3 @@
-booking/high_debt/booking/ComputerClassRoom.java
-booking/low_debt/booking/ComputerClassRoom.java
-tickets/high_debt/tickets/TicketTypeSeasonalRestricted.java
-tickets/low_debt/tickets/TicketTypeSeasonalRestricted.java
-
 .project
 .classpath
 .properties
