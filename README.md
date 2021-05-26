@@ -14,6 +14,7 @@ Read the thesis for more information about how the scenarios were used.
     * `low_debt/[scenario name]` contains the low debt version of the scenario.
         `*.java` the files constituting the scenario.
     * `instructions.md` the instructions accompanying the scenario in markdown format.
+    * `*.Java` an example solution to the scenario.
 
 ## Notes
 1. If you want to run the scenario with the solution, copy the solution file(s) to the folder containing the rest of teh scenario files.
