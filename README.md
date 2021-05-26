@@ -17,6 +17,6 @@ Read the thesis for more information about how the scenarios were used.
     * `*.Java` an example solution to the scenario.
 
 ## Notes
-1. If you want to run the scenario with the solution, copy the solution file(s) to the folder containing the rest of teh scenario files.
+1. If you want to run the scenario with the solution, copy the solution file(s) to the folder containing the rest of the scenario files.
 
 If you have any questions or feel that anything is amiss, please [open an issue](https://github.com/BWTSE/Scenarios/issues).
