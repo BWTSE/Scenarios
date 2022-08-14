@@ -9,7 +9,6 @@ Read the thesis for more information about how the scenarios were used.
 ## Repository content
 
 * `README.md` contains some general information about this repository.
-* `.manual_rules.json` contains information about which SonarQube rules were triggered by the submissions and if the rule should be ignored or not.
 * `[scenario name]` Each directory represents one of the scenarios used.
     * `high_debt/[scenario name]` contains the high debt version of the scenario.
         `*.java` the files constituting the scenario.
