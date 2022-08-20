@@ -2,9 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/313999830.svg)](https://zenodo.org/badge/latestdoi/313999830)
 
-This repository contains the scenarios used for the experiment in the thesis [*The Broken Windows Theory in Software Engineering: An experiment on technical debt propagation*](https://doi.org/10.5281/zenodo.4812956) conducted by [Hampus Broman](https://github.com/HBroman) and [William Levén](https://github.com/williamleven) in 2021.
-
-Read the thesis for more information about how the scenarios were used.
+This repository contains the scenarios (programming tasks) used to investigate the Broken Windows Theory of Software Engineering. 
 
 ## Repository content
 
